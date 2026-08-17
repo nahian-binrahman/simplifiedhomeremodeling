@@ -14,21 +14,21 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-white/10">
           
           {/* Logo with S Monogram */}
-          <a href="#" className="group">
-            <Logo className="h-10 sm:h-12" />
+          <a href="#" className="group shrink-0">
+            <Logo className="w-[125px] sm:w-[145px] h-auto" />
           </a>
 
           {/* Center Serving Areas */}
-          <div className="flex items-center gap-2 text-gray-300">
-            <MapPin className="w-4 h-4 text-gray-400 shrink-0" />
+          <div className="flex items-center gap-2 text-gray-300 group cursor-pointer">
+            <MapPin className="w-4 h-4 text-gray-400 group-hover:text-amber-400 transition-colors shrink-0" />
             <div className="text-left text-xs leading-relaxed">
               <span className="text-gray-400 font-medium">Proudly Serving </span>
               <br className="sm:hidden" />
-              <span className="text-gray-200">
+              <span className="text-gray-200 group-hover:text-amber-400 transition-colors">
                 Palm Springs • Palm Desert • Rancho Mirage
               </span>
               <br />
-              <span className="text-gray-200">
+              <span className="text-gray-200 group-hover:text-amber-400 transition-colors">
                 La Quinta • Coachella Valley
               </span>
             </div>

@@ -83,7 +83,7 @@ export default function QuoteSection() {
                 READY TO REMODEL <br />
                 YOUR KITCHEN?
               </h2>
-              <div className="w-12 h-1 bg-amber-500 rounded my-3" />
+              <div className="w-12 h-0.5 bg-white/40 rounded my-3.5" />
               <h3 className="text-xl sm:text-2xl font-bold text-gray-100">
                 Let&apos;s Create a Kitchen <br />
                 You&apos;ll Love.
