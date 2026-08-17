@@ -129,7 +129,7 @@ export default function QuoteSection() {
 
           {/* Right Column: White Form Card */}
           <div className="lg:col-span-7 reveal-scale-init delay-150">
-            <div className="bg-white rounded-xl p-6 sm:p-8 lg:p-10 shadow-2xl text-black card-hover-lift">
+            <div className="bg-white rounded-xl p-5 sm:p-8 lg:p-10 shadow-2xl text-black card-hover-lift">
               
               {status === "success" ? (
                 <div className="text-center py-8 space-y-4 animate-in fade-in zoom-in-95">
@@ -144,7 +144,7 @@ export default function QuoteSection() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
                   {errorMessage && (
                     <div className="p-3 bg-red-50 border border-red-200 rounded text-red-700 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />
@@ -153,7 +153,7 @@ export default function QuoteSection() {
                   )}
 
                   {/* Row 1 */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
                       <input
                         type="text"
@@ -162,7 +162,7 @@ export default function QuoteSection() {
                         placeholder="Full Name*"
                         value={formData.fullName}
                         onChange={handleChange}
-                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-base sm:text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
                       />
                     </div>
 
@@ -174,21 +174,21 @@ export default function QuoteSection() {
                         placeholder="Phone Number*"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-base sm:text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
                       />
                     </div>
                   </div>
 
                   {/* Row 2 */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
                       <input
                         type="email"
                         name="email"
-                        placeholder="Email Address*"
+                        placeholder="Email Address"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-base sm:text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
                       />
                     </div>
 
@@ -196,10 +196,10 @@ export default function QuoteSection() {
                       <input
                         type="text"
                         name="address"
-                        placeholder="Project Address*"
+                        placeholder="Project Address / City"
                         value={formData.address}
                         onChange={handleChange}
-                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
+                        className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-base sm:text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all"
                       />
                     </div>
                   </div>
@@ -209,10 +209,10 @@ export default function QuoteSection() {
                     <textarea
                       name="details"
                       rows={3}
-                      placeholder="Tell us about your project*"
+                      placeholder="Tell us about your project..."
                       value={formData.details}
                       onChange={handleChange}
-                      className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all resize-none"
+                      className="w-full bg-white border border-gray-300 rounded px-3.5 py-3 text-base sm:text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition-all resize-none"
                     />
                   </div>
 
@@ -220,7 +220,7 @@ export default function QuoteSection() {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full py-4 rounded btn-invert-black disabled:opacity-50 font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 shadow-md transform hover:-translate-y-0.5 active:scale-[0.99]"
+                    className="w-full py-3.5 sm:py-4 rounded btn-invert-black disabled:opacity-50 font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transform hover:-translate-y-0.5 active:scale-[0.99] min-h-[48px]"
                   >
                     {status === "submitting" ? (
                       <span>SUBMITTING...</span>
