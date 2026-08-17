@@ -19,16 +19,18 @@ export default function Footer() {
           </a>
 
           {/* Center Serving Areas */}
-          <div className="flex items-center gap-2 text-gray-300 group cursor-pointer">
-            <MapPin className="w-4 h-4 text-gray-400 group-hover:text-amber-400 transition-colors shrink-0" />
+          <div className="flex items-center gap-2.5 text-gray-300 group cursor-pointer">
+            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-200">
+              <MapPin className="w-3.5 h-3.5 text-gray-400 group-hover:text-black transition-colors" />
+            </div>
             <div className="text-left text-xs leading-relaxed">
               <span className="text-gray-400 font-medium">Proudly Serving </span>
               <br className="sm:hidden" />
-              <span className="text-gray-200 group-hover:text-amber-400 transition-colors">
+              <span className="text-gray-200 link-underline-slide font-medium">
                 Palm Springs • Palm Desert • Rancho Mirage
               </span>
               <br />
-              <span className="text-gray-200 group-hover:text-amber-400 transition-colors">
+              <span className="text-gray-200 link-underline-slide font-medium">
                 La Quinta • Coachella Valley
               </span>
             </div>
@@ -39,14 +41,15 @@ export default function Footer() {
             href={`tel:${BUSINESS.phone}`}
             className="flex items-center gap-3 group"
           >
-            <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black transition-colors">
+            {/* #1 Black <-> White Invert Hover */}
+            <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-200 shrink-0">
               <Phone className="w-4 h-4 fill-current" />
             </div>
             <div className="text-left">
-              <div className="font-bold text-sm sm:text-base text-white tracking-tight leading-tight">
+              <div className="font-bold text-sm sm:text-base text-white tracking-tight leading-tight link-underline-slide">
                 {BUSINESS.formattedPhone}
               </div>
-              <div className="text-[11px] text-gray-400 font-normal">
+              <div className="text-[11px] text-gray-400 font-normal group-hover:text-white transition-colors">
                 Call for a Free Consultation
               </div>
             </div>

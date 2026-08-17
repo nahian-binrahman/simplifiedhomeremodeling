@@ -123,7 +123,7 @@ export default function TransformationVideoSection() {
             <div className="pt-3">
               <a
                 href="#quote-form"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded bg-black hover:bg-gray-800 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-md transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded btn-invert-black text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transform hover:-translate-y-0.5"
               >
                 <span>START YOUR KITCHEN REMODEL</span>
                 <ArrowRight className="w-4 h-4" />
@@ -134,7 +134,7 @@ export default function TransformationVideoSection() {
 
           {/* Right Column: Real Video Player Container */}
           <div className="lg:col-span-7">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-200 group">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-200 group card-hover-lift">
               
               {/* Media Container */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-black flex items-center justify-center">
@@ -146,7 +146,7 @@ export default function TransformationVideoSection() {
                   onTimeUpdate={handleTimeUpdate}
                   onLoadedMetadata={handleLoadedMetadata}
                   onClick={togglePlay}
-                  className="w-full h-full object-cover object-center cursor-pointer"
+                  className="w-full h-full object-cover object-center cursor-pointer transition-all duration-300 group-hover:brightness-[1.04]"
                 />
                 
                 {/* Dark overlay when paused */}
@@ -155,13 +155,13 @@ export default function TransformationVideoSection() {
                     onClick={togglePlay}
                     className="absolute inset-0 bg-black/30 cursor-pointer flex items-center justify-center transition-colors"
                   >
-                    {/* Big Center Play Button */}
+                    {/* Big Center Play Button with B&W Invert Hover */}
                     <button
                       onClick={togglePlay}
-                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-black shadow-2xl flex items-center justify-center transition-all transform hover:scale-110 active:scale-95 z-20"
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white shadow-2xl flex items-center justify-center transition-all duration-200 transform hover:scale-110 active:scale-95 z-20 group/btn"
                       aria-label="Play video"
                     >
-                      <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-black ml-1" />
+                      <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current ml-1" />
                     </button>
                   </div>
                 )}

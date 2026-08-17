@@ -101,19 +101,19 @@ export default function QuoteSection() {
                 href={`tel:${BUSINESS.phone}`}
                 className="flex items-center gap-3 text-gray-200 hover:text-white transition-colors group"
               >
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black transition-colors shrink-0">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-200 shrink-0">
                   <Phone className="w-4 h-4 fill-current" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm sm:text-base text-white">
+                  <div className="font-bold text-sm sm:text-base text-white link-underline-slide">
                     {BUSINESS.formattedPhone}
                   </div>
-                  <div className="text-xs text-gray-400">Call Now</div>
+                  <div className="text-xs text-gray-400 group-hover:text-white transition-colors">Call Now</div>
                 </div>
               </a>
 
-              <div className="flex items-center gap-3 text-gray-200">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 shrink-0">
+              <div className="flex items-center gap-3 text-gray-200 group cursor-default">
+                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black transition-colors duration-200 shrink-0">
                   <CalendarCheck className="w-4 h-4" />
                 </div>
                 <div>
@@ -129,38 +129,23 @@ export default function QuoteSection() {
 
           {/* Right Column: White Form Card */}
           <div className="lg:col-span-7">
-            <div className="bg-white rounded-xl p-6 sm:p-8 lg:p-10 shadow-2xl text-black">
+            <div className="bg-white rounded-xl p-6 sm:p-8 lg:p-10 shadow-2xl text-black card-hover-lift">
               
               {status === "success" ? (
                 <div className="text-center py-8 space-y-4 animate-in fade-in zoom-in-95">
-                  <div className="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-14 h-14 bg-gray-100 text-black rounded-full flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900">
                     Quote Request Received!
                   </h3>
-                  <p className="text-gray-600 text-sm max-w-md mx-auto">
-                    Thank you, <strong>{formData.fullName}</strong>. Our Coachella Valley project manager will contact you promptly at <strong>{formData.phone}</strong> to confirm your free consultation.
+                  <p className="text-sm text-gray-600 max-w-md mx-auto">
+                    Thank you! Our kitchen remodeling specialist will contact you shortly to schedule your free consultation.
                   </p>
-                  <button
-                    onClick={() => {
-                      setStatus("idle");
-                      setFormData({
-                        fullName: "",
-                        phone: "",
-                        email: "",
-                        address: "",
-                        details: "",
-                      });
-                    }}
-                    className="mt-4 px-6 py-2.5 rounded bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-gray-800"
-                  >
-                    Submit Another Request
-                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {status === "error" && (
+                  {errorMessage && (
                     <div className="p-3 bg-red-50 border border-red-200 rounded text-red-700 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>{errorMessage}</span>
@@ -231,11 +216,11 @@ export default function QuoteSection() {
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit Button - #1 Invert Hover */}
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full py-4 rounded bg-black hover:bg-gray-800 disabled:opacity-50 text-white font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.99]"
+                    className="w-full py-4 rounded btn-invert-black disabled:opacity-50 font-bold uppercase tracking-wider text-sm flex items-center justify-center gap-2 shadow-md transform hover:-translate-y-0.5 active:scale-[0.99]"
                   >
                     {status === "submitting" ? (
                       <span>SUBMITTING...</span>

@@ -82,15 +82,85 @@
   }
 }
 
-/* Compact vertical section padding: 60-80px desktop, 40-56px mobile */
-.section-spacing {
-  padding-top: 2.75rem;
-  padding-bottom: 2.75rem;
+/* -------------------------------------------------------------
+   Black & White Minimalist Luxury Hover Utilities
+   ------------------------------------------------------------- */
+
+/* 1. Black <-> White Invert Hover */
+.btn-invert-white {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-invert-white:hover {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
-@media (min-width: 768px) {
-  .section-spacing {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
-  }
+.btn-invert-black {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.btn-invert-black:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* 2. Border Fill Effect */
+.btn-outline-fill {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-outline-fill:hover {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* 3. Underline Slide Effect */
+.link-underline-slide {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.link-underline-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #ffffff;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline-slide:hover::after,
+.group:hover .link-underline-slide::after {
+  width: 100%;
+}
+
+/* 4. Subtle Lift + Shadow (Cards) */
+.card-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 12px 30px -8px rgba(255, 255, 255, 0.07);
+}
+
+/* 5. Opacity / Brightness Effect (Images / Project Photos) */
+.image-hover-bright {
+  transition: filter 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .image-hover-bright,
+.image-hover-bright:hover {
+  filter: brightness(1.08) contrast(1.02);
+}
+

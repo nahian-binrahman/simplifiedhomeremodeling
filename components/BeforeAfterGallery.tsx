@@ -41,19 +41,19 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
   };
 
   return (
-    <div className="rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white relative">
+    <div className="rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white relative card-hover-lift group">
       <div
         className="relative aspect-[4/3] w-full select-none cursor-ew-resize overflow-hidden"
         onMouseMove={(e) => handleMove(e.clientX, e.currentTarget.getBoundingClientRect())}
         onTouchMove={(e) => handleMove(e.touches[0].clientX, e.currentTarget.getBoundingClientRect())}
       >
-        {/* AFTER Image (Full Background) */}
+        {/* AFTER Image (Full Background) with Brightness Hover */}
         <div className="absolute inset-0">
           <Image
             src={item.afterImg}
             alt={`${item.title} After`}
             fill
-            className="object-cover object-center"
+            className="object-cover object-center transition-all duration-300 group-hover:brightness-[1.05]"
           />
           <div className="absolute bottom-3 right-3 bg-black/85 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded">
             AFTER
@@ -70,7 +70,7 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
               src={item.beforeImg}
               alt={`${item.title} Before`}
               fill
-              className="object-cover object-center brightness-90 sepia-[0.25]"
+              className="object-cover object-center brightness-90 sepia-[0.25] transition-all duration-300 group-hover:brightness-[1.02]"
             />
             <div className="absolute bottom-3 left-3 bg-black/85 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded">
               BEFORE
@@ -83,7 +83,7 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
           className="absolute top-0 bottom-0 w-0.5 bg-white z-10"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-white/95 shadow-lg flex items-center justify-center text-gray-800 border border-gray-300">
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-white text-gray-800 hover:bg-black hover:text-white shadow-lg flex items-center justify-center border border-gray-300 transition-colors">
             <ArrowLeftRight className="w-3.5 h-3.5" />
           </div>
         </div>
@@ -117,11 +117,11 @@ export default function BeforeAfterGallery() {
           ))}
         </div>
 
-        {/* Bottom Centered Button */}
+        {/* Bottom Centered Button - #1 Invert Hover */}
         <div className="mt-12 text-center">
           <a
             href="#quote-form"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-white hover:bg-gray-50 border border-gray-300 text-gray-900 font-bold uppercase tracking-wider text-xs sm:text-sm shadow-sm transition-all hover:border-gray-400"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm shadow-sm transform hover:-translate-y-0.5"
           >
             <span>VIEW MORE PROJECTS</span>
             <ArrowRight className="w-4 h-4" />

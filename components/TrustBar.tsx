@@ -10,8 +10,8 @@ export default function TrustBar() {
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200 gap-4 md:gap-0">
           
           {/* Badge 1 */}
-          <div className="flex items-center justify-center gap-3.5 py-2 md:py-0 px-4">
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 shrink-0">
+          <div className="flex items-center justify-center gap-3.5 py-2 md:py-0 px-4 group cursor-default transition-transform hover:-translate-y-0.5 duration-200">
+            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors duration-200 shrink-0">
               <ShieldCheck className="w-6 h-6 stroke-[2.2]" />
             </div>
             <span className="font-bold text-sm sm:text-base text-gray-900 tracking-tight">
@@ -20,8 +20,8 @@ export default function TrustBar() {
           </div>
 
           {/* Badge 2 */}
-          <div className="flex items-center justify-center gap-3.5 py-2 md:py-0 px-4">
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 shrink-0">
+          <div className="flex items-center justify-center gap-3.5 py-2 md:py-0 px-4 group cursor-default transition-transform hover:-translate-y-0.5 duration-200">
+            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors duration-200 shrink-0">
               <Hammer className="w-6 h-6 stroke-[2.2]" />
             </div>
             <span className="font-bold text-sm sm:text-base text-gray-900 tracking-tight">
@@ -30,8 +30,8 @@ export default function TrustBar() {
           </div>
 
           {/* Badge 3 */}
-          <div className="flex items-center justify-center gap-3.5 py-2 md:py-0 px-4">
-            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 shrink-0">
+          <div className="flex items-center justify-center gap-3.5 py-2 md:py-0 px-4 group cursor-default transition-transform hover:-translate-y-0.5 duration-200">
+            <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-900 group-hover:bg-black group-hover:text-white transition-colors duration-200 shrink-0">
               <CalendarCheck className="w-6 h-6 stroke-[2.2]" />
             </div>
             <span className="font-bold text-sm sm:text-base text-gray-900 tracking-tight">

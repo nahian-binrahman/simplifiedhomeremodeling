@@ -54,20 +54,20 @@ export default function Hero() {
 
           {/* Call to Action Buttons */}
           <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-            {/* White Solid Button */}
+            {/* #1 Black <-> White Invert Hover */}
             <a
               href="#quote-form"
-              className="px-7 py-3.5 rounded bg-white hover:bg-gray-100 text-black font-bold uppercase tracking-wider text-xs sm:text-sm text-center shadow-lg transition-all transform hover:-translate-y-0.5"
+              className="px-7 py-3.5 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm text-center shadow-lg transform hover:-translate-y-0.5"
             >
               REQUEST A FREE QUOTE
             </a>
 
-            {/* Dark Translucent Button */}
+            {/* #2 Border Fill Effect */}
             <a
               href={`tel:${BUSINESS.phone}`}
-              className="px-6 py-3.5 rounded bg-black/60 hover:bg-black/80 border border-white/30 text-white font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2.5 backdrop-blur-sm transition-all"
+              className="px-6 py-3.5 rounded btn-outline-fill font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2.5 backdrop-blur-sm transform hover:-translate-y-0.5"
             >
-              <Phone className="w-4 h-4 text-white fill-current" />
+              <Phone className="w-4 h-4 fill-current" />
               <span>CALL NOW</span>
             </a>
           </div>

@@ -48,13 +48,13 @@ export default function ClientReviews() {
           {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl border border-gray-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between relative hover:shadow-md transition-shadow"
+              className="bg-white rounded-xl border border-gray-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between relative card-hover-lift group cursor-default"
             >
               <div className="space-y-4">
                 {/* 5 Stars */}
-                <div className="flex items-center gap-1 text-gray-900">
+                <div className="flex items-center gap-1 text-black">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-gray-900 text-gray-900" />
+                    <Star key={i} className="w-4 h-4 fill-black text-black" />
                   ))}
                 </div>
 
@@ -71,7 +71,7 @@ export default function ClientReviews() {
                   <div className="text-xs text-gray-500 mt-0.5">{rev.location}</div>
                 </div>
 
-                <Quote className="w-6 h-6 text-gray-300 fill-gray-200" />
+                <Quote className="w-6 h-6 text-gray-300 fill-gray-200 group-hover:text-black group-hover:fill-gray-100 transition-colors" />
               </div>
             </div>
           ))}
@@ -81,7 +81,7 @@ export default function ClientReviews() {
         <div className="mt-14 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-20">
           
           {/* Google */}
-          <div className="flex flex-col items-center gap-1 text-center">
+          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
             <div className="text-lg font-bold tracking-tight">
               <span className="text-[#4285F4]">G</span>
               <span className="text-[#EA4335]">o</span>
@@ -91,36 +91,36 @@ export default function ClientReviews() {
               <span className="text-[#EA4335]">e</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
-              <span className="text-amber-400">★★★★★</span>
+              <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
           </div>
 
           {/* Yelp */}
-          <div className="flex flex-col items-center gap-1 text-center">
+          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
             <div className="text-lg font-extrabold text-[#d32323] tracking-tight flex items-center gap-1">
               <span>yelp</span>
               <span className="text-sm">★</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
-              <span className="text-amber-400">★★★★★</span>
+              <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
           </div>
 
           {/* Facebook */}
-          <div className="flex flex-col items-center gap-1 text-center">
+          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
             <div className="text-lg font-bold text-[#1877F2] tracking-tight">
               facebook
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
-              <span className="text-amber-400">★★★★★</span>
+              <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
           </div>
 
           {/* Houzz */}
-          <div className="flex flex-col items-center gap-1 text-center">
+          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
             <div className="text-lg font-bold text-[#4dbc15] tracking-tight flex items-center gap-1">
               <span className="w-4 h-4 bg-[#4dbc15] text-white rounded-sm text-xs flex items-center justify-center font-black">
                 h
@@ -128,7 +128,7 @@ export default function ClientReviews() {
               <span>houzz</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
-              <span className="text-amber-400">★★★★★</span>
+              <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
           </div>
