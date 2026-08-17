@@ -26,11 +26,11 @@ export default function Footer() {
             <div className="text-left text-xs leading-relaxed">
               <span className="text-gray-400 font-medium">Proudly Serving </span>
               <br className="sm:hidden" />
-              <span className="text-gray-200 link-underline-slide font-medium">
+              <span className="text-gray-200 link-underline-slide text-gentle-lift font-medium">
                 Palm Springs • Palm Desert • Rancho Mirage
               </span>
               <br />
-              <span className="text-gray-200 link-underline-slide font-medium">
+              <span className="text-gray-200 link-underline-slide text-gentle-lift font-medium">
                 La Quinta • Coachella Valley
               </span>
             </div>
@@ -46,7 +46,7 @@ export default function Footer() {
               <Phone className="w-4 h-4 fill-current" />
             </div>
             <div className="text-left">
-              <div className="font-bold text-sm sm:text-base text-white tracking-tight leading-tight link-underline-slide">
+              <div className="font-bold text-sm sm:text-base text-white tracking-tight leading-tight link-underline-slide text-gentle-lift">
                 {BUSINESS.formattedPhone}
               </div>
               <div className="text-[11px] text-gray-400 font-normal group-hover:text-white transition-colors">

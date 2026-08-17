@@ -88,7 +88,7 @@ export default function TransformationVideoSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Text & Features */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 reveal-init">
             
             <div className="text-xs font-bold tracking-[0.2em] text-gray-600 uppercase">
               SEE THE TRANSFORMATION
@@ -105,17 +105,17 @@ export default function TransformationVideoSection() {
 
             {/* Checklist */}
             <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium">
-                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0" strokeWidth={2.2} />
-                <span>Custom Kitchen Remodeling</span>
+              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
+                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
+                <span className="text-gentle-lift">Custom Kitchen Remodeling</span>
               </div>
-              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium">
-                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0" strokeWidth={2.2} />
-                <span>Quality Materials &amp; Finishes</span>
+              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
+                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
+                <span className="text-gentle-lift">Quality Materials &amp; Finishes</span>
               </div>
-              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium">
-                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0" strokeWidth={2.2} />
-                <span>Professional Craftsmanship</span>
+              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
+                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
+                <span className="text-gentle-lift">Professional Craftsmanship</span>
               </div>
             </div>
 
@@ -133,7 +133,7 @@ export default function TransformationVideoSection() {
           </div>
 
           {/* Right Column: Real Video Player Container */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 reveal-scale-init delay-150">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-200 group card-hover-lift">
               
               {/* Media Container */}

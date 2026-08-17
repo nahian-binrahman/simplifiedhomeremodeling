@@ -33,7 +33,7 @@ export default function ClientReviews() {
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-2xl mx-auto mb-14 reveal-init">
           <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">
             WHAT OUR CLIENTS SAY
           </div>
@@ -48,7 +48,7 @@ export default function ClientReviews() {
           {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl border border-gray-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between relative card-hover-lift group cursor-default"
+              className={`bg-white rounded-xl border border-gray-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between relative card-hover-lift group cursor-default reveal-init delay-${(idx + 1) * 100}`}
             >
               <div className="space-y-4">
                 {/* 5 Stars */}
@@ -78,7 +78,7 @@ export default function ClientReviews() {
         </div>
 
         {/* Platform Trust Logos (Google, Yelp, Facebook, Houzz) */}
-        <div className="mt-14 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-20">
+        <div className="mt-14 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-20 reveal-init delay-200">
           
           {/* Google */}
           <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">

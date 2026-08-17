@@ -98,7 +98,7 @@ export default function BeforeAfterGallery() {
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-12 reveal-init">
           <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">
             SEE THE DIFFERENCE
           </div>
@@ -112,13 +112,15 @@ export default function BeforeAfterGallery() {
 
         {/* 3 Split Comparison Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {comparisons.map((item) => (
-            <SplitCard key={item.id} item={item} />
+          {comparisons.map((item, idx) => (
+            <div key={item.id} className={`reveal-init delay-${(idx + 1) * 100}`}>
+              <SplitCard item={item} />
+            </div>
           ))}
         </div>
 
         {/* Bottom Centered Button - #1 Invert Hover */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center reveal-init delay-200">
           <a
             href="#quote-form"
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm shadow-sm transform hover:-translate-y-0.5"

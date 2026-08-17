@@ -76,7 +76,7 @@ export default function QuoteSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Heading & Contact Badges */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 reveal-init">
             
             <div className="space-y-2">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-[1.05] font-sans">
@@ -105,7 +105,7 @@ export default function QuoteSection() {
                   <Phone className="w-4 h-4 fill-current" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm sm:text-base text-white link-underline-slide">
+                  <div className="font-bold text-sm sm:text-base text-white link-underline-slide text-gentle-lift">
                     {BUSINESS.formattedPhone}
                   </div>
                   <div className="text-xs text-gray-400 group-hover:text-white transition-colors">Call Now</div>
@@ -128,7 +128,7 @@ export default function QuoteSection() {
           </div>
 
           {/* Right Column: White Form Card */}
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-7 reveal-scale-init delay-150">
             <div className="bg-white rounded-xl p-6 sm:p-8 lg:p-10 shadow-2xl text-black card-hover-lift">
               
               {status === "success" ? (

@@ -22,11 +22,11 @@ export default function Header() {
           </div>
           <div className="text-left leading-snug">
             <span className="text-gray-400 font-normal">Serving </span>
-            <span className="text-white font-semibold link-underline-slide">
+            <span className="text-white font-semibold link-underline-slide text-gentle-lift">
               Palm Springs, Palm Desert,
             </span>
             <br />
-            <span className="text-white font-semibold link-underline-slide">
+            <span className="text-white font-semibold link-underline-slide text-gentle-lift">
               Rancho Mirage, La Quinta &amp; Coachella Valley
             </span>
           </div>
@@ -43,7 +43,7 @@ export default function Header() {
               <Phone className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
             </div>
             <div className="text-right hidden sm:block">
-              <div className="font-extrabold text-base sm:text-lg text-white tracking-tight leading-tight link-underline-slide">
+              <div className="font-extrabold text-base sm:text-lg text-white tracking-tight leading-tight link-underline-slide text-gentle-lift">
                 {BUSINESS.formattedPhone}
               </div>
               <div className="text-xs text-gray-400 font-medium tracking-wide group-hover:text-white transition-colors">

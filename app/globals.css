@@ -13,6 +13,10 @@
   --text-muted: #71717a;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     border-color: var(--border-subtle);
@@ -20,8 +24,44 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    overflow-x: hidden;
   }
 }
+
+/* -------------------------------------------------------------
+   Smooth Luxury Scroll Reveal Engine
+   ------------------------------------------------------------- */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.reveal-scale-init {
+  opacity: 0;
+  transform: scale(0.95) translateY(24px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale-init.reveal-visible {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+}
+
+/* Stagger Delays for child elements */
+.delay-100 { transition-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-250 { transition-delay: 250ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
 
 /* Custom Typography Utilities matching reference */
 .heading-condensed {
@@ -163,4 +203,40 @@
 .image-hover-bright:hover {
   filter: brightness(1.08) contrast(1.02);
 }
+
+/* -------------------------------------------------------------
+   6. Subtle & Slow Text Bounce Animation (Hover)
+   ------------------------------------------------------------- */
+@keyframes microSlowBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+.text-soft-bounce {
+  display: inline-block;
+  will-change: transform;
+}
+
+.text-soft-bounce:hover,
+.group:hover .group-hover-soft-bounce,
+.group:hover .text-soft-bounce {
+  animation: microSlowBounce 1.4s ease-in-out infinite;
+}
+
+.text-gentle-lift {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.text-gentle-lift:hover,
+.group:hover .text-gentle-lift,
+.group:hover .group-hover-gentle-lift {
+  transform: translateY(-2px);
+}
+
 
