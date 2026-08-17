@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { Home, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { BUSINESS } from "@/lib/business";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
@@ -12,19 +13,9 @@ export default function Footer() {
         {/* Main Footer Row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-white/10">
           
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded bg-white/10 flex items-center justify-center text-white border border-white/20">
-              <Home className="w-4 h-4" strokeWidth={2.2} />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-base tracking-wider text-white leading-tight font-sans">
-                {BUSINESS.name}
-              </span>
-              <span className="text-[9px] tracking-[0.2em] text-gray-400 font-semibold uppercase -mt-0.5">
-                {BUSINESS.subName}
-              </span>
-            </div>
+          {/* Logo with S Monogram */}
+          <a href="#" className="group">
+            <Logo className="h-9 sm:h-10" />
           </a>
 
           {/* Center Serving Areas */}
