@@ -12,7 +12,7 @@ export default function Header() {
         
         {/* Brand Logo with S Monogram */}
         <a href="#" className="group">
-          <Logo className="h-9 sm:h-10" />
+          <Logo className="h-10 sm:h-12" priority />
         </a>
 
         {/* Center: Service Area with Pin Icon (Desktop) */}
