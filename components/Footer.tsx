@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-8 border-b border-white/10">
           
           {/* Logo with S Monogram */}
-          <a href="#" className="group shrink-0">
+          <a href="/" className="group shrink-0" aria-label="Simplified Home Remodeling Home">
             <Logo className="w-[125px] sm:w-[145px] h-auto" />
           </a>
 

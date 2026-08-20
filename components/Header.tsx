@@ -11,7 +11,7 @@ export default function Header() {
       <div className="max-w-[1320px] mx-auto px-3.5 sm:px-6 lg:px-8 py-2.5 sm:py-3 min-h-[68px] sm:min-h-[82px] flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Brand Logo */}
-        <a href="#" className="group shrink-0">
+        <a href="/" className="group shrink-0" aria-label="Simplified Home Remodeling Homepage">
           <Logo className="w-[110px] xs:w-[125px] sm:w-[135px] lg:w-[150px] h-auto" priority />
         </a>
 

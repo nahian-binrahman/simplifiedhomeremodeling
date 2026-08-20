@@ -6,7 +6,19 @@ import { Phone, CalendarCheck, Lock, ArrowRight, CheckCircle2, AlertCircle } fro
 import { BUSINESS } from "@/lib/business";
 import { submitLead, LeadSubmission } from "@/lib/supabase";
 
-export default function QuoteSection() {
+interface QuoteSectionProps {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  projectType?: string;
+}
+
+export default function QuoteSection({
+  title = "READY TO TRANSFORM YOUR HOME?",
+  subtitle = "Let's Create a Living Space You'll Love.",
+  description = "Get your free in-home consultation and guaranteed fixed-price estimate today.",
+  projectType = "Whole Home Remodeling",
+}: QuoteSectionProps) {
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -37,7 +49,7 @@ export default function QuoteSection() {
 
     try {
       const submission: LeadSubmission = {
-        project_type: "Kitchen Remodel",
+        project_type: projectType,
         timeline: "Immediate / Consultation",
         full_name: formData.fullName,
         phone: formData.phone,
@@ -79,20 +91,17 @@ export default function QuoteSection() {
           <div className="lg:col-span-5 space-y-6 reveal-init">
             
             <div className="space-y-2">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-[1.05] font-sans">
-                READY TO REMODEL <br />
-                YOUR KITCHEN?
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight leading-[1.05] heading-condensed">
+                {title}
               </h2>
               <div className="w-12 h-0.5 bg-white/40 rounded my-3.5" />
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-100">
-                Let&apos;s Create a Kitchen <br />
-                You&apos;ll Love.
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-100 italic text-italic-accent leading-snug">
+                {subtitle}
               </h3>
             </div>
 
-            <p className="text-sm sm:text-base text-gray-300 font-normal">
-              Get your free consultation <br />
-              and project estimate today.
+            <p className="text-sm sm:text-base text-gray-300 font-normal leading-relaxed">
+              {description}
             </p>
 
             {/* Direct Badges */}
