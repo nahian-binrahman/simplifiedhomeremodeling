@@ -25,9 +25,9 @@ export default function HomeHero() {
 
           {/* 2. Architectural Multi-Layer Gradients */}
           {/* Base Dark Gradient to ensure text pop */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/65 to-black/75 sm:bg-gradient-to-r sm:from-black/90 sm:via-black/60 sm:to-black/25" />
           {/* Bottom Vignette for seamless section transitions */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-black/30" />
 
           {/* 3. Subtle Architectural Blueprint Grid Pattern Overlay */}
           <div
@@ -45,16 +45,16 @@ export default function HomeHero() {
         </div>
 
         {/* 4. Hero Content Container */}
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32 relative z-10 w-full">
-          <div className="max-w-3xl lg:max-w-4xl space-y-6 sm:space-y-8 animate-in fade-in slide-in-from-bottom-3 duration-700">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-12 xs:py-16 sm:py-24 lg:py-32 relative z-10 w-full">
+          <div className="max-w-3xl lg:max-w-4xl space-y-4 sm:space-y-7 animate-in fade-in slide-in-from-bottom-3 duration-700">
             
             {/* Top Label & Trust Pill */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-xs text-gray-200 font-medium shadow-sm">
-                <span className="flex text-[#d32323] text-xs">★★★★★</span>
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs text-gray-200 font-medium shadow-sm">
+                <span className="flex text-[#d32323] text-[10px] sm:text-xs">★★★★★</span>
                 <span className="text-white font-bold tracking-wider">5.0 TOP RATED</span>
                 <span className="text-white/20">•</span>
-                <span className="text-gray-300 font-mono text-[11px]">COACHELLA VALLEY</span>
+                <span className="text-gray-300 font-mono text-[10px] sm:text-[11px]">COACHELLA VALLEY</span>
               </div>
 
               <div className="hidden sm:inline-flex items-center gap-1.5 text-xs text-gray-400 font-mono tracking-widest uppercase">
@@ -64,22 +64,22 @@ export default function HomeHero() {
             </div>
 
             {/* Small Label */}
-            <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.25em] text-gray-300 uppercase heading-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+            <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.22em] text-gray-300 uppercase heading-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
               SIMPLIFIED HOME REMODELING
             </div>
 
             {/* Main Headline (Condensed, Bold, Architectural) */}
-            <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-black text-white tracking-tight uppercase leading-[0.92] heading-condensed drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+            <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[88px] font-black text-white tracking-tight uppercase leading-[0.92] heading-condensed drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
               TRANSFORM YOUR HOUSE <br className="hidden xs:inline" />
               <span className="text-white">INTO A DREAM HOME</span>
             </h1>
 
             {/* Subheadline with Serif Italic & Supporting Body */}
-            <div className="space-y-2 max-w-2xl">
-              <p className="text-lg sm:text-2xl md:text-[26px] text-gray-100 italic text-italic-accent leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            <div className="space-y-1.5 max-w-2xl">
+              <p className="text-base xs:text-lg sm:text-2xl md:text-[26px] text-gray-100 italic text-italic-accent leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 Expert remodeling solutions for kitchens, bathrooms, countertops, flooring, and complete home transformations.
               </p>
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal pt-1 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal pt-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
                 Licensed master craftsmen, guaranteed fixed-price contracts, and white-glove site cleanliness across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta.
               </p>
             </div>

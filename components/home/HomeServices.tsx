@@ -171,7 +171,7 @@ export default function HomeServices() {
         </div>
 
         {/* 5 Service Selection Cards / Interactive Tabs */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4 mb-10 sm:mb-14 reveal-init delay-100">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 mb-8 sm:mb-14 reveal-init delay-100">
           {servicesData.map((service) => {
             const isActive = service.id === activeTabId;
             return (
@@ -179,7 +179,7 @@ export default function HomeServices() {
                 key={service.id}
                 type="button"
                 onClick={() => setActiveTabId(service.id)}
-                className={`p-4 sm:p-5 rounded-xl border text-left flex flex-col justify-between transition-all duration-300 transform active:scale-98 cursor-pointer relative group ${
+                className={`p-3.5 sm:p-5 rounded-xl border text-left flex flex-col justify-between transition-all duration-300 transform active:scale-98 cursor-pointer relative group last:col-span-2 sm:last:col-span-1 ${
                   isActive
                     ? "bg-white text-black border-white shadow-2xl scale-[1.02] z-10"
                     : "bg-[#141414] text-white border-white/10 hover:border-white/30 hover:bg-[#1a1a1a]"
