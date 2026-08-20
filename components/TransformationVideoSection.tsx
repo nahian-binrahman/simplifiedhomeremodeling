@@ -3,7 +3,25 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { CheckCircle2, Play, Pause, Volume2, VolumeX, Maximize, ArrowRight } from "lucide-react";
 
-export default function TransformationVideoSection() {
+interface TransformationVideoSectionProps {
+  label?: string;
+  title?: string;
+  description?: string;
+  features?: string[];
+  ctaText?: string;
+}
+
+export default function TransformationVideoSection({
+  label = "SEE THE TRANSFORMATION",
+  title = "A Home Designed for Real Life.",
+  description = "See how quality craftsmanship and thoughtful remodeling can transform an everyday residence into a space that's beautiful, functional, and built around the homeowner.",
+  features = [
+    "Custom Home & Kitchen Remodeling",
+    "Quality Materials & Precision Finishes",
+    "Professional Master Craftsmanship",
+  ],
+  ctaText = "START YOUR HOME REMODEL",
+}: TransformationVideoSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -20,7 +38,6 @@ export default function TransformationVideoSection() {
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     if (videoRef.current) {
-      // If it was playing muted due to browser policy, also unmute upon user click
       if (videoRef.current.muted && !userExplicitlyMutedRef.current) {
         videoRef.current.muted = false;
         setIsMuted(false);
@@ -74,12 +91,11 @@ export default function TransformationVideoSection() {
     }
   };
 
-  // Autoplay video with SOUND ON when scrolled into view
+  // Autoplay video when scrolled into view
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Helper to unmute as soon as any user gesture is made anywhere on the page
     const tryEnableAudio = () => {
       if (videoRef.current && !userExplicitlyMutedRef.current) {
         videoRef.current.muted = false;
@@ -96,7 +112,6 @@ export default function TransformationVideoSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
-            // If user hasn't explicitly clicked mute, attempt unmuted playback
             if (!userExplicitlyMutedRef.current) {
               video.muted = false;
             }
@@ -110,8 +125,6 @@ export default function TransformationVideoSection() {
                   }
                 })
                 .catch(() => {
-                  // Browser policy blocked unmuted autoplay without prior gesture;
-                  // Start playing muted and unlock sound upon first interaction
                   video.muted = true;
                   setIsMuted(true);
                   video.play().catch(() => {});
@@ -124,6 +137,7 @@ export default function TransformationVideoSection() {
       },
       {
         threshold: [0.1, 0.2, 0.5],
+        rootMargin: "0px 0px -50px 0px",
       }
     );
 
@@ -137,6 +151,7 @@ export default function TransformationVideoSection() {
     };
   }, []);
 
+  // Sync state
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -167,32 +182,25 @@ export default function TransformationVideoSection() {
           <div className="lg:col-span-5 space-y-6 reveal-init">
             
             <div className="text-xs font-bold tracking-[0.2em] text-gray-600 uppercase">
-              SEE THE TRANSFORMATION
+              {label}
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-gray-900 tracking-tight leading-[1.15]">
-              A Kitchen Designed <br />
-              for Real Life.
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-gray-900 tracking-tight leading-[1.1] uppercase heading-condensed">
+              {title}
             </h2>
 
             <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
-              See how quality craftsmanship and thoughtful remodeling can transform an everyday kitchen into a space that&apos;s beautiful, functional, and built around the homeowner.
+              {description}
             </p>
 
             {/* Checklist */}
             <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
-                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
-                <span className="text-gentle-lift">Custom Kitchen Remodeling</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
-                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
-                <span className="text-gentle-lift">Quality Materials &amp; Finishes</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
-                <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
-                <span className="text-gentle-lift">Professional Craftsmanship</span>
-              </div>
+              {features.map((feat, i) => (
+                <div key={i} className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
+                  <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
+                  <span className="text-gentle-lift">{feat}</span>
+                </div>
+              ))}
             </div>
 
             {/* Action Button */}
@@ -201,7 +209,7 @@ export default function TransformationVideoSection() {
                 href="#quote-form"
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded btn-invert-black text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transform hover:-translate-y-0.5"
               >
-                <span>START YOUR KITCHEN REMODEL</span>
+                <span>{ctaText}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -227,7 +235,7 @@ export default function TransformationVideoSection() {
                   className="w-full h-full object-cover object-center cursor-pointer transition-all duration-300 group-hover:brightness-[1.04]"
                 />
 
-                {/* Top-Right Sound Toggle Pill (for instant unmuting during scroll autoplay) */}
+                {/* Top-Right Sound Toggle Pill */}
                 <div className="absolute top-4 right-4 z-20">
                   <button
                     onClick={toggleMute}
@@ -258,7 +266,6 @@ export default function TransformationVideoSection() {
                     onClick={togglePlay}
                     className="absolute inset-0 bg-black/35 cursor-pointer flex items-center justify-center transition-colors backdrop-blur-[1px]"
                   >
-                    {/* Big Center Play Button with B&W Invert Hover */}
                     <button
                       onClick={togglePlay}
                       className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white shadow-2xl flex items-center justify-center transition-all duration-200 transform hover:scale-110 active:scale-95 z-20 group/btn"
@@ -282,41 +289,34 @@ export default function TransformationVideoSection() {
                     />
                   </div>
 
-                  {/* Controls Row */}
-                  <div className="flex items-center justify-between text-xs sm:text-sm pt-1">
+                  <div className="flex items-center justify-between text-xs pt-1">
                     <div className="flex items-center gap-3">
                       <button
                         onClick={togglePlay}
-                        className="hover:text-gray-300 focus:outline-none"
+                        className="hover:text-gray-300 transition-colors p-1"
                         aria-label={isPlaying ? "Pause" : "Play"}
                       >
-                        {isPlaying ? (
-                          <Pause className="w-4 h-4 fill-current" />
-                        ) : (
-                          <Play className="w-4 h-4 fill-current" />
-                        )}
+                        {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
                       </button>
-                      <span className="text-[11px] sm:text-xs text-gray-300 font-mono">
-                        {formatTime(currentTime)} / {formatTime(duration || 62)}
+
+                      <button
+                        onClick={toggleMute}
+                        className="hover:text-gray-300 transition-colors p-1"
+                        aria-label={isMuted ? "Unmute" : "Mute"}
+                      >
+                        {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                      </button>
+
+                      <span className="text-[11px] text-gray-300 font-mono">
+                        {formatTime(currentTime)} / {formatTime(duration)}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-4 text-gray-300">
-                      <button
-                        onClick={toggleMute}
-                        className="hover:text-white focus:outline-none"
-                        aria-label={isMuted ? "Unmute" : "Mute"}
-                      >
-                        {isMuted ? (
-                          <VolumeX className="w-4 h-4 text-red-400" />
-                        ) : (
-                          <Volume2 className="w-4 h-4" />
-                        )}
-                      </button>
+                    <div className="flex items-center gap-3">
                       <button
                         onClick={handleFullscreen}
-                        className="hover:text-white focus:outline-none"
-                        aria-label="Fullscreen"
+                        className="hover:text-gray-300 transition-colors p-1"
+                        aria-label="Full screen"
                       >
                         <Maximize className="w-4 h-4" />
                       </button>

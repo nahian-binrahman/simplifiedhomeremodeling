@@ -248,21 +248,21 @@ export default function Header() {
             )}
           </div>
 
-          {/* Testimonials */}
+          {/* Blog */}
           <Link
-            href="/#testimonials"
+            href="/#about"
             className="px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
           >
-            REVIEWS
+            BLOG
           </Link>
 
-          {/* FAQ */}
-          <Link
-            href="/#faq"
+          {/* Contact */}
+          <a
+            href="#quote-form"
             className="px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
           >
-            FAQ
-          </Link>
+            CONTACT
+          </a>
 
         </nav>
 
@@ -379,20 +379,20 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/#testimonials"
+              href="/#about"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2.5 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white"
             >
-              REVIEWS
+              BLOG &amp; ARTICLES
             </Link>
 
-            <Link
-              href="/#faq"
+            <a
+              href="#quote-form"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-4 py-2.5 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white"
             >
-              FAQ
-            </Link>
+              CONTACT US
+            </a>
           </div>
 
           {/* Service Areas Chips */}

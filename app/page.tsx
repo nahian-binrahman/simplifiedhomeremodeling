@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import ScrollEffects from "@/components/ScrollEffects";
 import StickyBottomBar from "@/components/StickyBottomBar";
 import TrustBar from "@/components/TrustBar";
+import TransformationVideoSection from "@/components/TransformationVideoSection";
 import QuoteSection from "@/components/QuoteSection";
 
 // Homepage-specific modular sections
@@ -85,6 +86,19 @@ export default function Home() {
 
         {/* 2. Introduction / About Section */}
         <AboutIntro />
+
+        {/* Video Transformation Section with Scroll Autoplay */}
+        <TransformationVideoSection
+          label="SEE THE TRANSFORMATION"
+          title="A Home Designed for Real Life."
+          description="See how quality craftsmanship and thoughtful remodeling can transform everyday spaces into stunning, functional living environments built around your family."
+          features={[
+            "Custom Home & Kitchen Remodeling",
+            "Quality Materials & Precision Finishes",
+            "Professional In-House Craftsmanship",
+          ]}
+          ctaText="START YOUR HOME REMODEL"
+        />
 
         {/* 3. Remodeling Services Section */}
         <HomeServices />
