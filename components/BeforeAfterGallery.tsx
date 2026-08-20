@@ -14,21 +14,21 @@ interface BeforeAfterItem {
 const comparisons: BeforeAfterItem[] = [
   {
     id: 1,
-    beforeImg: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80",
-    afterImg: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80",
-    title: "Palm Desert Traditional to Modern Shaker Remodel",
+    beforeImg: "/images/kitchen-before-1.jpg",
+    afterImg: "/images/kitchen-after-1.jpg",
+    title: "Palm Desert Full Kitchen Modern Transformation",
   },
   {
     id: 2,
-    beforeImg: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-    afterImg: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-    title: "Palm Springs Closed Kitchen to Waterfall Island",
+    beforeImg: "/images/kitchen-before-2.jpg",
+    afterImg: "/images/kitchen-after-2.jpg",
+    title: "Palm Springs Open Layout & Waterfall Island Remodel",
   },
   {
     id: 3,
-    beforeImg: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
-    afterImg: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
-    title: "Rancho Mirage Custom Modern Kitchen Renovation",
+    beforeImg: "/images/kitchen-before-3.jpg",
+    afterImg: "/images/kitchen-after-3.jpg",
+    title: "Rancho Mirage Custom Peninsula & Shaker Renovation",
   },
 ];
 

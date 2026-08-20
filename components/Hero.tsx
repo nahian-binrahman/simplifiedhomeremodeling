@@ -7,7 +7,7 @@ import { BUSINESS } from "@/lib/business";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex items-center bg-[#111111] overflow-hidden">
+    <section className="relative min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-center bg-[#111111] overflow-hidden">
       {/* Background Image of Modern Kitchen with Dark Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -15,45 +15,42 @@ export default function Hero() {
           alt="Kitchen Remodeling in Coachella Valley"
           fill
           priority
-          className="object-cover object-center brightness-[0.72] contrast-[1.03]"
+          className="object-cover object-center brightness-[0.70] contrast-[1.03]"
         />
-        {/* Dark Vignette & Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
+        {/* Dark Vignette & Responsive Gradients for Perfect Legibility */}
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-black/75 sm:bg-gradient-to-r sm:from-black/90 sm:via-black/55 sm:to-black/25" />
       </div>
 
       {/* Hero Content Container */}
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24 relative z-10 w-full">
-        <div className="max-w-2xl space-y-4 sm:space-y-5">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20 lg:py-24 relative z-10 w-full">
+        <div className="max-w-2xl space-y-3.5 sm:space-y-5">
           
           {/* Pre-Heading */}
-          <div className="text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-[0.1em] text-gray-200 uppercase heading-condensed">
+          <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.2em] text-gray-300 uppercase heading-condensed">
             KITCHEN REMODELING IN
           </div>
 
           {/* Main Headline (Condensed, Tall, Bold) */}
-          <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[88px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed">
-            COACHELLA <br />
+          <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed">
+            COACHELLA <br className="sm:hidden" />
             VALLEY
           </h1>
 
-          {/* Subtitle with Serif Italic & Sub-phrase */}
-          <div className="space-y-1 pt-1">
-            <p className="text-lg sm:text-2xl md:text-[28px] text-gray-100 italic text-italic-accent">
+          {/* Subtitle with Serif Italic */}
+          <div className="pt-0.5 sm:pt-1">
+            <p className="text-base sm:text-2xl md:text-[28px] text-gray-100 italic text-italic-accent leading-snug">
               Transform Your Kitchen.
-            </p>
-            <p className="text-sm sm:text-lg md:text-xl font-medium text-gray-200 font-sans">
-              Expert Craftsmanship. Built Around Your Home.
             </p>
           </div>
 
-          {/* Paragraph */}
-          <p className="text-xs sm:text-base text-gray-300 max-w-xl leading-relaxed font-normal pt-1">
-            Create a kitchen that&apos;s beautiful, functional, and built to last with a licensed local remodeling contractor.
+          {/* Clean Focused Paragraph */}
+          <p className="text-xs sm:text-base text-gray-300 max-w-xl leading-relaxed font-normal">
+            Expert craftsmanship, premium materials, and transparent pricing built around your home by licensed local contractors.
           </p>
 
           {/* Call to Action Buttons */}
-          <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             {/* #1 Black <-> White Invert Hover */}
             <a
               href="#quote-form"
