@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle2, Play, Pause, Volume2, VolumeX, Maximize, ArrowRight } from "lucide-react";
 
 interface TransformationVideoSectionProps {
@@ -23,11 +23,10 @@ export default function TransformationVideoSection({
   ctaText = "START YOUR HOME REMODEL",
 }: TransformationVideoSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true); // Default to muted for 100% reliable mobile autoplay
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const userExplicitlyMutedRef = useRef(false);
 
   const formatTime = (timeInSeconds: number) => {
     const mins = Math.floor(timeInSeconds / 60);
@@ -37,27 +36,29 @@ export default function TransformationVideoSection({
 
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (videoRef.current) {
-      if (videoRef.current.muted && !userExplicitlyMutedRef.current) {
-        videoRef.current.muted = false;
-        setIsMuted(false);
-      }
+    const video = videoRef.current;
+    if (!video) return;
 
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play().catch(() => {});
-      }
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+    } else {
+      video.play().then(() => setIsPlaying(true)).catch(() => {});
     }
   };
 
   const toggleMute = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (videoRef.current) {
-      const nextMuted = !videoRef.current.muted;
-      videoRef.current.muted = nextMuted;
-      setIsMuted(nextMuted);
-      userExplicitlyMutedRef.current = nextMuted;
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextMuted = !isMuted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
+
+    // If unmuting, make sure video keeps playing
+    if (!nextMuted && video.paused) {
+      video.play().catch(() => {});
     }
   };
 
@@ -84,78 +85,66 @@ export default function TransformationVideoSection({
 
   const handleFullscreen = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      }
+    if (videoRef.current && videoRef.current.requestFullscreen) {
+      videoRef.current.requestFullscreen();
     }
   };
 
-  // Autoplay video when scrolled into view
+  // 100% Reliable Mobile Autoplay via Intersection Observer
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const tryEnableAudio = () => {
-      if (videoRef.current && !userExplicitlyMutedRef.current) {
-        videoRef.current.muted = false;
-        setIsMuted(false);
+    // Direct DOM attributes for mobile Safari & Chrome
+    video.muted = isMuted;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("x5-playsinline", "true");
+
+    const attemptPlay = () => {
+      video.muted = isMuted;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch(() => {
+            // If browser blocked sound-enabled play, enforce muted and play again
+            video.muted = true;
+            setIsMuted(true);
+            video
+              .play()
+              .then(() => setIsPlaying(true))
+              .catch(() => {});
+          });
       }
     };
-
-    const gestureEvents = ["pointerdown", "click", "touchstart", "keydown"];
-    gestureEvents.forEach((evt) => {
-      window.addEventListener(evt, tryEnableAudio, { passive: true });
-    });
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
-            if (!userExplicitlyMutedRef.current) {
-              video.muted = false;
-            }
-
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise
-                .then(() => {
-                  if (!userExplicitlyMutedRef.current && !video.muted) {
-                    setIsMuted(false);
-                  }
-                })
-                .catch(() => {
-                  video.muted = true;
-                  setIsMuted(true);
-                  video.play().catch(() => {});
-                });
-            }
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
+            attemptPlay();
           } else if (!entry.isIntersecting || entry.intersectionRatio < 0.1) {
             video.pause();
+            setIsPlaying(false);
           }
         });
       },
       {
         threshold: [0.1, 0.2, 0.5],
-        rootMargin: "0px 0px -50px 0px",
+        rootMargin: "80px 0px 80px 0px",
       }
     );
 
     observer.observe(video);
 
-    return () => {
-      observer.disconnect();
-      gestureEvents.forEach((evt) => {
-        window.removeEventListener(evt, tryEnableAudio);
-      });
-    };
-  }, []);
+    // Initial check
+    attemptPlay();
 
-  // Sync state
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
+    // Event listeners
     const onPlay = () => setIsPlaying(true);
     const onPause = () => setIsPlaying(false);
     const onEnded = () => setIsPlaying(false);
@@ -165,27 +154,28 @@ export default function TransformationVideoSection({
     video.addEventListener("ended", onEnded);
 
     return () => {
+      observer.disconnect();
       video.removeEventListener("play", onPlay);
       video.removeEventListener("pause", onPause);
       video.removeEventListener("ended", onEnded);
     };
-  }, []);
+  }, [isMuted]);
 
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <section className="bg-white text-black py-16 sm:py-20 lg:py-24 border-b border-gray-200">
+    <section className="bg-white text-black py-14 sm:py-20 lg:py-24 border-b border-gray-200">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* Left Column: Text & Features */}
-          <div className="lg:col-span-5 space-y-6 reveal-init">
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6 reveal-init">
             
             <div className="text-xs font-bold tracking-[0.2em] text-gray-600 uppercase">
               {label}
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-gray-900 tracking-tight leading-[1.1] uppercase heading-condensed">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] font-black text-gray-900 tracking-tight leading-[1.05] uppercase heading-condensed">
               {title}
             </h2>
 
@@ -194,20 +184,20 @@ export default function TransformationVideoSection({
             </p>
 
             {/* Checklist */}
-            <div className="space-y-3 pt-2">
+            <div className="space-y-2.5 pt-1">
               {features.map((feat, i) => (
-                <div key={i} className="flex items-center gap-3 text-sm sm:text-base text-gray-800 font-medium group cursor-default">
-                  <CheckCircle2 className="w-5 h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
+                <div key={i} className="flex items-center gap-2.5 text-xs sm:text-base text-gray-800 font-medium group cursor-default">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
                   <span className="text-gentle-lift">{feat}</span>
                 </div>
               ))}
             </div>
 
             {/* Action Button */}
-            <div className="pt-3">
+            <div className="pt-2">
               <a
                 href="#quote-form"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded btn-invert-black text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transform hover:-translate-y-0.5"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 rounded btn-invert-black text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transform hover:-translate-y-0.5 active:scale-[0.99]"
               >
                 <span>{ctaText}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -218,7 +208,7 @@ export default function TransformationVideoSection({
 
           {/* Right Column: Real Video Player Container */}
           <div className="lg:col-span-7 reveal-scale-init delay-150">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-200 group card-hover-lift">
+            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-200 group card-hover-lift">
               
               {/* Media Container */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-black flex items-center justify-center">
@@ -226,6 +216,7 @@ export default function TransformationVideoSection({
                   ref={videoRef}
                   src="/videos/remodeling-video.mp4"
                   playsInline
+                  autoPlay
                   muted={isMuted}
                   loop
                   preload="auto"
@@ -235,52 +226,52 @@ export default function TransformationVideoSection({
                   className="w-full h-full object-cover object-center cursor-pointer transition-all duration-300 group-hover:brightness-[1.04]"
                 />
 
-                {/* Top-Right Sound Toggle Pill */}
-                <div className="absolute top-4 right-4 z-20">
+                {/* Sound Toggle Floating Badge */}
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
                   <button
                     onClick={toggleMute}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border shadow-lg transition-all transform hover:scale-105 active:scale-95 ${
                       isMuted
-                        ? "bg-black/75 hover:bg-black/90 border-white/30 text-white animate-pulse"
+                        ? "bg-black/80 hover:bg-black/90 border-white/35 text-white animate-pulse"
                         : "bg-black/60 hover:bg-black/85 border-white/20 text-white"
                     }`}
                     aria-label={isMuted ? "Unmute sound" : "Mute sound"}
                   >
                     {isMuted ? (
                       <>
-                        <VolumeX className="w-3.5 h-3.5 text-red-400" />
-                        <span className="text-[11px] font-semibold tracking-wide">Tap for Sound</span>
+                        <VolumeX className="w-3.5 h-3.5 text-amber-400" />
+                        <span className="text-[10px] sm:text-[11px] font-bold tracking-wide">Tap for Sound</span>
                       </>
                     ) : (
                       <>
                         <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-[11px] font-semibold tracking-wide">Sound On</span>
+                        <span className="text-[10px] sm:text-[11px] font-bold tracking-wide">Sound On</span>
                       </>
                     )}
                   </button>
                 </div>
                 
-                {/* Dark overlay when paused */}
+                {/* Dark Overlay when Paused */}
                 {!isPlaying && (
                   <div
                     onClick={togglePlay}
-                    className="absolute inset-0 bg-black/35 cursor-pointer flex items-center justify-center transition-colors backdrop-blur-[1px]"
+                    className="absolute inset-0 bg-black/40 cursor-pointer flex items-center justify-center transition-colors backdrop-blur-[1px]"
                   >
                     <button
                       onClick={togglePlay}
-                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white shadow-2xl flex items-center justify-center transition-all duration-200 transform hover:scale-110 active:scale-95 z-20 group/btn"
+                      className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white shadow-2xl flex items-center justify-center transition-all duration-200 transform hover:scale-110 active:scale-95 z-20"
                       aria-label="Play video"
                     >
-                      <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current ml-1" />
+                      <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-0.5" />
                     </button>
                   </div>
                 )}
 
                 {/* Bottom Custom Video Control Bar */}
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-4 text-white z-20 flex flex-col gap-2 opacity-90 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-3 sm:p-4 text-white z-20 flex flex-col gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
                   {/* Timeline Bar */}
                   <div
-                    className="w-full h-2 bg-white/30 hover:h-2.5 rounded-full overflow-hidden cursor-pointer transition-all"
+                    className="w-full h-1.5 sm:h-2 bg-white/30 hover:h-2.5 rounded-full overflow-hidden cursor-pointer transition-all"
                     onClick={handleSeek}
                   >
                     <div
@@ -290,7 +281,7 @@ export default function TransformationVideoSection({
                   </div>
 
                   <div className="flex items-center justify-between text-xs pt-1">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2.5 sm:gap-3">
                       <button
                         onClick={togglePlay}
                         className="hover:text-gray-300 transition-colors p-1"
@@ -307,7 +298,7 @@ export default function TransformationVideoSection({
                         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                       </button>
 
-                      <span className="text-[11px] text-gray-300 font-mono">
+                      <span className="text-[10px] sm:text-[11px] text-gray-300 font-mono">
                         {formatTime(currentTime)} / {formatTime(duration)}
                       </span>
                     </div>

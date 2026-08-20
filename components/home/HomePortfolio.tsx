@@ -100,7 +100,7 @@ function SplitProjectCard({ project }: { project: PortfolioProject }) {
     <div className="bg-[#141414] rounded-2xl overflow-hidden border border-white/10 card-hover-lift group flex flex-col justify-between">
       {/* Interactive Split View */}
       <div
-        className="relative aspect-[4/3] w-full select-none cursor-ew-resize overflow-hidden"
+        className="relative aspect-[4/3] w-full select-none cursor-ew-resize overflow-hidden touch-pan-y"
         onMouseMove={(e) => handleMove(e.clientX, e.currentTarget.getBoundingClientRect())}
         onTouchMove={(e) => handleMove(e.touches[0].clientX, e.currentTarget.getBoundingClientRect())}
       >
@@ -113,14 +113,14 @@ function SplitProjectCard({ project }: { project: PortfolioProject }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-center group-hover:brightness-[1.03] transition-all"
           />
-          <div className="absolute bottom-3 right-3 bg-black/85 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-md">
+          <div className="absolute bottom-3 right-3 bg-black/85 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-md pointer-events-none">
             AFTER
           </div>
         </div>
 
         {/* BEFORE Image (Clipped with Slider) */}
         <div
-          className="absolute inset-y-0 left-0 overflow-hidden"
+          className="absolute inset-y-0 left-0 overflow-hidden pointer-events-none"
           style={{ width: `${sliderPos}%` }}
         >
           <div className="relative h-full w-full" style={{ width: "100%" }}>
@@ -131,7 +131,7 @@ function SplitProjectCard({ project }: { project: PortfolioProject }) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover object-center brightness-90 group-hover:brightness-95 transition-all"
             />
-            <div className="absolute bottom-3 left-3 bg-black/85 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-md">
+            <div className="absolute bottom-3 left-3 bg-black/85 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded shadow-md pointer-events-none">
               BEFORE
             </div>
           </div>
@@ -139,7 +139,7 @@ function SplitProjectCard({ project }: { project: PortfolioProject }) {
 
         {/* Divider Slider Line */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-white z-10"
+          className="absolute top-0 bottom-0 w-0.5 bg-white z-10 pointer-events-none"
           style={{ left: `${sliderPos}%` }}
         >
           <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-white text-black shadow-lg flex items-center justify-center border border-gray-300">
