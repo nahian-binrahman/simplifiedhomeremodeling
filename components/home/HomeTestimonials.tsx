@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, Quote, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 interface TestimonialItem {
   id: number;
@@ -101,7 +101,7 @@ export default function HomeTestimonials() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-2">
                   {/* Yelp 5-Star Red Badge */}
-                  <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#d32323] text-white text-xs font-bold shadow-sm">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#d32323] text-white text-xs font-black shadow-sm tracking-wide">
                     <span>★★★★★</span>
                   </div>
 
@@ -140,14 +140,111 @@ export default function HomeTestimonials() {
           ))}
         </div>
 
-        {/* Trust Logos Strip */}
-        <div className="mt-14 sm:mt-18 pt-10 border-t border-white/10 flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-70 hover:opacity-100 transition-opacity">
-          <div className="text-xs font-mono uppercase tracking-widest text-gray-400">
-            VERIFIED REVIEWS ON:
+        {/* =========================================
+            PRO PLATFORM TRUST BADGES & LOGOS STRIP
+           ========================================= */}
+        <div className="mt-14 sm:mt-20 pt-10 border-t border-white/10 flex flex-col items-center gap-6">
+          
+          <div className="text-xs font-mono uppercase tracking-[0.25em] text-gray-400">
+            VERIFIED 5-STAR CLIENT REVIEWS ON:
           </div>
-          <div className="font-black text-lg tracking-wider text-white">Yelp ★★★★★</div>
-          <div className="font-black text-lg tracking-wider text-white">Google ★★★★★</div>
-          <div className="font-black text-lg tracking-wider text-white">Facebook ★★★★★</div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 w-full max-w-4xl">
+            
+            {/* 1. Google Reviews Official Badge */}
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+              {/* Google 4-Color SVG Icon */}
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm">
+                <svg className="w-5 h-5" viewBox="0 0 24 24">
+                  <path
+                    fill="#4285F4"
+                    d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
+                  />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+                  <span>Google</span>
+                  <span className="text-[10px] text-gray-400 font-mono">Reviews</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <div className="flex text-[#FBBC05] text-[10px] tracking-tighter">★★★★★</div>
+                  <span className="text-[11px] font-bold text-white font-mono">5.0</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Yelp Official Red Badge */}
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+              {/* Yelp Red SVG Icon */}
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#d32323] flex items-center justify-center shrink-0 shadow-sm text-white">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.784 14.85l2.71 1.764c.732.476 1.554-.253 1.187-.972l-1.39-2.73-2.507 1.938zm-1.85-2.73L8.224 9.39c-.732-.476-.366-1.448.513-1.448h3.072l-.875 4.178zm.725 3.018l-.875 4.178c-.183.876.878 1.448 1.464.795l2.122-2.368-2.711-2.605zm2.857-4.178h3.072c.879 0 1.245.972.513 1.448l-2.71 1.764-.875-3.212zm-3.804-1.258L8.59 7.334c-.586-.653-.183-1.67.732-1.448l2.962.725-.572 2.091z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+                  <span className="text-[#d32323] font-black">yelp</span>
+                  <span className="text-[10px] text-gray-400 font-mono">Verified</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <div className="flex text-[#d32323] text-[10px] tracking-tighter">★★★★★</div>
+                  <span className="text-[11px] font-bold text-white font-mono">5.0</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Facebook / Meta Recommendations Badge */}
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+              {/* Facebook Blue SVG Icon */}
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#1877F2] flex items-center justify-center shrink-0 shadow-sm text-white">
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </div>
+              <div className="text-left">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+                  <span>Facebook</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <div className="flex text-[#1877F2] text-[10px] tracking-tighter">★★★★★</div>
+                  <span className="text-[11px] font-bold text-white font-mono">100% Rec</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Houzz / Pro Badge */}
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+              {/* Houzz Green SVG Icon */}
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#4DBC15] flex items-center justify-center shrink-0 shadow-sm text-white font-black text-sm font-sans">
+                H
+              </div>
+              <div className="text-left">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
+                  <span>houzz</span>
+                  <span className="text-[10px] text-gray-400 font-mono">Pro</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <div className="flex text-[#4DBC15] text-[10px] tracking-tighter">★★★★★</div>
+                  <span className="text-[11px] font-bold text-white font-mono">Top Rated</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
