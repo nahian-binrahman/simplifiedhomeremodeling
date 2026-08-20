@@ -15,11 +15,11 @@ export default function Hero() {
           alt="Kitchen Remodeling in Coachella Valley"
           fill
           priority
-          className="object-cover object-center brightness-[0.55] contrast-[1.05]"
+          className="object-cover object-center brightness-[0.72] contrast-[1.03]"
         />
         {/* Dark Vignette & Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/35" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/25" />
       </div>
 
       {/* Hero Content Container */}
