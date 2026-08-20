@@ -89,7 +89,7 @@ const benefitCards: BenefitCard[] = [
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="relative bg-[#111111] text-white py-20 sm:py-28 lg:py-36 border-b border-white/10 overflow-hidden">
+    <section id="why-choose-us" className="relative bg-[#111111] text-white py-14 sm:py-24 lg:py-32 border-b border-white/10 overflow-hidden">
       
       {/* Background Subtle Blueprint Grid */}
       <div
@@ -103,25 +103,25 @@ export default function WhyChooseUs() {
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20 reveal-init">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal-init">
           <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.25em] text-gray-400 uppercase heading-condensed mb-3">
             <span className="w-4 h-px bg-white/40" />
             <span>THE SIMPLIFIED DIFFERENCE</span>
             <span className="w-4 h-px bg-white/40" />
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[50px] font-black text-white uppercase tracking-tight leading-[0.95] heading-condensed">
-            WHY CHOOSE SIMPLIFIED <br className="hidden sm:inline" />
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[48px] font-black text-white uppercase tracking-normal sm:tracking-tight leading-snug sm:leading-tight lg:leading-[1.18] heading-condensed">
+            WHY CHOOSE SIMPLIFIED <br className="hidden xs:inline" />
             HOME REMODELING?
           </h2>
 
-          <p className="text-sm sm:text-base text-gray-300 mt-4 leading-relaxed font-normal">
+          <p className="text-xs sm:text-base text-gray-300 mt-3 sm:mt-4 leading-relaxed font-normal">
             Discover the eight foundational principles that have earned us 5-star ratings across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta.
           </p>
         </div>
 
         {/* 8 Premium Benefit Cards in Two-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {benefitCards.map((card, idx) => (
             <div
               key={card.id}

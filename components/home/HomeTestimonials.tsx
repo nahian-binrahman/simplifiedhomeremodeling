@@ -149,10 +149,10 @@ export default function HomeTestimonials() {
             VERIFIED 5-STAR CLIENT REVIEWS ON:
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 w-full max-w-4xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-5 w-full max-w-3xl">
             
             {/* 1. Google Reviews Official Badge */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center justify-center sm:justify-start gap-3.5 transition-all duration-200 group cursor-default shadow-lg">
               {/* Google 4-Color SVG Icon */}
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm">
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -181,13 +181,13 @@ export default function HomeTestimonials() {
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   <div className="flex text-[#FBBC05] text-[10px] tracking-tighter">★★★★★</div>
-                  <span className="text-[11px] font-bold text-white font-mono">5.0</span>
+                  <span className="text-[11px] font-bold text-white font-mono">5.0 Rating</span>
                 </div>
               </div>
             </div>
 
             {/* 2. Yelp Official Red Badge */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center justify-center sm:justify-start gap-3.5 transition-all duration-200 group cursor-default shadow-lg">
               {/* Yelp Red SVG Icon */}
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#d32323] flex items-center justify-center shrink-0 shadow-sm text-white">
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -201,13 +201,13 @@ export default function HomeTestimonials() {
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   <div className="flex text-[#d32323] text-[10px] tracking-tighter">★★★★★</div>
-                  <span className="text-[11px] font-bold text-white font-mono">5.0</span>
+                  <span className="text-[11px] font-bold text-white font-mono">5.0 Rating</span>
                 </div>
               </div>
             </div>
 
             {/* 3. Facebook / Meta Recommendations Badge */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
+            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center justify-center sm:justify-start gap-3.5 transition-all duration-200 group cursor-default shadow-lg">
               {/* Facebook Blue SVG Icon */}
               <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#1877F2] flex items-center justify-center shrink-0 shadow-sm text-white">
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -221,24 +221,6 @@ export default function HomeTestimonials() {
                 <div className="flex items-center gap-1 mt-0.5">
                   <div className="flex text-[#1877F2] text-[10px] tracking-tighter">★★★★★</div>
                   <span className="text-[11px] font-bold text-white font-mono">100% Rec</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 4. Houzz / Pro Badge */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 transition-all duration-200 group cursor-default shadow-lg">
-              {/* Houzz Green SVG Icon */}
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#4DBC15] flex items-center justify-center shrink-0 shadow-sm text-white font-black text-sm font-sans">
-                H
-              </div>
-              <div className="text-left">
-                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
-                  <span>houzz</span>
-                  <span className="text-[10px] text-gray-400 font-mono">Pro</span>
-                </div>
-                <div className="flex items-center gap-1 mt-0.5">
-                  <div className="flex text-[#4DBC15] text-[10px] tracking-tighter">★★★★★</div>
-                  <span className="text-[11px] font-bold text-white font-mono">Top Rated</span>
                 </div>
               </div>
             </div>
