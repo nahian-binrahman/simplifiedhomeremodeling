@@ -16,19 +16,19 @@ export default function Header() {
         </a>
 
         {/* Center: Service Area with Pin Icon (Desktop) */}
-        <div className="hidden lg:flex items-center gap-2.5 text-xs sm:text-sm text-gray-300 group cursor-pointer">
-          <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-200">
-            <MapPin className="w-4 h-4 text-gray-300 group-hover:text-black transition-colors" />
+        <div className="hidden lg:flex items-center gap-3 max-w-lg lg:max-w-2xl xl:max-w-3xl">
+          <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 self-start">
+            <MapPin className="w-4.5 h-4.5 text-gray-300" />
           </div>
           <div className="text-left leading-snug">
-            <span className="text-gray-400 font-normal">Serving </span>
-            <span className="text-white font-semibold link-underline-slide text-gentle-lift">
-              Palm Springs, Palm Desert,
-            </span>
-            <br />
-            <span className="text-white font-semibold link-underline-slide text-gentle-lift">
-              Rancho Mirage, La Quinta &amp; Coachella Valley
-            </span>
+            <div className="text-white font-bold text-sm sm:text-base tracking-wide">
+              Proudly Serving the Coachella Valley
+            </div>
+            <div className="text-xs sm:text-[13px] text-gray-400 font-normal leading-relaxed mt-0.5 select-none">
+              <div>Palm Desert • Rancho Mirage • La Quinta • Indian Wells</div>
+              <div>Palm Springs • Cathedral City • Indio • Bermuda Dunes</div>
+              <div>Coachella • Desert Hot Springs • Thousand Palms • Thermal</div>
+            </div>
           </div>
         </div>
 

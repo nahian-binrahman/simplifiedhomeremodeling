@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Logo({
   className = "w-[120px] sm:w-[135px] lg:w-[150px] h-auto",
-  priority = false,
+  priority = true,
 }: {
   className?: string;
   showText?: boolean;
@@ -17,8 +17,10 @@ export default function Logo({
         width={1467}
         height={1010}
         priority={priority}
-        className="w-full h-auto object-contain"
+        unoptimized
+        className="w-full h-auto object-contain select-none"
       />
     </div>
   );
 }
+

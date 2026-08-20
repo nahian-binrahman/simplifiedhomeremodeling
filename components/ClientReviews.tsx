@@ -5,25 +5,29 @@ import { Star, Quote } from "lucide-react";
 
 interface ReviewItem {
   name: string;
-  location: string;
+  source: string;
+  timeAgo: string;
   text: string;
 }
 
 const reviews: ReviewItem[] = [
   {
-    name: "Sarah M.",
-    location: "Palm Desert, CA",
-    text: "Simplified Home Remodeling completely transformed our kitchen! The team was professional, on time, and the quality of work is outstanding.",
+    name: "Steve N.",
+    source: "Verified Yelp Review",
+    timeAgo: "6 months ago",
+    text: "If you're getting ready for a home remodel, you definitely want to call Simplified Home Remodeling. Their bid was competitive and their work is outstanding. Juan and his team performed a high level, taking excellent care of our home throughout the project, and completed the project ahead of schedule. We highly recommend Simplified Home Remodeling.",
   },
   {
-    name: "James T.",
-    location: "La Quinta, CA",
-    text: "From the design to the final touches, everything was perfect. Our new kitchen is not only beautiful but so functional. Highly recommend!",
+    name: "Rose Z.",
+    source: "Verified Yelp Review",
+    timeAgo: "1 year ago",
+    text: "We highly recommend Juan with Simplified Home Remodeling. Juan came out, gave us a fair estimate, and his crew did an excellent job—I mean perfection! They worked cleanly and finished right on schedule. We will definitely be hiring Juan again for our new kitchen remodel!",
   },
   {
-    name: "Maria G.",
-    location: "Rancho Mirage, CA",
-    text: "Great communication, fair pricing, and amazing craftsmanship. We couldn't be happier with our kitchen remodel!",
+    name: "Bill & Carol",
+    source: "Verified Yelp Review",
+    timeAgo: "1 year ago",
+    text: "Juan and his team are absolutely amazing! Juan goes above and beyond, listens with great patience, and brings years of expertise. His team is courteous, cleans up daily, and the finished product is impeccable. We loved our kitchen remodel so much that we rehired him for our bathroom!",
   },
 ];
 
@@ -44,40 +48,53 @@ export default function ClientReviews() {
         </div>
 
         {/* 3 Review Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {reviews.map((rev, idx) => (
             <div
               key={idx}
               className={`bg-white rounded-xl border border-gray-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between relative card-hover-lift group cursor-default reveal-init delay-${(idx + 1) * 100}`}
             >
               <div className="space-y-4">
-                {/* 5 Stars */}
-                <div className="flex items-center gap-1 text-black">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-black text-black" />
-                  ))}
+                {/* 5 Stars & Time Ago */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-5 h-5 bg-[#d32323] rounded-[3px] flex items-center justify-center text-white text-xs font-bold shadow-xs"
+                      >
+                        ★
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-xs text-gray-400 font-medium">
+                    {rev.timeAgo}
+                  </span>
                 </div>
 
                 {/* Review Text */}
-                <p className="text-sm text-gray-700 leading-relaxed font-normal">
+                <p className="text-sm text-gray-700 leading-relaxed font-normal whitespace-pre-line">
                   {rev.text}
                 </p>
               </div>
 
               {/* Author & Quote mark */}
-              <div className="pt-6 mt-4 border-t border-gray-100 flex items-end justify-between">
+              <div className="pt-6 mt-6 border-t border-gray-100 flex items-end justify-between">
                 <div>
                   <div className="font-bold text-sm text-gray-900">— {rev.name}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">{rev.location}</div>
+                  <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#d32323]" />
+                    <span>{rev.source}</span>
+                  </div>
                 </div>
 
-                <Quote className="w-6 h-6 text-gray-300 fill-gray-200 group-hover:text-black group-hover:fill-gray-100 transition-colors" />
+                <Quote className="w-6 h-6 text-gray-300 fill-gray-200 group-hover:text-black group-hover:fill-gray-100 transition-colors shrink-0" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Platform Trust Logos (Google, Yelp, Facebook, Houzz) */}
+        {/* Platform Trust Logos (Google, Yelp, Facebook) */}
         <div className="mt-14 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-20 reveal-init delay-200">
           
           {/* Google */}
@@ -112,20 +129,6 @@ export default function ClientReviews() {
           <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
             <div className="text-lg font-bold text-[#1877F2] tracking-tight">
               facebook
-            </div>
-            <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
-              <span className="text-black">★★★★★</span>
-              <span>5.0</span>
-            </div>
-          </div>
-
-          {/* Houzz */}
-          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
-            <div className="text-lg font-bold text-[#4dbc15] tracking-tight flex items-center gap-1">
-              <span className="w-4 h-4 bg-[#4dbc15] text-white rounded-sm text-xs flex items-center justify-center font-black">
-                h
-              </span>
-              <span>houzz</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
               <span className="text-black">★★★★★</span>

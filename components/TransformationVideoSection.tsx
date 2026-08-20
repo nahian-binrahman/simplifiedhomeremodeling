@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { CheckCircle2, Play, Pause, Volume2, VolumeX, Maximize, ArrowRight } from "lucide-react";
 
 export default function TransformationVideoSection() {
@@ -9,6 +9,7 @@ export default function TransformationVideoSection() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const userExplicitlyMutedRef = useRef(false);
 
   const formatTime = (timeInSeconds: number) => {
     const mins = Math.floor(timeInSeconds / 60);
@@ -16,8 +17,15 @@ export default function TransformationVideoSection() {
     return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
   };
 
-  const togglePlay = () => {
+  const togglePlay = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (videoRef.current) {
+      // If it was playing muted due to browser policy, also unmute upon user click
+      if (videoRef.current.muted && !userExplicitlyMutedRef.current) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      }
+
       if (isPlaying) {
         videoRef.current.pause();
       } else {
@@ -26,10 +34,13 @@ export default function TransformationVideoSection() {
     }
   };
 
-  const toggleMute = () => {
+  const toggleMute = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+      userExplicitlyMutedRef.current = nextMuted;
     }
   };
 
@@ -46,6 +57,7 @@ export default function TransformationVideoSection() {
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     if (videoRef.current && duration > 0) {
       const rect = e.currentTarget.getBoundingClientRect();
       const clickPos = (e.clientX - rect.left) / rect.width;
@@ -53,13 +65,77 @@ export default function TransformationVideoSection() {
     }
   };
 
-  const handleFullscreen = () => {
+  const handleFullscreen = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (videoRef.current) {
       if (videoRef.current.requestFullscreen) {
         videoRef.current.requestFullscreen();
       }
     }
   };
+
+  // Autoplay video with SOUND ON when scrolled into view
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Helper to unmute as soon as any user gesture is made anywhere on the page
+    const tryEnableAudio = () => {
+      if (videoRef.current && !userExplicitlyMutedRef.current) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      }
+    };
+
+    const gestureEvents = ["pointerdown", "click", "touchstart", "keydown"];
+    gestureEvents.forEach((evt) => {
+      window.addEventListener(evt, tryEnableAudio, { passive: true });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+            // If user hasn't explicitly clicked mute, attempt unmuted playback
+            if (!userExplicitlyMutedRef.current) {
+              video.muted = false;
+            }
+
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  if (!userExplicitlyMutedRef.current && !video.muted) {
+                    setIsMuted(false);
+                  }
+                })
+                .catch(() => {
+                  // Browser policy blocked unmuted autoplay without prior gesture;
+                  // Start playing muted and unlock sound upon first interaction
+                  video.muted = true;
+                  setIsMuted(true);
+                  video.play().catch(() => {});
+                });
+            }
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.1) {
+            video.pause();
+          }
+        });
+      },
+      {
+        threshold: [0.1, 0.2, 0.5],
+      }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+      gestureEvents.forEach((evt) => {
+        window.removeEventListener(evt, tryEnableAudio);
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -142,18 +218,45 @@ export default function TransformationVideoSection() {
                   ref={videoRef}
                   src="/videos/remodeling-video.mp4"
                   playsInline
-                  preload="metadata"
+                  muted={isMuted}
+                  loop
+                  preload="auto"
                   onTimeUpdate={handleTimeUpdate}
                   onLoadedMetadata={handleLoadedMetadata}
                   onClick={togglePlay}
                   className="w-full h-full object-cover object-center cursor-pointer transition-all duration-300 group-hover:brightness-[1.04]"
                 />
+
+                {/* Top-Right Sound Toggle Pill (for instant unmuting during scroll autoplay) */}
+                <div className="absolute top-4 right-4 z-20">
+                  <button
+                    onClick={toggleMute}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border shadow-lg transition-all transform hover:scale-105 active:scale-95 ${
+                      isMuted
+                        ? "bg-black/75 hover:bg-black/90 border-white/30 text-white animate-pulse"
+                        : "bg-black/60 hover:bg-black/85 border-white/20 text-white"
+                    }`}
+                    aria-label={isMuted ? "Unmute sound" : "Mute sound"}
+                  >
+                    {isMuted ? (
+                      <>
+                        <VolumeX className="w-3.5 h-3.5 text-red-400" />
+                        <span className="text-[11px] font-semibold tracking-wide">Tap for Sound</span>
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-[11px] font-semibold tracking-wide">Sound On</span>
+                      </>
+                    )}
+                  </button>
+                </div>
                 
                 {/* Dark overlay when paused */}
                 {!isPlaying && (
                   <div
                     onClick={togglePlay}
-                    className="absolute inset-0 bg-black/30 cursor-pointer flex items-center justify-center transition-colors"
+                    className="absolute inset-0 bg-black/35 cursor-pointer flex items-center justify-center transition-colors backdrop-blur-[1px]"
                   >
                     {/* Big Center Play Button with B&W Invert Hover */}
                     <button

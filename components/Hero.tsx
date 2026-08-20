@@ -11,11 +11,11 @@ export default function Hero() {
       {/* Background Image of Modern Kitchen with Dark Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=2000&q=85"
+          src="/images/kitchen-hero.jpg"
           alt="Kitchen Remodeling in Coachella Valley"
           fill
           priority
-          className="object-cover object-center brightness-[0.52] contrast-[1.08]"
+          className="object-cover object-center brightness-[0.55] contrast-[1.05]"
         />
         {/* Dark Vignette & Gradients */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/35" />
@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="max-w-2xl space-y-4 sm:space-y-5">
           
           {/* Pre-Heading */}
-          <div className="text-xs sm:text-sm font-bold tracking-[0.2em] text-gray-200 uppercase heading-condensed">
+          <div className="text-sm xs:text-base sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-[0.1em] text-gray-200 uppercase heading-condensed">
             KITCHEN REMODELING IN
           </div>
 
