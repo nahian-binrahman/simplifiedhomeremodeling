@@ -41,7 +41,7 @@ const servicesData: ServiceTab[] = [
     timeline: "3 – 6 Weeks",
     warranty: "10-Year Workmanship Warranty",
     image: "/images/kitchen-hero.jpg",
-    href: "/kitchenremodeling",
+    href: "/kitchen-remodeling",
     buttonLabel: "EXPLORE KITCHEN REMODELING",
   },
   {

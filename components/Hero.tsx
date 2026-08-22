@@ -5,14 +5,28 @@ import Image from "next/image";
 import { Phone } from "lucide-react";
 import { BUSINESS } from "@/lib/business";
 
-export default function Hero() {
+interface HeroProps {
+  bgImage?: string;
+  eyebrow?: string;
+  heading?: string;
+  subtitle?: string;
+  description?: string;
+}
+
+export default function Hero({
+  bgImage = "/images/kitchen-hero.jpg",
+  eyebrow = "KITCHEN REMODELING IN",
+  heading = "COACHELLA VALLEY",
+  subtitle = "Transform Your Kitchen.",
+  description = "Expert craftsmanship, premium materials, and transparent pricing built around your home by licensed local contractors.",
+}: HeroProps) {
   return (
     <section className="relative min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-center bg-[#111111] overflow-hidden">
-      {/* Background Image of Modern Kitchen with Balanced Light Overlay */}
+      {/* Background Image with Balanced Light Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/kitchen-hero.jpg"
-          alt="Kitchen Remodeling in Coachella Valley"
+          src={bgImage}
+          alt={`${eyebrow} ${heading}`}
           fill
           priority
           className="object-cover object-center brightness-[0.85] sm:brightness-[0.75] contrast-[1.04]"
@@ -28,25 +42,31 @@ export default function Hero() {
           
           {/* Pre-Heading */}
           <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.2em] text-gray-200 uppercase heading-condensed drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-            KITCHEN REMODELING IN
+            {eyebrow}
           </div>
 
           {/* Main Headline (Condensed, Tall, Bold) */}
           <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            COACHELLA <br className="sm:hidden" />
-            VALLEY
+            {heading.includes("VALLEY") ? (
+              <>
+                {heading.replace("VALLEY", "").trim()} <br className="sm:hidden" />
+                VALLEY
+              </>
+            ) : (
+              heading
+            )}
           </h1>
 
           {/* Subtitle with Serif Italic */}
           <div className="pt-0.5 sm:pt-1">
             <p className="text-base sm:text-2xl md:text-[28px] text-gray-100 italic text-italic-accent leading-snug drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
-              Transform Your Kitchen.
+              {subtitle}
             </p>
           </div>
 
           {/* Clean Focused Paragraph */}
           <p className="text-xs sm:text-base text-gray-200 max-w-xl leading-relaxed font-normal drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-            Expert craftsmanship, premium materials, and transparent pricing built around your home by licensed local contractors.
+            {description}
           </p>
 
           {/* Call to Action Buttons */}

@@ -246,7 +246,7 @@ export default function HomePortfolio() {
         {/* Bottom CTA Row */}
         <div className="mt-14 sm:mt-20 text-center reveal-init delay-200">
           <Link
-            href="/kitchenremodeling"
+            href="/kitchen-remodeling"
             className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm shadow-xl transform hover:-translate-y-0.5"
           >
             <span>VIEW COMPLETE KITCHEN SHOWCASE &amp; VIDEO</span>

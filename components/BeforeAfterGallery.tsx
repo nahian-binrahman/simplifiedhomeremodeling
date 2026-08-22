@@ -80,10 +80,10 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
 
         {/* Split Divider Line & Handle */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-white z-10"
+          className="absolute top-0 bottom-0 w-0.5 bg-white z-10 pointer-events-none"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full bg-white text-gray-800 hover:bg-black hover:text-white shadow-lg flex items-center justify-center border border-gray-300 transition-colors">
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-white text-gray-800 shadow-xl flex items-center justify-center border border-gray-300">
             <ArrowLeftRight className="w-3.5 h-3.5" />
           </div>
         </div>
@@ -92,7 +92,21 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
   );
 }
 
-export default function BeforeAfterGallery() {
+export interface BeforeAfterGalleryProps {
+  eyebrow?: string;
+  heading?: string;
+  subtitle?: string;
+  items?: BeforeAfterItem[];
+  ctaText?: string;
+}
+
+export default function BeforeAfterGallery({
+  eyebrow = "SEE THE DIFFERENCE",
+  heading = "Before & After.",
+  subtitle = "Real Kitchens. Real Transformations.",
+  items = comparisons,
+  ctaText = "VIEW MORE PROJECTS",
+}: BeforeAfterGalleryProps) {
   return (
     <section className="bg-[#f7f8f9] text-black py-16 sm:py-20 lg:py-24 border-b border-gray-200">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,19 +114,19 @@ export default function BeforeAfterGallery() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 reveal-init">
           <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">
-            SEE THE DIFFERENCE
+            {eyebrow}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-gray-900 tracking-tight">
-            Before &amp; After.
+            {heading}
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mt-2 font-normal">
-            Real Kitchens. Real Transformations.
+            {subtitle}
           </p>
         </div>
 
         {/* 3 Split Comparison Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {comparisons.map((item, idx) => (
+          {items.map((item, idx) => (
             <div key={item.id} className={`reveal-init delay-${(idx + 1) * 100}`}>
               <SplitCard item={item} />
             </div>
@@ -125,7 +139,7 @@ export default function BeforeAfterGallery() {
             href="#quote-form"
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm shadow-sm transform hover:-translate-y-0.5"
           >
-            <span>VIEW MORE PROJECTS</span>
+            <span>{ctaText}</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

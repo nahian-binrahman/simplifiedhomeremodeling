@@ -19,20 +19,19 @@ export default function Footer() {
           </a>
 
           {/* Center Serving Areas */}
-          <div className="flex items-center gap-2.5 text-gray-300 group cursor-pointer">
-            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-200">
+          <div className="flex items-start gap-3 text-gray-300 group">
+            <div className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-200">
               <MapPin className="w-3.5 h-3.5 text-gray-400 group-hover:text-black transition-colors" />
             </div>
             <div className="text-left text-xs leading-relaxed">
-              <span className="text-gray-400 font-medium">Proudly Serving </span>
-              <br className="sm:hidden" />
-              <span className="text-gray-200 link-underline-slide text-gentle-lift font-medium">
-                Palm Springs • Palm Desert • Rancho Mirage
-              </span>
-              <br />
-              <span className="text-gray-200 link-underline-slide text-gentle-lift font-medium">
-                La Quinta • Coachella Valley
-              </span>
+              <div className="text-white font-bold tracking-wide uppercase text-[11px] mb-1">
+                Proudly Serving the Coachella Valley
+              </div>
+              <div className="text-gray-300 font-medium space-y-0.5 text-[11px] leading-normal">
+                <div>Palm Desert • Rancho Mirage • La Quinta • Indian Wells</div>
+                <div>Palm Springs • Cathedral City • Indio • Bermuda Dunes</div>
+                <div>Coachella • Desert Hot Springs • Thousand Palms • Thermal</div>
+              </div>
             </div>
           </div>
 

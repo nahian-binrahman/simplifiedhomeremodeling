@@ -9,6 +9,7 @@ interface TransformationVideoSectionProps {
   description?: string;
   features?: string[];
   ctaText?: string;
+  videoSrc?: string;
 }
 
 export default function TransformationVideoSection({
@@ -21,6 +22,7 @@ export default function TransformationVideoSection({
     "Professional Master Craftsmanship",
   ],
   ctaText = "START YOUR HOME REMODEL",
+  videoSrc = "/videos/remodeling-video.mp4",
 }: TransformationVideoSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Default to muted for 100% reliable mobile autoplay
@@ -214,7 +216,7 @@ export default function TransformationVideoSection({
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-black flex items-center justify-center">
                 <video
                   ref={videoRef}
-                  src="/videos/remodeling-video.mp4"
+                  src={videoSrc}
                   playsInline
                   autoPlay
                   muted={isMuted}
