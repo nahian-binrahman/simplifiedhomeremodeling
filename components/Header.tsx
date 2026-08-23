@@ -79,6 +79,30 @@ export default function Header() {
 
   const servicesRef = useRef<HTMLDivElement | null>(null);
   const areasRef = useRef<HTMLDivElement | null>(null);
+  const servicesTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const areasTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleServicesEnter = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setIsServicesOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 150);
+  };
+
+  const handleAreasEnter = () => {
+    if (areasTimeoutRef.current) clearTimeout(areasTimeoutRef.current);
+    setIsAreasOpen(true);
+  };
+
+  const handleAreasLeave = () => {
+    areasTimeoutRef.current = setTimeout(() => {
+      setIsAreasOpen(false);
+    }, 150);
+  };
 
   const isLandingPage = [
     "/kitchenremodeling",
@@ -100,7 +124,11 @@ export default function Header() {
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+      if (areasTimeoutRef.current) clearTimeout(areasTimeoutRef.current);
+    };
   }, []);
 
   // Close mobile menu on route change
@@ -142,8 +170,8 @@ export default function Header() {
             <div
               ref={servicesRef}
               className="relative"
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
+              onMouseEnter={handleServicesEnter}
+              onMouseLeave={handleServicesLeave}
             >
               <button
                 type="button"
@@ -165,7 +193,7 @@ export default function Header() {
 
               {/* Services Dropdown Menu */}
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-1 w-[460px] p-3 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl grid grid-cols-2 gap-2 animate-in fade-in zoom-in-95 duration-200 z-50">
+                <div className="absolute top-full left-0 mt-1 pt-0 w-[460px] p-3 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl grid grid-cols-2 gap-2 animate-in fade-in zoom-in-95 duration-200 z-50 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']">
                   {serviceNavItems.map((item, idx) => (
                     <Link
                       key={idx}
@@ -226,8 +254,8 @@ export default function Header() {
             <div
               ref={areasRef}
               className="relative"
-              onMouseEnter={() => setIsAreasOpen(true)}
-              onMouseLeave={() => setIsAreasOpen(false)}
+              onMouseEnter={handleAreasEnter}
+              onMouseLeave={handleAreasLeave}
             >
               <button
                 type="button"
@@ -248,7 +276,7 @@ export default function Header() {
 
               {/* Service Areas Mega Card */}
               {isAreasOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[400px] p-5 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl animate-in fade-in zoom-in-95 duration-200 z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[400px] p-5 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl animate-in fade-in zoom-in-95 duration-200 z-50 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']">
                   <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
                     <span className="text-xs font-bold text-white uppercase tracking-wider">
                       COACHELLA VALLEY COMMUNITIES
