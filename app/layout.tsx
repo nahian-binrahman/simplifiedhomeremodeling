@@ -57,10 +57,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/simplified-home-remodeling-logo.png", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
     ],
     apple: [
-      { url: "/images/simplified-home-remodeling-logo.png", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
   },
 };
