@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
+import LocationSelector from "@/components/LocationSelector";
 import TransformationVideoSection from "@/components/TransformationVideoSection";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import ClientReviews from "@/components/ClientReviews";
@@ -24,6 +25,11 @@ export default function KitchenRemodelingPage() {
       <Header />
       <Hero />
       <TrustBar />
+      <LocationSelector
+        serviceBasePath="/kitchen-remodeling"
+        title="Select Your Coachella Valley Location"
+        subtitle="Choose your city below to view localized kitchen remodeling services, HOA guidelines, and local estimates."
+      />
       <TransformationVideoSection videoSrc="/videos/remodeling-video.mp4" />
       <BeforeAfterGallery />
       <ClientReviews />
@@ -38,3 +44,4 @@ export default function KitchenRemodelingPage() {
     </main>
   );
 }
+

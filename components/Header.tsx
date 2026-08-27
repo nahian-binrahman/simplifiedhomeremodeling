@@ -104,14 +104,44 @@ export default function Header() {
     }, 150);
   };
 
-  const isLandingPage = [
-    "/kitchenremodeling",
-    "/kitchen-remodeling",
-    "/bathroom-remodeling",
-    "/countertops",
-    "/cabinetry",
-    "/flooring",
-  ].includes(pathname);
+  const citySlugMap: { name: string; slug: string }[] = [
+    { name: "Palm Desert", slug: "palm-desert" },
+    { name: "Rancho Mirage", slug: "rancho-mirage" },
+    { name: "La Quinta", slug: "la-quinta" },
+    { name: "Indian Wells", slug: "indian-wells" },
+    { name: "Palm Springs", slug: "palm-springs" },
+    { name: "Cathedral City", slug: "cathedral-city" },
+    { name: "Indio", slug: "indio" },
+    { name: "Bermuda Dunes", slug: "bermuda-dunes" },
+    { name: "Coachella", slug: "coachella" },
+    { name: "Desert Hot Springs", slug: "desert-hot-springs" },
+    { name: "Thousand Palms", slug: "thousand-palms" },
+    { name: "Thermal", slug: "thermal" },
+  ];
+
+  // Determine current active service base path
+  const currentServicePath = (() => {
+    if (pathname.includes("/bathroom-remodeling")) return "/kitchen-remodeling"; // or /bathroom-remodeling
+    if (pathname.includes("/countertops")) return "/kitchen-remodeling";
+    if (pathname.includes("/cabinetry")) return "/kitchen-remodeling";
+    if (pathname.includes("/flooring")) return "/kitchen-remodeling";
+    return "/kitchen-remodeling";
+  })();
+
+  const isLandingPage =
+    [
+      "/kitchenremodeling",
+      "/kitchen-remodeling",
+      "/bathroom-remodeling",
+      "/countertops",
+      "/cabinetry",
+      "/flooring",
+    ].includes(pathname) ||
+    pathname.startsWith("/kitchen-remodeling/") ||
+    pathname.startsWith("/bathroom-remodeling/") ||
+    pathname.startsWith("/countertops/") ||
+    pathname.startsWith("/cabinetry/") ||
+    pathname.startsWith("/flooring/");
 
   // Close dropdowns when clicking outside
   useEffect(() => {
@@ -136,6 +166,23 @@ export default function Header() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  const renderCityLink = (cityName: string, slug: string) => {
+    const isCurrentActive = pathname.endsWith(`/${slug}`);
+    return (
+      <Link
+        key={slug}
+        href={`${currentServicePath}/${slug}`}
+        className={`transition-all duration-150 inline-block ${
+          isCurrentActive
+            ? "text-amber-400 font-bold underline underline-offset-2"
+            : "text-gray-300 hover:text-amber-400 hover:underline underline-offset-2"
+        }`}
+      >
+        {cityName}
+      </Link>
+    );
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-[#0e0e0e]/95 backdrop-blur-xl border-b border-white/10 text-white transition-all duration-300">
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-3 min-h-[72px] sm:min-h-[82px] flex items-center justify-between gap-4 lg:gap-8">
@@ -155,13 +202,37 @@ export default function Header() {
         {isLandingPage ? (
           <div className="hidden lg:flex flex-col items-center justify-center text-center px-4 max-w-2xl mx-auto">
             <div className="flex items-center gap-1.5 text-sm font-semibold text-white tracking-wide mb-0.5">
-              <MapPin className="w-4 h-4 text-white/90 shrink-0" />
+              <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
               <span>Proudly Serving the Coachella Valley</span>
             </div>
             <div className="text-xs sm:text-[13px] text-gray-300 font-normal leading-snug space-y-0.5">
-              <div>Palm Desert • Rancho Mirage • La Quinta • Indian Wells</div>
-              <div>Palm Springs • Cathedral City • Indio • Bermuda Dunes</div>
-              <div>Coachella • Desert Hot Springs • Thousand Palms • Thermal</div>
+              <div className="flex items-center justify-center gap-1.5">
+                {renderCityLink("Palm Desert", "palm-desert")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Rancho Mirage", "rancho-mirage")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("La Quinta", "la-quinta")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Indian Wells", "indian-wells")}
+              </div>
+              <div className="flex items-center justify-center gap-1.5">
+                {renderCityLink("Palm Springs", "palm-springs")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Cathedral City", "cathedral-city")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Indio", "indio")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Bermuda Dunes", "bermuda-dunes")}
+              </div>
+              <div className="flex items-center justify-center gap-1.5">
+                {renderCityLink("Coachella", "coachella")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Desert Hot Springs", "desert-hot-springs")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Thousand Palms", "thousand-palms")}
+                <span className="text-white/30">•</span>
+                {renderCityLink("Thermal", "thermal")}
+              </div>
             </div>
           </div>
         ) : (
@@ -284,14 +355,16 @@ export default function Header() {
                     <span className="text-[10px] text-gray-400 font-mono">12 CITIES</span>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-xs font-sans font-medium text-gray-300">
-                    {coachellaCities.map((city, idx) => (
-                      <div
+                    {citySlugMap.map((item, idx) => (
+                      <Link
                         key={idx}
-                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-white/5 hover:text-white transition-colors"
+                        href={`${currentServicePath}/${item.slug}`}
+                        onClick={() => setIsAreasOpen(false)}
+                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-white/10 hover:text-amber-400 transition-colors"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-                        <span>{city}</span>
-                      </div>
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400/80" />
+                        <span>{item.name}</span>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -369,6 +442,34 @@ export default function Header() {
         </div>
 
       </div>
+
+      {/* =========================================
+          MOBILE LOCATION STRIP (Touch-Optimized)
+         ========================================= */}
+      {isLandingPage && (
+        <div className="lg:hidden border-t border-white/10 bg-[#0c0c0c] px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth">
+          <span className="text-[10px] font-bold text-amber-400 shrink-0 flex items-center gap-1 uppercase tracking-wider pl-1">
+            <MapPin className="w-3 h-3" />
+            Cities:
+          </span>
+          {citySlugMap.map((item, idx) => {
+            const isCurrentActive = pathname.endsWith(`/${item.slug}`);
+            return (
+              <Link
+                key={idx}
+                href={`${currentServicePath}/${item.slug}`}
+                className={`text-[11px] whitespace-nowrap px-2.5 py-1 rounded-md shrink-0 transition-colors border ${
+                  isCurrentActive
+                    ? "bg-amber-500 text-black border-amber-500 font-bold shadow-sm"
+                    : "bg-[#181818] text-gray-300 border-white/10 hover:text-white hover:border-amber-400/50"
+                }`}
+              >
+                {item.name}
+              </Link>
+            );
+          })}
+        </div>
+      )}
 
       {/* =========================================
           MOBILE SLIDE-OUT NAVIGATION DRAWER
@@ -452,13 +553,15 @@ export default function Header() {
               PROUDLY SERVING COACHELLA VALLEY:
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {coachellaCities.map((city, i) => (
-                <span
+              {citySlugMap.map((item, i) => (
+                <Link
                   key={i}
-                  className="text-[11px] text-gray-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md font-sans"
+                  href={`${currentServicePath}/${item.slug}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-[11px] text-gray-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md font-sans hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-colors"
                 >
-                  {city}
-                </span>
+                  {item.name}
+                </Link>
               ))}
             </div>
           </div>

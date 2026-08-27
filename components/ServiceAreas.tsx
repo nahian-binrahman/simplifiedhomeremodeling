@@ -106,10 +106,10 @@ export default function ServiceAreas() {
                   HOA Pre-Approved Specs
                 </span>
                 <a
-                  href="#estimate"
+                  href={`/kitchen-remodeling/${area.city.toLowerCase().split(" ")[0].replace("&", "").replace(",", "") === "cathedral" ? "cathedral-city" : area.city.toLowerCase().replace(/\s+/g, "-")}`}
                   className="text-amber-400 hover:text-amber-300 font-semibold"
                 >
-                  Book Estimate →
+                  View City Projects →
                 </a>
               </div>
             </div>
