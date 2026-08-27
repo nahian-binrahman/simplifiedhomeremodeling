@@ -14,67 +14,68 @@ import {
 import { BUSINESS } from "@/lib/business";
 import Logo from "@/components/Logo";
 
-interface ServiceNavItem {
+interface SubNavItem {
+  number: string;
   title: string;
-  desc: string;
   href: string;
-  badge?: string;
 }
 
-const serviceNavItems: ServiceNavItem[] = [
+interface MegaMenuSection {
+  title: string;
+  href: string;
+  badge?: string;
+  desc?: string;
+  subCategories?: SubNavItem[];
+}
+
+const megaMenuServices: MegaMenuSection[] = [
   {
     title: "Kitchen Remodeling",
-    desc: "Gourmet islands, custom cabinetry & chef layouts",
+    desc: "Gourmet islands & full renovations",
     href: "/kitchen-remodeling",
     badge: "POPULAR",
   },
   {
     title: "Bathroom Remodeling",
-    desc: "Spa master ensuites, curbless rain showers & soaking tubs",
+    desc: "Curbless showers & spa retreats",
     href: "/bathroom-remodeling",
     badge: "POPULAR",
   },
   {
-    title: "Countertops & Slabs",
-    desc: "Calacatta quartz, quartzite & mitred waterfall edges",
+    title: "#3 Countertops",
     href: "/countertops",
+    subCategories: [
+      { number: "3.1", title: "Slab Countertops", href: "/countertops/slab-countertops" },
+      { number: "3.2", title: "Pre-Fabricated Countertops", href: "/countertops/pre-fabricated-countertops" },
+    ],
   },
   {
-    title: "Custom Cabinetry",
-    desc: "Architectural millwork, rift white oak & Blum soft-close",
+    title: "#4 Cabinetry",
     href: "/cabinetry",
+    subCategories: [
+      { number: "4.1", title: "Cabinetry Refinishing", href: "/cabinetry/cabinetry-refinishing" },
+      { number: "4.2", title: "Cabinetry Refacing", href: "/cabinetry/cabinetry-refacing" },
+      { number: "4.3", title: "Simplified Select", href: "/cabinetry/simplified-select-cabinetry" },
+      { number: "4.4", title: "Simplified Signature", href: "/cabinetry/simplified-signature-cabinetry" },
+    ],
   },
   {
-    title: "Luxury Flooring",
-    desc: "European white oak, large format porcelain & LVP",
+    title: "#5 Flooring",
     href: "/flooring",
+    subCategories: [
+      { number: "5.1", title: "Luxury Vinyl Plank (LVP)", href: "/flooring/luxury-vinyl-plank" },
+      { number: "5.2", title: "Laminate Flooring", href: "/flooring/laminate-flooring" },
+      { number: "5.3", title: "Porcelain Tile", href: "/flooring/porcelain-tile" },
+      { number: "5.4", title: "Natural Stone Tile", href: "/flooring/natural-stone-tile" },
+    ],
   },
-  {
-    title: "Whole-Home Renovations",
-    desc: "Open-concept layout re-engineering & sliding glass walls",
-    href: "/#services",
-  },
-];
-
-const coachellaCities = [
-  "Palm Desert",
-  "Palm Springs",
-  "Rancho Mirage",
-  "La Quinta",
-  "Indian Wells",
-  "Cathedral City",
-  "Indio",
-  "Bermuda Dunes",
-  "Coachella",
-  "Desert Hot Springs",
-  "Thousand Palms",
-  "Thermal",
 ];
 
 export default function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isAreasOpen, setIsAreasOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
   const pathname = usePathname();
 
   const servicesRef = useRef<HTMLDivElement | null>(null);
@@ -104,6 +105,10 @@ export default function Header() {
     }, 150);
   };
 
+  const toggleMobileAccordion = (title: string) => {
+    setMobileAccordion((prev) => (prev === title ? null : title));
+  };
+
   const citySlugMap: { name: string; slug: string }[] = [
     { name: "Palm Desert", slug: "palm-desert" },
     { name: "Rancho Mirage", slug: "rancho-mirage" },
@@ -119,13 +124,16 @@ export default function Header() {
     { name: "Thermal", slug: "thermal" },
   ];
 
-  // Determine current active service base path
+  // Determine current active service/subcategory base path
   const currentServicePath = (() => {
-    if (pathname.includes("/bathroom-remodeling")) return "/kitchen-remodeling"; // or /bathroom-remodeling
-    if (pathname.includes("/countertops")) return "/kitchen-remodeling";
-    if (pathname.includes("/cabinetry")) return "/kitchen-remodeling";
-    if (pathname.includes("/flooring")) return "/kitchen-remodeling";
-    return "/kitchen-remodeling";
+    const segments = pathname.split("/").filter(Boolean);
+    if (segments.length === 0) return "/kitchen-remodeling";
+    const lastSegment = segments[segments.length - 1];
+    const isLocationSlug = citySlugMap.some((c) => c.slug === lastSegment);
+    if (isLocationSlug) {
+      return "/" + segments.slice(0, -1).join("/");
+    }
+    return "/" + segments.join("/");
   })();
 
   const isLandingPage =
@@ -164,24 +172,8 @@ export default function Header() {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setMobileAccordion(null);
   }, [pathname]);
-
-  const renderCityLink = (cityName: string, slug: string) => {
-    const isCurrentActive = pathname.endsWith(`/${slug}`);
-    return (
-      <Link
-        key={slug}
-        href={`${currentServicePath}/${slug}`}
-        className={`transition-all duration-150 inline-block ${
-          isCurrentActive
-            ? "text-amber-400 font-bold underline underline-offset-2"
-            : "text-gray-300 hover:text-amber-400 hover:underline underline-offset-2"
-        }`}
-      >
-        {cityName}
-      </Link>
-    );
-  };
 
   return (
     <header className="sticky top-0 z-50 bg-[#0e0e0e]/95 backdrop-blur-xl border-b border-white/10 text-white transition-all duration-300">
@@ -197,47 +189,84 @@ export default function Header() {
         </div>
 
         {/* =========================================
-            CENTER: Navigation or Locations Banner
+            CENTER: Proudly Serving + Locations Dropdown OR Full Nav
            ========================================= */}
         {isLandingPage ? (
-          <div className="hidden lg:flex flex-col items-center justify-center text-center px-4 max-w-2xl mx-auto">
-            <div className="flex items-center gap-1.5 text-sm font-semibold text-white tracking-wide mb-0.5">
-              <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 text-center">
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-white tracking-wide">
+              <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90 shrink-0" />
               <span>Proudly Serving the Coachella Valley</span>
             </div>
-            <div className="text-xs sm:text-[13px] text-gray-300 font-normal leading-snug space-y-0.5">
-              <div className="flex items-center justify-center gap-1.5">
-                {renderCityLink("Palm Desert", "palm-desert")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Rancho Mirage", "rancho-mirage")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("La Quinta", "la-quinta")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Indian Wells", "indian-wells")}
-              </div>
-              <div className="flex items-center justify-center gap-1.5">
-                {renderCityLink("Palm Springs", "palm-springs")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Cathedral City", "cathedral-city")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Indio", "indio")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Bermuda Dunes", "bermuda-dunes")}
-              </div>
-              <div className="flex items-center justify-center gap-1.5">
-                {renderCityLink("Coachella", "coachella")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Desert Hot Springs", "desert-hot-springs")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Thousand Palms", "thousand-palms")}
-                <span className="text-white/30">•</span>
-                {renderCityLink("Thermal", "thermal")}
-              </div>
+
+            {/* Location Selector Dropdown in Header */}
+            <div
+              ref={areasRef}
+              className="relative"
+              onMouseEnter={handleAreasEnter}
+              onMouseLeave={handleAreasLeave}
+            >
+              <button
+                type="button"
+                onClick={() => setIsAreasOpen(!isAreasOpen)}
+                className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all duration-200 border text-xs font-semibold cursor-pointer ${
+                  isAreasOpen
+                    ? "bg-[#222] text-white border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.08)]"
+                    : "bg-white/5 text-gray-200 border-white/10 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                }`}
+                aria-expanded={isAreasOpen}
+                aria-label="Select service location"
+              >
+                <span className="truncate max-w-[130px] sm:max-w-[180px]">
+                  {citySlugMap.find((c) => pathname.endsWith(`/${c.slug}`))?.name || "Select City (12 Cities)"}
+                </span>
+                <ChevronDown
+                  className={`w-3 h-3 transition-transform duration-300 ${
+                    isAreasOpen ? "rotate-180 text-white" : "text-gray-400"
+                  }`}
+                />
+              </button>
+
+              {/* Locations Dropdown Menu */}
+              {isAreasOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[300px] sm:w-[360px] p-3 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-2xl animate-in fade-in zoom-in-95 duration-200 z-50 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']">
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 px-2">
+                    <span className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-1">
+                      <MapPin className="w-3.5 h-3.5 text-white/90" />
+                      Coachella Valley Cities
+                    </span>
+                    <span className="text-[10px] text-gray-400 font-mono font-bold">12 CITIES</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 max-h-[280px] overflow-y-auto">
+                    {citySlugMap.map((item) => {
+                      const isCurrent = pathname.endsWith(`/${item.slug}`);
+                      return (
+                        <Link
+                          key={item.slug}
+                          href={`${currentServicePath}/${item.slug}`}
+                          onClick={() => setIsAreasOpen(false)}
+                          className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                            isCurrent
+                              ? "bg-white text-black font-bold shadow-sm"
+                              : "text-gray-300 hover:bg-white/10 hover:text-white"
+                          }`}
+                        >
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              isCurrent ? "bg-black" : "bg-white/40"
+                            }`}
+                          />
+                          <span className="truncate">{item.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ) : (
           <nav className="hidden xl:flex items-center gap-1.5 lg:gap-2 text-xs font-bold uppercase tracking-wider heading-condensed">
-            {/* Services Dropdown */}
+            {/* Desktop Services Mega-Menu */}
             <div
               ref={servicesRef}
               className="relative"
@@ -262,37 +291,171 @@ export default function Header() {
                 />
               </button>
 
-              {/* Services Dropdown Menu */}
+              {/* Mega-Menu Multi-Column Dropdown */}
               {isServicesOpen && (
-                <div className="absolute top-full left-0 mt-1 pt-0 w-[460px] p-3 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] backdrop-blur-2xl grid grid-cols-2 gap-2 animate-in fade-in zoom-in-95 duration-200 z-50 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']">
-                  {serviceNavItems.map((item, idx) => (
+                <div className="absolute top-full left-0 mt-2 w-[720px] p-5 rounded-2xl bg-[#141414] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.95)] backdrop-blur-2xl grid grid-cols-3 gap-5 animate-in fade-in zoom-in-95 duration-200 z-50 before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']">
+                  
+                  {/* Column 1: Core Remodeling */}
+                  <div className="space-y-3 border-r border-white/10 pr-3">
+                    <div className="text-[11px] font-bold text-gray-400 uppercase tracking-widest font-mono">
+                      CORE SERVICES
+                    </div>
                     <Link
-                      key={idx}
-                      href={item.href}
+                      href="/kitchen-remodeling"
                       onClick={() => setIsServicesOpen(false)}
-                      className="p-3 rounded-xl hover:bg-white/5 transition-all group flex flex-col justify-between border border-transparent hover:border-white/10"
+                      className="p-2.5 rounded-xl hover:bg-white/5 transition-all block border border-transparent hover:border-white/10"
                     >
-                      <div>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-bold text-white uppercase group-hover:text-white transition-colors">
-                            {item.title}
-                          </span>
-                          {item.badge && (
-                            <span className="text-[9px] bg-white text-black font-black px-1.5 py-0.5 rounded font-mono">
-                              {item.badge}
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-[11px] text-gray-400 font-sans font-normal leading-snug line-clamp-2">
-                          {item.desc}
-                        </p>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-bold text-white uppercase">Kitchen Remodeling</span>
+                        <span className="text-[9px] bg-white text-black font-black px-1.5 py-0.5 rounded font-mono">POPULAR</span>
                       </div>
-                      <div className="pt-2 mt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-gray-500 font-mono group-hover:text-white transition-colors">
-                        <span>VIEW SPECS</span>
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                      </div>
+                      <p className="text-[11px] text-gray-400 font-sans normal-case">Islands, custom cabinets &amp; chef layouts</p>
                     </Link>
-                  ))}
+
+                    <Link
+                      href="/bathroom-remodeling"
+                      onClick={() => setIsServicesOpen(false)}
+                      className="p-2.5 rounded-xl hover:bg-white/5 transition-all block border border-transparent hover:border-white/10"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-bold text-white uppercase">Bathroom Remodeling</span>
+                        <span className="text-[9px] bg-white text-black font-black px-1.5 py-0.5 rounded font-mono">POPULAR</span>
+                      </div>
+                      <p className="text-[11px] text-gray-400 font-sans normal-case">Spa master ensuites &amp; rain showers</p>
+                    </Link>
+
+                    <div className="pt-2 border-t border-white/10">
+                      <Link
+                        href="/#services"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="text-[11px] text-gray-400 hover:text-white flex items-center justify-between font-mono py-1"
+                      >
+                        <span>WHOLE-HOME SPECS</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Column 2: #3 Countertops & #4 Cabinetry */}
+                  <div className="space-y-4 border-r border-white/10 pr-3">
+                    <div>
+                      <Link
+                        href="/countertops"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="text-xs font-bold text-white uppercase tracking-wider block hover:text-white/80 mb-1.5"
+                      >
+                        #3 Countertops
+                      </Link>
+                      <div className="space-y-1">
+                        <Link
+                          href="/countertops/slab-countertops"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                        >
+                          <span className="font-mono text-[9px] opacity-70">3.1</span>
+                          <span>Slab Countertops</span>
+                        </Link>
+                        <Link
+                          href="/countertops/pre-fabricated-countertops"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                        >
+                          <span className="font-mono text-[9px] opacity-70">3.2</span>
+                          <span>Pre-Fabricated Countertops</span>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-white/10">
+                      <Link
+                        href="/cabinetry"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="text-xs font-bold text-white uppercase tracking-wider block hover:text-white/80 mb-1.5"
+                      >
+                        #4 Cabinetry
+                      </Link>
+                      <div className="space-y-1">
+                        <Link
+                          href="/cabinetry/cabinetry-refinishing"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                        >
+                          <span className="font-mono text-[9px] opacity-70">4.1</span>
+                          <span>Refinishing</span>
+                        </Link>
+                        <Link
+                          href="/cabinetry/cabinetry-refacing"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                        >
+                          <span className="font-mono text-[9px] opacity-70">4.2</span>
+                          <span>Refacing</span>
+                        </Link>
+                        <Link
+                          href="/cabinetry/simplified-select-cabinetry"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                        >
+                          <span className="font-mono text-[9px] opacity-70">4.3</span>
+                          <span>Simplified Select</span>
+                        </Link>
+                        <Link
+                          href="/cabinetry/simplified-signature-cabinetry"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                        >
+                          <span className="font-mono text-[9px] opacity-70">4.4</span>
+                          <span>Simplified Signature</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Column 3: #5 Flooring */}
+                  <div className="space-y-3">
+                    <Link
+                      href="/flooring"
+                      onClick={() => setIsServicesOpen(false)}
+                      className="text-xs font-bold text-white uppercase tracking-wider block hover:text-white/80 mb-1.5"
+                    >
+                      #5 Luxury Flooring
+                    </Link>
+                    <div className="space-y-1">
+                      <Link
+                        href="/flooring/luxury-vinyl-plank"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                      >
+                        <span className="font-mono text-[9px] opacity-70">5.1</span>
+                        <span>Luxury Vinyl Plank (LVP)</span>
+                      </Link>
+                      <Link
+                        href="/flooring/laminate-flooring"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                      >
+                        <span className="font-mono text-[9px] opacity-70">5.2</span>
+                        <span>Laminate Flooring</span>
+                      </Link>
+                      <Link
+                        href="/flooring/porcelain-tile"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                      >
+                        <span className="font-mono text-[9px] opacity-70">5.3</span>
+                        <span>Porcelain Tile</span>
+                      </Link>
+                      <Link
+                        href="/flooring/natural-stone-tile"
+                        onClick={() => setIsServicesOpen(false)}
+                        className="flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-white hover:bg-white/5 px-2 py-1 rounded normal-case"
+                      >
+                        <span className="font-mono text-[9px] opacity-70">5.4</span>
+                        <span>Natural Stone Tile</span>
+                      </Link>
+                    </div>
+                  </div>
+
                 </div>
               )}
             </div>
@@ -360,9 +523,9 @@ export default function Header() {
                         key={idx}
                         href={`${currentServicePath}/${item.slug}`}
                         onClick={() => setIsAreasOpen(false)}
-                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-white/10 hover:text-amber-400 transition-colors"
+                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-white/10 hover:text-white transition-colors"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400/80" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                         <span>{item.name}</span>
                       </Link>
                     ))}
@@ -448,7 +611,7 @@ export default function Header() {
          ========================================= */}
       {isLandingPage && (
         <div className="lg:hidden border-t border-white/10 bg-[#0c0c0c] px-3 py-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar scroll-smooth">
-          <span className="text-[10px] font-bold text-amber-400 shrink-0 flex items-center gap-1 uppercase tracking-wider pl-1">
+          <span className="text-[10px] font-bold text-white/90 shrink-0 flex items-center gap-1 uppercase tracking-wider pl-1">
             <MapPin className="w-3 h-3" />
             Cities:
           </span>
@@ -460,8 +623,8 @@ export default function Header() {
                 href={`${currentServicePath}/${item.slug}`}
                 className={`text-[11px] whitespace-nowrap px-2.5 py-1 rounded-md shrink-0 transition-colors border ${
                   isCurrentActive
-                    ? "bg-amber-500 text-black border-amber-500 font-bold shadow-sm"
-                    : "bg-[#181818] text-gray-300 border-white/10 hover:text-white hover:border-amber-400/50"
+                    ? "bg-white text-black border-white font-bold shadow-sm"
+                    : "bg-[#181818] text-gray-300 border-white/10 hover:text-white hover:border-white/40"
                 }`}
               >
                 {item.name}
@@ -472,12 +635,12 @@ export default function Header() {
       )}
 
       {/* =========================================
-          MOBILE SLIDE-OUT NAVIGATION DRAWER
+          MOBILE SLIDE-OUT NAVIGATION DRAWER (With Nested Accordions)
          ========================================= */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#111111] border-b border-white/15 px-4 py-6 space-y-5 animate-in slide-in-from-top-3 duration-300">
+        <div className="xl:hidden bg-[#111111] border-b border-white/15 px-4 py-6 space-y-4 animate-in slide-in-from-top-3 duration-300 max-h-[85vh] overflow-y-auto">
           
-          {/* Main Links */}
+          {/* Main Links & Accordions */}
           <div className="space-y-1 text-sm font-bold uppercase tracking-wider heading-condensed">
             <Link
               href="/"
@@ -499,12 +662,166 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/#services"
+              href="/bathroom-remodeling"
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white"
+              className="flex items-center justify-between px-4 py-2.5 rounded-lg hover:bg-white/5 text-white"
             >
-              ALL SERVICES
+              <span>BATHROOM REMODELING</span>
+              <span className="text-[10px] bg-white text-black font-bold px-2 py-0.5 rounded font-mono">
+                POPULAR
+              </span>
             </Link>
+
+            {/* Accordion: #3 Countertops */}
+            <div className="rounded-lg bg-white/[0.03] border border-white/5 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion("countertops")}
+                className="w-full flex items-center justify-between px-4 py-2.5 text-white text-left font-bold"
+              >
+                <span>#3 COUNTERTOPS</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    mobileAccordion === "countertops" ? "rotate-180 text-white" : "text-gray-400"
+                  }`}
+                />
+              </button>
+              {mobileAccordion === "countertops" && (
+                <div className="px-4 pb-3 pt-1 space-y-1.5 bg-black/40 border-t border-white/5 font-sans normal-case text-xs">
+                  <Link
+                    href="/countertops"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-400 hover:text-white font-semibold"
+                  >
+                    View All Countertops Overview →
+                  </Link>
+                  <Link
+                    href="/countertops/slab-countertops"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    3.1 Slab Countertops
+                  </Link>
+                  <Link
+                    href="/countertops/pre-fabricated-countertops"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    3.2 Pre-Fabricated Countertops
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Accordion: #4 Cabinetry */}
+            <div className="rounded-lg bg-white/[0.03] border border-white/5 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion("cabinetry")}
+                className="w-full flex items-center justify-between px-4 py-2.5 text-white text-left font-bold"
+              >
+                <span>#4 CABINETRY</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    mobileAccordion === "cabinetry" ? "rotate-180 text-white" : "text-gray-400"
+                  }`}
+                />
+              </button>
+              {mobileAccordion === "cabinetry" && (
+                <div className="px-4 pb-3 pt-1 space-y-1.5 bg-black/40 border-t border-white/5 font-sans normal-case text-xs">
+                  <Link
+                    href="/cabinetry"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-400 hover:text-white font-semibold"
+                  >
+                    View All Cabinetry Overview →
+                  </Link>
+                  <Link
+                    href="/cabinetry/cabinetry-refinishing"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    4.1 Cabinetry Refinishing
+                  </Link>
+                  <Link
+                    href="/cabinetry/cabinetry-refacing"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    4.2 Cabinetry Refacing
+                  </Link>
+                  <Link
+                    href="/cabinetry/simplified-select-cabinetry"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    4.3 Simplified Select
+                  </Link>
+                  <Link
+                    href="/cabinetry/simplified-signature-cabinetry"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    4.4 Simplified Signature
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Accordion: #5 Flooring */}
+            <div className="rounded-lg bg-white/[0.03] border border-white/5 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleMobileAccordion("flooring")}
+                className="w-full flex items-center justify-between px-4 py-2.5 text-white text-left font-bold"
+              >
+                <span>#5 LUXURY FLOORING</span>
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    mobileAccordion === "flooring" ? "rotate-180 text-white" : "text-gray-400"
+                  }`}
+                />
+              </button>
+              {mobileAccordion === "flooring" && (
+                <div className="px-4 pb-3 pt-1 space-y-1.5 bg-black/40 border-t border-white/5 font-sans normal-case text-xs">
+                  <Link
+                    href="/flooring"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-400 hover:text-white font-semibold"
+                  >
+                    View All Flooring Overview →
+                  </Link>
+                  <Link
+                    href="/flooring/luxury-vinyl-plank"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    5.1 Luxury Vinyl Plank (LVP)
+                  </Link>
+                  <Link
+                    href="/flooring/laminate-flooring"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    5.2 Laminate Flooring
+                  </Link>
+                  <Link
+                    href="/flooring/porcelain-tile"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    5.3 Porcelain Tile
+                  </Link>
+                  <Link
+                    href="/flooring/natural-stone-tile"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block py-1 text-gray-200 hover:text-white pl-2 border-l border-white/10"
+                  >
+                    5.4 Natural Stone Tile
+                  </Link>
+                </div>
+              )}
+            </div>
 
             <Link
               href="/#about"
@@ -530,14 +847,6 @@ export default function Header() {
               BEFORE &amp; AFTER GALLERY
             </Link>
 
-            <Link
-              href="/#about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 rounded-lg hover:bg-white/5 text-gray-300 hover:text-white"
-            >
-              BLOG &amp; ARTICLES
-            </Link>
-
             <a
               href="#quote-form"
               onClick={() => setMobileMenuOpen(false)}
@@ -548,8 +857,8 @@ export default function Header() {
           </div>
 
           {/* Service Areas Chips */}
-          <div className="pt-4 border-t border-white/10">
-            <div className="text-[11px] font-mono uppercase tracking-wider text-gray-400 mb-2.5">
+          <div className="pt-3 border-t border-white/10">
+            <div className="text-[11px] font-mono uppercase tracking-wider text-gray-400 mb-2">
               PROUDLY SERVING COACHELLA VALLEY:
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -558,7 +867,7 @@ export default function Header() {
                   key={i}
                   href={`${currentServicePath}/${item.slug}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-[11px] text-gray-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md font-sans hover:bg-amber-500 hover:text-black hover:border-amber-500 transition-colors"
+                  className="text-[11px] text-gray-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md font-sans hover:bg-white hover:text-black hover:border-white transition-colors"
                 >
                   {item.name}
                 </Link>

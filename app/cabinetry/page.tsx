@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
+import SubCategorySelector from "@/components/SubCategorySelector";
+import LocationSelector from "@/components/LocationSelector";
 import TransformationVideoSection from "@/components/TransformationVideoSection";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import ClientReviews from "@/components/ClientReviews";
@@ -51,6 +53,12 @@ export default function CabinetryPage() {
         description="High-end custom and semi-custom cabinetry designed for beauty, maximum storage, and lasting durability."
       />
       <TrustBar />
+      <SubCategorySelector serviceSlug="cabinetry" />
+      <LocationSelector
+        serviceBasePath="/cabinetry"
+        title="Select Your City for Cabinetry"
+        subtitle="Choose your city below to explore localized cabinet refinishing, refacing, and custom cabinetry options."
+      />
       <TransformationVideoSection
         videoSrc="/videos/countertops & cabinetry.mp4"
         label="SEE THE TRANSFORMATION"

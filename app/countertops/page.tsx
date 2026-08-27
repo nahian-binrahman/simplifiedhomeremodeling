@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
+import SubCategorySelector from "@/components/SubCategorySelector";
+import LocationSelector from "@/components/LocationSelector";
 import TransformationVideoSection from "@/components/TransformationVideoSection";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import ClientReviews from "@/components/ClientReviews";
@@ -51,6 +53,12 @@ export default function CountertopsPage() {
         description="Precision-cut quartz, granite, and marble surfaces with seamless fabrication and expert installation."
       />
       <TrustBar />
+      <SubCategorySelector serviceSlug="countertops" />
+      <LocationSelector
+        serviceBasePath="/countertops"
+        title="Select Your City for Countertops"
+        subtitle="Choose your city below to explore localized countertop fabrication, slab selections, and instant estimates."
+      />
       <TransformationVideoSection
         videoSrc="/videos/countertops & cabinetry.mp4"
         label="SEE THE TRANSFORMATION"

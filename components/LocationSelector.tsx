@@ -37,8 +37,8 @@ export default function LocationSelector({
         
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-2.5">
-            <Compass className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/15 text-white/90 text-xs font-semibold uppercase tracking-wider mb-2.5">
+            <Compass className="w-3.5 h-3.5 text-white" />
             Local Service Areas
           </div>
           <h2 className="heading-condensed text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-tight uppercase">
@@ -55,7 +55,7 @@ export default function LocationSelector({
             Select a Coachella Valley Location
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-amber-400">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-white/80">
               <MapPin className="w-5 h-5" />
             </div>
             <select
@@ -63,7 +63,7 @@ export default function LocationSelector({
               aria-label="Select location"
               value={currentLocationSlug || ""}
               onChange={handleSelectChange}
-              className="w-full bg-[#202020] text-white font-medium text-sm sm:text-base pl-11 pr-10 py-3.5 rounded-lg border border-white/20 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 outline-none appearance-none cursor-pointer hover:border-amber-400/60 transition-colors shadow-inner"
+              className="w-full bg-[#202020] text-white font-medium text-sm sm:text-base pl-11 pr-10 py-3.5 rounded-lg border border-white/20 focus:border-white focus:ring-1 focus:ring-white outline-none appearance-none cursor-pointer hover:border-white/40 transition-colors shadow-inner"
             >
               <option value="" disabled>
                 -- Choose Your City / Community --
@@ -79,7 +79,7 @@ export default function LocationSelector({
             </div>
           </div>
           {currentLocation && (
-            <p className="text-center text-xs text-amber-400/90 mt-2 font-medium">
+            <p className="text-center text-xs text-gray-300 mt-2 font-medium">
               Currently viewing: <span className="font-bold text-white underline">{currentLocation.name}</span>
             </p>
           )}
@@ -101,11 +101,11 @@ export default function LocationSelector({
                   href={`${serviceBasePath}/${loc.slug}`}
                   className={`inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-md text-xs sm:text-sm font-semibold transition-all duration-200 border ${
                     isActive
-                      ? "bg-amber-500 text-black border-amber-500 shadow-[0_0_12px_rgba(245,158,11,0.4)]"
-                      : "bg-[#222222] text-gray-200 border-white/10 hover:border-amber-400/50 hover:bg-[#2a2a2a] hover:text-white"
+                      ? "bg-white text-black border-white shadow-[0_0_12px_rgba(255,255,255,0.15)]"
+                      : "bg-[#222222] text-gray-200 border-white/10 hover:border-white/40 hover:bg-[#2a2a2a] hover:text-white"
                   }`}
                 >
-                  <MapPin className={`w-3 h-3 ${isActive ? "text-black" : "text-amber-400"}`} />
+                  <MapPin className={`w-3 h-3 ${isActive ? "text-black" : "text-white/80"}`} />
                   <span>{loc.name}</span>
                 </Link>
               );

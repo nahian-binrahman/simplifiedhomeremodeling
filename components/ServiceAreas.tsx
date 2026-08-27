@@ -50,8 +50,8 @@ export default function ServiceAreas() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <MapPin className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/15 text-white/90 text-xs font-semibold uppercase tracking-wider mb-3">
+            <MapPin className="w-3.5 h-3.5 text-white" />
             Local Valley Presence
           </div>
           <h2 className="heading-condensed text-3xl sm:text-4xl md:text-5xl text-white tracking-tight">
@@ -67,11 +67,11 @@ export default function ServiceAreas() {
           {valleyAreas.map((area, idx) => (
             <div
               key={idx}
-              className="subtle-card bg-brand-charcoal/70 border border-white/10 p-6 rounded-xl group hover:border-amber-500/40 transition-all duration-300"
+              className="subtle-card bg-brand-charcoal/70 border border-white/10 p-6 rounded-xl group hover:border-white/30 transition-all duration-300"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-black transition-colors">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 border border-white/15 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition-colors">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -85,7 +85,7 @@ export default function ServiceAreas() {
                 </div>
 
                 {area.featured && (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 uppercase">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-white uppercase border border-white/15">
                     Priority Hub
                   </span>
                 )}
@@ -101,13 +101,13 @@ export default function ServiceAreas() {
               </div>
 
               <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                <span className="flex items-center gap-1 text-green-400">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <span className="flex items-center gap-1 text-white/80">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-white" />
                   HOA Pre-Approved Specs
                 </span>
                 <a
                   href={`/kitchen-remodeling/${area.city.toLowerCase().split(" ")[0].replace("&", "").replace(",", "") === "cathedral" ? "cathedral-city" : area.city.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-amber-400 hover:text-amber-300 font-semibold"
+                  className="text-white hover:underline font-semibold"
                 >
                   View City Projects →
                 </a>
@@ -121,7 +121,7 @@ export default function ServiceAreas() {
           <span>Living outside these core zones? We also service Bermuda Dunes, Rancho Mirage Cove, and Thousand Palms. </span>
           <a
             href={`tel:${BUSINESS.phone}`}
-            className="text-amber-400 font-bold hover:underline inline-flex items-center gap-1 ml-1"
+            className="text-white font-bold hover:underline inline-flex items-center gap-1 ml-1"
           >
             <Phone className="w-3.5 h-3.5" />
             Call {BUSINESS.formattedPhone} to check availability.

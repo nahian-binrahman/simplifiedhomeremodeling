@@ -241,7 +241,7 @@ export default function TransformationVideoSection({
                   >
                     {isMuted ? (
                       <>
-                        <VolumeX className="w-3.5 h-3.5 text-amber-400" />
+                        <VolumeX className="w-3.5 h-3.5 text-white" />
                         <span className="text-[10px] sm:text-[11px] font-bold tracking-wide">Tap for Sound</span>
                       </>
                     ) : (
