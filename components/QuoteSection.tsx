@@ -11,6 +11,8 @@ interface QuoteSectionProps {
   subtitle?: string;
   description?: string;
   projectType?: string;
+  cardTitle?: string;
+  submitText?: string;
 }
 
 export default function QuoteSection({
@@ -18,6 +20,8 @@ export default function QuoteSection({
   subtitle = "Let's Create a Living Space You'll Love.",
   description = "Get your free in-home consultation and guaranteed fixed-price estimate today.",
   projectType = "Whole Home Remodeling",
+  cardTitle,
+  submitText,
 }: QuoteSectionProps) {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -117,7 +121,7 @@ export default function QuoteSection({
                   <div className="font-bold text-sm sm:text-base text-white link-underline-slide text-gentle-lift">
                     {BUSINESS.formattedPhone}
                   </div>
-                  <div className="text-xs text-gray-400 group-hover:text-white transition-colors">Call Now</div>
+                  <div className="text-xs text-gray-400 group-hover:text-white transition-colors">Call or Text for a free consultation</div>
                 </div>
               </a>
 
@@ -127,9 +131,9 @@ export default function QuoteSection({
                 </div>
                 <div>
                   <div className="font-bold text-sm sm:text-base text-white">
-                    Free Consultation
+                    Free In-Home Consultation
                   </div>
-                  <div className="text-xs text-gray-400">No Obligation</div>
+                  <div className="text-xs text-gray-400">Serving Coachella Valley</div>
                 </div>
               </div>
             </div>
@@ -154,6 +158,13 @@ export default function QuoteSection({
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
+                  {cardTitle && (
+                    <div className="pb-3 border-b border-gray-100 mb-2">
+                      <h4 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight heading-condensed uppercase">
+                        {cardTitle}
+                      </h4>
+                    </div>
+                  )}
                   {errorMessage && (
                     <div className="p-3 bg-red-50 border border-red-200 rounded text-red-700 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />
@@ -235,7 +246,7 @@ export default function QuoteSection({
                       <span>SUBMITTING...</span>
                     ) : (
                       <>
-                        <span>REQUEST A PROJECT CONSULTATION</span>
+                        <span>{submitText || "REQUEST A PROJECT CONSULTATION"}</span>
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}

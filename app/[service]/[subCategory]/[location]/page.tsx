@@ -173,12 +173,16 @@ export default function SubCategoryLocationPage({ params }: PageProps) {
                 Commercial grade durability &amp; aesthetics
               </p>
               <ul className="space-y-2 text-xs text-gray-300">
-                {sub.keyFeatures.map((feat, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-white/80 font-bold">•</span>
-                    <span>{feat}</span>
-                  </li>
-                ))}
+                {sub.keyFeatures.map((feat, i) => {
+                  const isObj = typeof feat === "object" && feat !== null;
+                  const label = isObj ? `${feat.title}: ${feat.text}` : feat;
+                  return (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-white/80 font-bold">•</span>
+                      <span>{label}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -211,7 +215,14 @@ export default function SubCategoryLocationPage({ params }: PageProps) {
         subtitle={`Switch locations to view local ${sub.title.toLowerCase()} details and estimates.`}
       />
 
-      <TransformationVideoSection videoSrc="/videos/remodeling-video.mp4" />
+      <TransformationVideoSection
+        videoSrc="/videos/remodeling-video.mp4"
+        label={sub.videoSection?.label || "SEE THE TRANSFORMATION"}
+        title={sub.videoSection?.title || "See How We Remodel Coachella Valley Kitchens"}
+        description={sub.videoSection?.description || "See the craftsmanship, process and attention to detail behind a Simplified Home Remodeling project."}
+        features={sub.videoSection?.features}
+        ctaText={sub.videoSection?.ctaText || "REQUEST A PROJECT CONSULTATION"}
+      />
       <BeforeAfterGallery />
       <ClientReviews />
 

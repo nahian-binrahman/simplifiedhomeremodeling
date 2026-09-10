@@ -14,9 +14,9 @@ import ScrollEffects from "@/components/ScrollEffects";
 import StickyBottomBar from "@/components/StickyBottomBar";
 
 export const metadata: Metadata = {
-  title: "Countertop Installation in Coachella Valley | Simplified Home Remodeling",
+  title: "Coachella Valley Countertops",
   description:
-    "Precision-cut quartz, granite, and marble surfaces with seamless fabrication and expert installation across Palm Desert, Palm Springs, and Coachella Valley.",
+    "See how expert countertop fabrication, precise seam placement, and custom edge details can elevate your kitchen or bathroom with a clean, high-end finish.",
 };
 
 const countertopComparisons = [
@@ -47,10 +47,10 @@ export default function CountertopsPage() {
       <Header />
       <Hero
         bgImage="/images/countertops-hero.jpg"
-        eyebrow="COUNTERTOP INSTALLATION IN"
-        heading="COACHELLA VALLEY"
-        subtitle="Elevate Your Surfaces."
-        description="Precision-cut quartz, granite, and marble surfaces with seamless fabrication and expert installation."
+        eyebrow="SIMPLIFIED HOME REMODELING"
+        heading="COUNTERTOP SURFACES IN COACHELLA VALLEY"
+        subtitle="Countertop Surfaces, Crafted with Precision."
+        description="See how expert countertop fabrication, precise seam placement, and custom edge details can elevate your kitchen or bathroom with a clean, high-end finish."
       />
       <TrustBar />
       <SubCategorySelector serviceSlug="countertops" />
@@ -62,14 +62,14 @@ export default function CountertopsPage() {
       <TransformationVideoSection
         videoSrc="/videos/countertops & cabinetry.mp4"
         label="SEE THE TRANSFORMATION"
-        title="Surfaces Crafted for Real Life."
-        description="See how seamless slab fabrication, precision mitred waterfall edges, and designer stone surfaces transform your kitchen and bathrooms."
+        title="Countertops That Make a Statement."
+        description="Elevate your kitchen or bathroom with expertly fabricated stone countertops, custom edge details, and seamless installation designed for a refined, high-end finish."
         features={[
-          "Precision Quartz, Granite & Marble Fabrication",
-          "Mitred Waterfall Edges & Bookmatched Slabs",
-          "Professional Remodeling Specialist",
+          "Quartz, Granite, Quartzite & Porcelain Countertops",
+          "Mitered Waterfall Edges & Book matched Slabs",
+          "Expert Fabrication & Professional Installation",
         ]}
-        ctaText="REQUEST A PROJECT CONSULTATION"
+        ctaText="START YOUR COUNTERTOP PROJECT"
       />
       <BeforeAfterGallery
         eyebrow="SEE THE DIFFERENCE"
@@ -80,10 +80,11 @@ export default function CountertopsPage() {
       />
       <ClientReviews />
       <QuoteSection
-        title="READY TO UPGRADE YOUR COUNTERTOPS?"
-        subtitle="Let's Create Surfaces You'll Love."
-        description="Get your free consultation and project estimate today."
+        title="READY FOR NEW COUNTERTOPS?"
+        subtitle="Beautiful Surfaces. Professionally Fabricated & Installed."
+        description="Upgrade your kitchen or bathroom with professionally fabricated quartz, granite, and quartzite countertops tailored to your space and style."
         projectType="Countertops"
+        submitText="START YOUR COUNTERTOP PROJECT"
       />
       <Footer />
       <StickyBottomBar />

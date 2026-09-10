@@ -14,9 +14,9 @@ import ScrollEffects from "@/components/ScrollEffects";
 import StickyBottomBar from "@/components/StickyBottomBar";
 
 export const metadata: Metadata = {
-  title: "Custom Cabinetry in Coachella Valley | Simplified Home Remodeling",
+  title: "Coachella Valley Cabinetry",
   description:
-    "High-end custom and semi-custom cabinetry designed for beauty, maximum storage, and lasting durability across Palm Desert, Palm Springs, and Coachella Valley.",
+    "Upgrade your kitchen with beautifully crafted cabinetry, professional refacing, or a fresh refinished look - all tailored to your home & style.",
 };
 
 const cabinetryComparisons = [
@@ -47,10 +47,10 @@ export default function CabinetryPage() {
       <Header />
       <Hero
         bgImage="/images/cabinetry-hero.jpg"
-        eyebrow="CUSTOM CABINETRY IN"
-        heading="COACHELLA VALLEY"
+        eyebrow="SIMPLIFIED HOME REMODELING"
+        heading="CUSTOM CABINETRY & CABINET REMODELING IN COACHELLA VALLEY"
         subtitle="Custom Cabinetry Built to Last."
-        description="High-end custom and semi-custom cabinetry designed for beauty, maximum storage, and lasting durability."
+        description="Upgrade your kitchen with beautifully crafted cabinetry, professional refacing, or a fresh refinished look - all tailored to your home & style."
       />
       <TrustBar />
       <SubCategorySelector serviceSlug="cabinetry" />
@@ -61,13 +61,13 @@ export default function CabinetryPage() {
       />
       <TransformationVideoSection
         videoSrc="/videos/countertops & cabinetry.mp4"
-        label="SEE THE TRANSFORMATION"
-        title="Custom Storage Built for Real Life."
-        description="See how custom architectural millwork, soft-close hardware, and bespoke finishes bring elegance and effortless organization to your home."
+        label="BEAUTIFUL CABINETRY"
+        title="Built Around You."
+        description="From custom and semi-custom cabinetry to refacing and refinishing, we create beautiful, functional kitchens tailored to your home and lifestyle."
         features={[
-          "Architectural Millwork & Custom Built-Ins",
-          "Rift White Oak, Walnut & Painted Finishes",
-          "Professional Remodeling Specialist",
+          "Custom & Semi-Custom Cabinets",
+          "Cabinet Refacing & Refinishing",
+          "Quality Craftsmanship & Installation",
         ]}
         ctaText="REQUEST A PROJECT CONSULTATION"
       />
@@ -81,9 +81,10 @@ export default function CabinetryPage() {
       <ClientReviews />
       <QuoteSection
         title="READY TO UPGRADE YOUR CABINETRY?"
-        subtitle="Let's Build Storage You'll Love."
-        description="Get your free consultation and project estimate today."
+        subtitle="Let's Create a Kitchen You'll Love."
+        description="Whether you’re looking for new custom or semi-custom cabinetry, cabinet refacing, or professional refinishing, we’ll help you find the right solution for your home."
         projectType="Custom Cabinetry"
+        cardTitle="Beautiful Cabinetry Starts Here."
       />
       <Footer />
       <StickyBottomBar />
