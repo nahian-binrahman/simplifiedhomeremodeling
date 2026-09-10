@@ -12,9 +12,9 @@ import ScrollEffects from "@/components/ScrollEffects";
 import StickyBottomBar from "@/components/StickyBottomBar";
 
 export const metadata: Metadata = {
-  title: "Bathroom Remodeling in Coachella Valley | Simplified Home Remodeling",
+  title: "Coachella Valley Kitchen, Bathroom & Home Remodeling",
   description:
-    "Expert craftsmanship, luxury bath conversions, and custom tile installations built around your home by licensed local contractors across Palm Desert, Palm Springs, and Coachella Valley.",
+    "Expert craftsmanship in complete bathroom remodeling, custom showers, tub conversions, vanities, and tile installations - designed for your home and built to last.",
 };
 
 const bathroomComparisons = [
@@ -66,21 +66,21 @@ export default function BathroomRemodelingPage() {
       <Header />
       <Hero
         bgImage="/images/bathroom-hero.jpg"
-        eyebrow="BATHROOM REMODELING IN"
-        heading="COACHELLA VALLEY"
+        eyebrow="SIMPLIFIED HOME REMODELING"
+        heading="BATHROOM REMODELING IN COACHELLA VALLEY"
         subtitle="Transform Your Bathroom."
-        description="Expert craftsmanship, luxury bath conversions, and custom tile installations built around your home by licensed local contractors."
+        description="Expert craftsmanship in complete bathroom remodeling, custom showers, tub conversions, vanities, and tile installations - designed for your home and built to last."
       />
       <TrustBar />
       <TransformationVideoSection
         videoSrc="/videos/bathroom-remodeling.mp4"
         label="SEE THE TRANSFORMATION"
-        title="A Bathroom Designed for Real Life."
+        title="Designed for Comfort. Built to Last."
         description="See how quality craftsmanship and thoughtful remodeling can transform your master bath or guest suite into a spa-like retreat built with lasting materials."
         features={[
           "Luxury Master Ensuites & Walk-In Showers",
           "Custom Tile, Slabs & Curbless Entries",
-          "Professional Remodeling Specialist",
+          "Remodeling Specialist",
         ]}
         ctaText="REQUEST A PROJECT CONSULTATION"
       />

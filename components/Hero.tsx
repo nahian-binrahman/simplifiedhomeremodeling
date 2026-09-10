@@ -78,10 +78,10 @@ export default function Hero({
           </div>
 
           {/* Main Headline (Prominent, High Legibility, 1-Second Read) */}
-          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            <span className="block text-white">{mainTop}</span>
+          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            <span className="block text-white text-[1.12em] tracking-tight">{mainTop}</span>
             {mainBottom && (
-              <span className="block text-white/95 text-2xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[70px] mt-1">
+              <span className="block text-white/90 text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[58px] mt-1.5 font-bold tracking-normal opacity-95">
                 {mainBottom}
               </span>
             )}
