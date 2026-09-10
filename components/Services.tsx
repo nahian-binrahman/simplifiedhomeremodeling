@@ -95,7 +95,7 @@ export default function Services() {
             Tailored Remodeling Services
           </div>
           <h2 className="heading-condensed text-3xl sm:text-4xl md:text-5xl text-white tracking-tight">
-            MASTER CRAFTSMANSHIP FOR EVERY ROOM
+            REMODELING SPECIALIST FOR EVERY ROOM
           </h2>
           <p className="text-brand-gray-300 text-sm sm:text-base mt-3 leading-relaxed">
             From single-room luxury transformations to turnkey whole-home desert estate renovations, our licensed builders bring unparalleled precision and design clarity to every square foot.
@@ -161,10 +161,10 @@ export default function Services() {
                     10-Year Warranty Backed
                   </span>
                   <a
-                    href="#estimate"
+                    href="#quote-form"
                     className="inline-flex items-center gap-2 text-sm font-bold text-amber-400 hover:text-amber-300 group-hover:translate-x-1 transition-all"
                   >
-                    <span>Get Free Estimate</span>
+                    <span>Request Consultation</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>

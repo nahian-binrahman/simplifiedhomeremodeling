@@ -19,11 +19,11 @@ import HomeTestimonials from "@/components/home/HomeTestimonials";
 import HomeFAQ from "@/components/home/HomeFAQ";
 
 export const metadata: Metadata = {
-  title: "Simplified Home Remodeling | Kitchen, Bathroom & Complete Home Renovations",
+  title: "Coachella Valley Kitchen, Bathroom & Home Remodeling",
   description:
     "Transform your home with expert remodeling services including kitchens, bathrooms, countertops, flooring and custom renovations.",
   keywords: [
-    "Coachella Valley Home Remodeling",
+    "Coachella Valley Kitchen, Bathroom & Home Remodeling",
     "Kitchen Remodeling Palm Desert",
     "Bathroom Renovation Palm Springs",
     "Countertops & Custom Cabinetry",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "General Contractor La Quinta",
   ],
   openGraph: {
-    title: "Simplified Home Remodeling | Kitchen, Bathroom & Complete Home Renovations",
+    title: "Coachella Valley Kitchen, Bathroom & Home Remodeling",
     description:
       "Transform your home with expert remodeling services including kitchens, bathrooms, countertops, flooring and custom renovations.",
     type: "website",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Simplified Home Remodeling | Kitchen, Bathroom & Complete Home Renovations",
+    title: "Coachella Valley Kitchen, Bathroom & Home Remodeling",
     description:
       "Transform your home with expert remodeling services including kitchens, bathrooms, countertops, flooring and custom renovations.",
   },
@@ -51,7 +51,7 @@ const jsonLd = {
   name: "Simplified Home Remodeling",
   description:
     "Transform your home with expert remodeling services including kitchens, bathrooms, countertops, flooring and custom renovations.",
-  telephone: "+17605551234",
+  telephone: "+19092248925",
   areaServed: [
     "Palm Desert",
     "Palm Springs",
@@ -90,14 +90,14 @@ export default function Home() {
         {/* Video Transformation Section with Scroll Autoplay */}
         <TransformationVideoSection
           label="SEE THE TRANSFORMATION"
-          title="A Home Designed for Real Life."
-          description="See how quality craftsmanship and thoughtful remodeling can transform everyday spaces into stunning, functional living environments built around your family."
+          title="See How We Remodel Coachella Valley Kitchens"
+          description="See the craftsmanship, process and attention to detail behind a Simplified Home Remodeling project."
           features={[
             "Custom Home & Kitchen Remodeling",
             "Quality Materials & Precision Finishes",
-            "Professional In-House Craftsmanship",
+            "Professional Remodeling Specialist",
           ]}
-          ctaText="START YOUR HOME REMODEL"
+          ctaText="REQUEST A PROJECT CONSULTATION"
         />
 
         {/* 3. Remodeling Services Section */}
@@ -122,7 +122,7 @@ export default function Home() {
         <QuoteSection
           title="READY TO TRANSFORM YOUR HOME?"
           subtitle="Let's Create a Living Space You'll Love."
-          description="Get your free in-home consultation and guaranteed fixed-price estimate today."
+          description="Request your project consultation and guaranteed fixed-price proposal today."
           projectType="Whole Home Remodeling"
         />
 

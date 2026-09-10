@@ -72,7 +72,7 @@ export default function AboutIntro() {
                 </div>
                 <div>
                   <div className="text-base font-black text-white heading-condensed leading-none">15+ YEARS</div>
-                  <div className="text-[11px] text-gray-400 font-medium leading-tight mt-1">Master Craftsmanship Standard</div>
+                  <div className="text-[11px] text-gray-400 font-medium leading-tight mt-1">Remodeling Specialist Standard</div>
                 </div>
               </div>
 

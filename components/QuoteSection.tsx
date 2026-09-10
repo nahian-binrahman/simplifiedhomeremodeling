@@ -235,7 +235,7 @@ export default function QuoteSection({
                       <span>SUBMITTING...</span>
                     ) : (
                       <>
-                        <span>GET MY FREE QUOTE</span>
+                        <span>REQUEST A PROJECT CONSULTATION</span>
                         <ArrowRight className="w-4 h-4" />
                       </>
                     )}

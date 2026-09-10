@@ -20,7 +20,7 @@ export default function StickyBottomBar() {
         className="flex-1 py-3 px-2 rounded-lg btn-invert-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-1.5 shadow-lg active:scale-95 text-center"
       >
         <Calendar className="w-3.5 h-3.5 shrink-0" />
-        <span className="truncate">Free Estimate</span>
+        <span className="truncate">Request Consultation</span>
       </a>
     </div>
   );

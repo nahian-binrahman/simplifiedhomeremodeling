@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Phone } from "lucide-react";
+import { Phone, ShieldCheck } from "lucide-react";
 import { BUSINESS } from "@/lib/business";
 
 interface HeroProps {
@@ -15,45 +15,75 @@ interface HeroProps {
 
 export default function Hero({
   bgImage = "/images/kitchen-hero.jpg",
-  eyebrow = "KITCHEN REMODELING IN",
-  heading = "COACHELLA VALLEY",
+  eyebrow = "SIMPLIFIED HOME REMODELING",
+  heading = "KITCHEN REMODELING IN COACHELLA VALLEY",
   subtitle = "Transform Your Kitchen.",
   description = "Expert craftsmanship, premium materials, and transparent pricing built around your home by licensed local contractors.",
 }: HeroProps) {
+  // Determine service name from eyebrow or heading
+  let detectedService = "KITCHEN REMODELING";
+  if (eyebrow.toUpperCase().includes("BATHROOM") || heading.toUpperCase().includes("BATHROOM")) {
+    detectedService = "BATHROOM REMODELING";
+  } else if (eyebrow.toUpperCase().includes("COUNTERTOP") || heading.toUpperCase().includes("COUNTERTOP")) {
+    detectedService = "CUSTOM COUNTERTOPS";
+  } else if (eyebrow.toUpperCase().includes("CABINET") || heading.toUpperCase().includes("CABINET")) {
+    detectedService = "CUSTOM CABINETRY";
+  } else if (eyebrow.toUpperCase().includes("FLOOR") || heading.toUpperCase().includes("FLOOR")) {
+    detectedService = "LUXURY FLOORING";
+  } else if (heading.toUpperCase().includes("REMODELING")) {
+    detectedService = heading.split(/IN /i)[0].trim();
+  }
+
+  let mainTop = detectedService;
+  let mainBottom = "IN COACHELLA VALLEY";
+
+  if (heading.toUpperCase().includes("IN ")) {
+    const parts = heading.split(/IN /i);
+    if (parts[1] && parts[1].trim()) {
+      mainBottom = `IN ${parts[1].trim()}`;
+    }
+  } else if (heading.toUpperCase() === "COACHELLA VALLEY" || heading.includes("VALLEY")) {
+    mainBottom = `IN ${heading}`;
+  } else {
+    mainBottom = `IN ${heading}`;
+  }
+
+  const preHeading = eyebrow.toUpperCase().includes("REMODELING") || eyebrow.toUpperCase().includes("IN")
+    ? "SIMPLIFIED HOME REMODELING"
+    : eyebrow;
+
   return (
     <section className="relative min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-center bg-[#111111] overflow-hidden">
       {/* Background Image with Balanced Light Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
           src={bgImage}
-          alt={`${eyebrow} ${heading}`}
+          alt={`${mainTop} ${mainBottom}`}
           fill
           priority
           className="object-cover object-center brightness-[0.85] sm:brightness-[0.75] contrast-[1.04]"
         />
         {/* Balanced Gradients - keeps the photo clearly visible while keeping text legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
       </div>
 
       {/* Hero Content Container */}
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20 lg:py-24 relative z-10 w-full">
-        <div className="max-w-2xl space-y-3.5 sm:space-y-5">
+        <div className="max-w-3xl space-y-3.5 sm:space-y-5">
           
           {/* Pre-Heading */}
           <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.2em] text-gray-200 uppercase heading-condensed drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-            {eyebrow}
+            {preHeading}
           </div>
 
-          {/* Main Headline (Condensed, Tall, Bold) */}
-          <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            {heading.includes("VALLEY") ? (
-              <>
-                {heading.replace("VALLEY", "").trim()} <br className="sm:hidden" />
-                VALLEY
-              </>
-            ) : (
-              heading
+          {/* Main Headline (Prominent, High Legibility, 1-Second Read) */}
+          <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-black text-white tracking-tight uppercase leading-[0.92] sm:leading-[0.88] heading-condensed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            <span className="block text-white">{mainTop}</span>
+            {mainBottom && (
+              <span className="block text-white/95 text-2xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[70px] mt-1">
+                {mainBottom}
+              </span>
             )}
           </h1>
 
@@ -71,15 +101,15 @@ export default function Hero({
 
           {/* Call to Action Buttons */}
           <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            {/* #1 Black <-> White Invert Hover */}
+            {/* Primary Consultation CTA */}
             <a
               href="#quote-form"
               className="w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm text-center shadow-lg transform hover:-translate-y-0.5 active:scale-[0.99]"
             >
-              REQUEST A FREE QUOTE
+              REQUEST A PROJECT CONSULTATION
             </a>
 
-            {/* #2 Border Fill Effect */}
+            {/* Call Now Action */}
             <a
               href={`tel:${BUSINESS.phone}`}
               className="w-full sm:w-auto px-6 py-3.5 sm:py-4 rounded btn-outline-fill font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2.5 backdrop-blur-sm transform hover:-translate-y-0.5 active:scale-[0.99]"
@@ -87,6 +117,12 @@ export default function Hero({
               <Phone className="w-4 h-4 fill-current" />
               <span>CALL NOW</span>
             </a>
+          </div>
+
+          {/* Immediately under the hero CTA */}
+          <div className="pt-1 flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-200 tracking-wide">
+            <ShieldCheck className="w-4 h-4 text-white shrink-0" />
+            <span>Licensed General Contractor • Financing Available</span>
           </div>
 
         </div>

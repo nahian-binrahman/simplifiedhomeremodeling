@@ -39,19 +39,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Coachella Valley Home Remodeling | Kitchen, Bath & Custom Renovations",
+  title: "Coachella Valley Kitchen, Bathroom & Home Remodeling",
   description:
-    "Premier home remodeling & luxury renovations across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta. Licensed master craftsmen, fixed-price estimates.",
+    "Premier kitchen, bathroom & home remodeling across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta. Licensed remodeling specialists, guaranteed fixed-price consultations.",
   keywords: [
-    "Coachella Valley Home Remodeling",
+    "Coachella Valley Kitchen, Bathroom & Home Remodeling",
     "Kitchen Remodel Palm Desert",
     "Bathroom Renovation Palm Springs",
     "Custom Home Contractor Coachella Valley",
     "Luxury Remodeling La Quinta",
   ],
   openGraph: {
-    title: "Coachella Valley Home Remodeling | Master Builders",
-    description: "Transform your kitchen and living spaces with Coachella Valley's premier remodeling contractor.",
+    title: "Coachella Valley Kitchen, Bathroom & Home Remodeling | Remodeling Specialists",
+    description: "Transform your kitchen, bathroom, and living spaces with Coachella Valley's premier remodeling contractor.",
     type: "website",
     locale: "en_US",
   },

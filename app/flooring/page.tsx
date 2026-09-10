@@ -67,9 +67,9 @@ export default function FlooringPage() {
         features={[
           "European White Oak & Engineered Hardwood",
           "Waterproof LVP & Large Format Tile Installation",
-          "Professional Master Craftsmanship",
+          "Professional Remodeling Specialist",
         ]}
-        ctaText="START YOUR FLOORING PROJECT"
+        ctaText="REQUEST A PROJECT CONSULTATION"
       />
       <BeforeAfterGallery
         eyebrow="SEE THE DIFFERENCE"

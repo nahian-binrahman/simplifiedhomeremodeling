@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Star, Quote } from "lucide-react";
+import { BUSINESS } from "@/lib/business";
 
 interface ReviewItem {
   name: string;
@@ -31,7 +32,19 @@ const reviews: ReviewItem[] = [
   },
 ];
 
-export default function ClientReviews() {
+export interface ClientReviewsProps {
+  items?: ReviewItem[];
+  title?: string;
+  subtitle?: string;
+}
+
+export default function ClientReviews({
+  items = reviews,
+  title,
+  subtitle,
+}: ClientReviewsProps) {
+  const displayReviews = items || reviews;
+
   return (
     <section className="bg-white text-black py-16 sm:py-20 lg:py-24 border-b border-gray-200">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -39,17 +52,23 @@ export default function ClientReviews() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 reveal-init">
           <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">
-            WHAT OUR CLIENTS SAY
+            {subtitle || "WHAT OUR CLIENTS SAY"}
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-gray-900 tracking-tight">
-            Trusted by Homeowners. <br className="hidden sm:inline" />
-            Loved for the Results.
+            {title ? (
+              title
+            ) : (
+              <>
+                Trusted by Homeowners. <br className="hidden sm:inline" />
+                Loved for the Results.
+              </>
+            )}
           </h2>
         </div>
 
         {/* 3 Review Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {reviews.map((rev, idx) => (
+          {displayReviews.map((rev, idx) => (
             <div
               key={idx}
               className={`bg-white rounded-xl border border-gray-200 p-6 sm:p-7 shadow-sm flex flex-col justify-between relative card-hover-lift group cursor-default reveal-init delay-${(idx + 1) * 100}`}
@@ -94,11 +113,17 @@ export default function ClientReviews() {
           ))}
         </div>
 
-        {/* Platform Trust Logos (Google, Yelp, Facebook) */}
-        <div className="mt-14 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-20 reveal-init delay-200">
+        {/* Platform Trust Logos (Google, Yelp, Facebook, YouTube) */}
+        <div className="mt-14 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-16 reveal-init delay-200">
           
           {/* Google */}
-          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
+          <a
+            href={BUSINESS.googleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Google Reviews"
+            className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform"
+          >
             <div className="text-lg font-bold tracking-tight">
               <span className="text-[#4285F4]">G</span>
               <span className="text-[#EA4335]">o</span>
@@ -111,10 +136,16 @@ export default function ClientReviews() {
               <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
-          </div>
+          </a>
 
           {/* Yelp */}
-          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
+          <a
+            href={BUSINESS.yelpUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Yelp Reviews"
+            className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform"
+          >
             <div className="text-lg font-extrabold text-[#d32323] tracking-tight flex items-center gap-1">
               <span>yelp</span>
               <span className="text-sm">★</span>
@@ -123,10 +154,16 @@ export default function ClientReviews() {
               <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
-          </div>
+          </a>
 
           {/* Facebook */}
-          <div className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform">
+          <a
+            href={BUSINESS.facebookUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook Page"
+            className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform"
+          >
             <div className="text-lg font-bold text-[#1877F2] tracking-tight">
               facebook
             </div>
@@ -134,7 +171,26 @@ export default function ClientReviews() {
               <span className="text-black">★★★★★</span>
               <span>5.0</span>
             </div>
-          </div>
+          </a>
+
+          {/* YouTube */}
+          <a
+            href={BUSINESS.youtubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube Channel"
+            className="flex flex-col items-center gap-1 text-center group cursor-pointer hover:-translate-y-1 transition-transform"
+          >
+            <div className="text-lg font-bold text-[#FF0000] tracking-tight flex items-center gap-1">
+              <svg className="w-5 h-5 fill-[#FF0000]" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              <span>YouTube</span>
+            </div>
+            <div className="flex items-center gap-1 text-xs text-gray-600 font-semibold">
+              <span>Videos</span>
+            </div>
+          </a>
 
         </div>
 

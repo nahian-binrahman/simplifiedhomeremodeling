@@ -24,7 +24,7 @@ const steps = [
   {
     step: "03",
     icon: Hammer,
-    title: "Master Craftsmanship & Site Management",
+    title: "Remodeling Specialist & Site Management",
     description:
       "Our licensed, background-checked craftsmen manage daily construction with clean dust barriers, daily site protection, and dedicated superintendent supervision.",
     timeline: "Scheduled Build",

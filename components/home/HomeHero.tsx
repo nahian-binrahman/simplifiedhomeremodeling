@@ -69,30 +69,30 @@ export default function HomeHero() {
             </div>
 
             {/* Main Headline (Condensed, Bold, Architectural) */}
-            <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[88px] font-black text-white tracking-tight uppercase leading-[0.92] heading-condensed drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-              TRANSFORM YOUR HOUSE <br className="hidden xs:inline" />
-              <span className="text-white">INTO A DREAM HOME</span>
+            <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[84px] font-black text-white tracking-tight uppercase leading-[0.92] heading-condensed drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+              KITCHEN REMODELING <br />
+              <span className="text-white">IN COACHELLA VALLEY</span>
             </h1>
 
             {/* Subheadline with Serif Italic & Supporting Body */}
             <div className="space-y-1.5 max-w-2xl">
               <p className="text-base xs:text-lg sm:text-2xl md:text-[26px] text-gray-100 italic text-italic-accent leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                Expert remodeling solutions for kitchens, bathrooms, countertops, flooring, and complete home transformations.
+                Coachella Valley Kitchen, Bathroom &amp; Complete Home Remodeling.
               </p>
               <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal pt-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                Licensed master craftsmen, guaranteed fixed-price contracts, and white-glove site cleanliness across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta.
+                Licensed remodeling specialists, guaranteed fixed-price contracts, and white-glove site cleanliness across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta.
               </p>
             </div>
 
             {/* Call to Action Buttons */}
             <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               
-              {/* Primary CTA: Tell Us About Your Project */}
+              {/* Primary CTA: Request a Project Consultation */}
               <a
                 href="#quote-form"
                 className="w-full sm:w-auto px-8 py-4 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm text-center shadow-2xl transform hover:-translate-y-0.5 active:scale-[0.99] flex items-center justify-center gap-2.5 group"
               >
-                <span>TELL US ABOUT YOUR PROJECT</span>
+                <span>REQUEST A PROJECT CONSULTATION</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
@@ -108,6 +108,12 @@ export default function HomeHero() {
                 <span>WATCH OUR STORY</span>
               </button>
 
+            </div>
+
+            {/* Immediately under the hero CTA */}
+            <div className="pt-2 flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-200 tracking-wide">
+              <Shield className="w-4 h-4 text-white shrink-0" />
+              <span>Licensed General Contractor • Financing Available</span>
             </div>
 
             {/* Bottom Meta & Coordinates Bar */}

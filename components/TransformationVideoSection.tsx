@@ -14,14 +14,14 @@ interface TransformationVideoSectionProps {
 
 export default function TransformationVideoSection({
   label = "SEE THE TRANSFORMATION",
-  title = "A Home Designed for Real Life.",
-  description = "See how quality craftsmanship and thoughtful remodeling can transform an everyday residence into a space that's beautiful, functional, and built around the homeowner.",
+  title = "See How We Remodel Coachella Valley Kitchens",
+  description = "See the craftsmanship, process and attention to detail behind a Simplified Home Remodeling project.",
   features = [
     "Custom Home & Kitchen Remodeling",
     "Quality Materials & Precision Finishes",
-    "Professional Master Craftsmanship",
+    "Professional Remodeling Specialist",
   ],
-  ctaText = "START YOUR HOME REMODEL",
+  ctaText = "REQUEST A PROJECT CONSULTATION",
   videoSrc = "/videos/remodeling-video.mp4",
 }: TransformationVideoSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);

@@ -67,9 +67,9 @@ export default function CabinetryPage() {
         features={[
           "Architectural Millwork & Custom Built-Ins",
           "Rift White Oak, Walnut & Painted Finishes",
-          "Professional Master Craftsmanship",
+          "Professional Remodeling Specialist",
         ]}
-        ctaText="START YOUR CABINETRY PROJECT"
+        ctaText="REQUEST A PROJECT CONSULTATION"
       />
       <BeforeAfterGallery
         eyebrow="SEE THE DIFFERENCE"

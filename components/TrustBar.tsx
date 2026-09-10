@@ -25,7 +25,7 @@ export default function TrustBar() {
               <Hammer className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
             </div>
             <span className="font-bold text-[11px] xs:text-xs sm:text-sm lg:text-base text-gray-900 tracking-tight leading-tight">
-              Master Craftsmanship
+              Remodeling Specialist
             </span>
           </div>
 
@@ -35,7 +35,7 @@ export default function TrustBar() {
               <CalendarCheck className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
             </div>
             <span className="font-bold text-[11px] xs:text-xs sm:text-sm lg:text-base text-gray-900 tracking-tight leading-tight">
-              Free Consultation
+              Project Consultation
             </span>
           </div>
 

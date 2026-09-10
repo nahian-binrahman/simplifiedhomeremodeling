@@ -67,9 +67,9 @@ export default function CountertopsPage() {
         features={[
           "Precision Quartz, Granite & Marble Fabrication",
           "Mitred Waterfall Edges & Bookmatched Slabs",
-          "Professional Master Craftsmanship",
+          "Professional Remodeling Specialist",
         ]}
-        ctaText="START YOUR COUNTERTOP PROJECT"
+        ctaText="REQUEST A PROJECT CONSULTATION"
       />
       <BeforeAfterGallery
         eyebrow="SEE THE DIFFERENCE"

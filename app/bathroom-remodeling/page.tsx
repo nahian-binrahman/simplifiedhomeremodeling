@@ -20,21 +20,42 @@ export const metadata: Metadata = {
 const bathroomComparisons = [
   {
     id: 1,
-    beforeImg: "/images/bath-before-1.jpg",
-    afterImg: "/images/bath-after-1.jpg",
-    title: "Palm Desert Master Ensuite Transformation",
+    beforeImg: "/images/bathroom-before-client.jpg",
+    afterImg: "/images/bathroom-after-client.jpg",
+    title: "Palm Desert Modern Walk-In Shower & Vanity Transformation",
   },
   {
     id: 2,
-    beforeImg: "/images/bath-before-2.jpg",
-    afterImg: "/images/bath-after-2.jpg",
-    title: "Palm Springs Curbless Shower & Floating Vanity",
+    beforeImg: "/images/bathroom-tub-before-client.jpg",
+    afterImg: "/images/bathroom-tub-after-client.jpg",
+    title: "Rancho Mirage Freestanding Tub & Walk-In Shower Renovation",
   },
   {
     id: 3,
-    beforeImg: "/images/bath-before-3.jpg",
-    afterImg: "/images/bath-after-3.jpg",
-    title: "Rancho Mirage Luxury Spa Bath Renovation",
+    beforeImg: "/images/bathroom-shower-before-client.jpg",
+    afterImg: "/images/bathroom-shower-after-client.jpg",
+    title: "Palm Springs Modern Frameless Glass Shower & Tile Renovation",
+  },
+];
+
+const bathroomReviews = [
+  {
+    name: "Lilia Z.",
+    source: "Verified Yelp Review",
+    timeAgo: "4 months ago",
+    text: "Great quality work and my vanity looked amazing! Owner was patient with all my questions and very good communication before the job was scheduled. 10 out of 10, Highly recommended!",
+  },
+  {
+    name: "Jorge M.",
+    source: "Verified Yelp Review",
+    timeAgo: "1 year ago",
+    text: "I recently had the pleasure of working with Juan at Simplified Home Remodeling for a bathroom remodel, and I couldn't be happier with the results. From start to finish, Juan was honest, transparent, and communicative, making the entire process stress-free. His crew was consistently on time, respectful, and kept the work area clean, which I really appreciated. The finished bathroom is absolutely beautiful, and it exceeded my expectations. I'm thrilled with the experience and would highly recommend Juan and his team for any remodeling project!",
+  },
+  {
+    name: "Karli V.",
+    source: "Verified Yelp Review",
+    timeAgo: "1 year ago",
+    text: "I recently had my 30-year-old guest bathroom in my new house completely renovated, and I couldn't be happier with the results. From start to finish, Juan and his team were attentive, punctual, and very fair with pricing. They were always accommodating whenever I had questions or new ideas, and handled every request with professionalism and care. It's clear that integrity is a top priority for Juan...he truly stands behind his work and ensures his clients are fully satisfied. The finished bathroom looks beautiful, and the whole process felt smooth and worry-free thanks to he and his team's commitment and attention to detail. I highly recommend Simplified Home Remodeling and plan to work with them again when I remodel my master bathroom in the future!",
   },
 ];
 
@@ -59,9 +80,9 @@ export default function BathroomRemodelingPage() {
         features={[
           "Luxury Master Ensuites & Walk-In Showers",
           "Custom Tile, Slabs & Curbless Entries",
-          "Professional Master Craftsmanship",
+          "Professional Remodeling Specialist",
         ]}
-        ctaText="START YOUR BATHROOM REMODEL"
+        ctaText="REQUEST A PROJECT CONSULTATION"
       />
       <BeforeAfterGallery
         eyebrow="SEE THE DIFFERENCE"
@@ -70,7 +91,7 @@ export default function BathroomRemodelingPage() {
         items={bathroomComparisons}
         ctaText="START YOUR BATHROOM REMODEL"
       />
-      <ClientReviews />
+      <ClientReviews items={bathroomReviews} />
       <QuoteSection
         title="READY TO REMODEL YOUR BATHROOM?"
         subtitle="Let's Create a Bathroom You'll Love."

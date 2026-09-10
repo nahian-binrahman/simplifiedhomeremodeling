@@ -241,7 +241,7 @@ export default function LeadForm({ title = "Request Your Free In-Home Estimate" 
               <span>Securing Consultation Slot...</span>
             ) : (
               <>
-                <span>Claim Free In-Home Estimate</span>
+                <span>Request a Project Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </>
             )}

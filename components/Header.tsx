@@ -569,7 +569,7 @@ export default function Header() {
               <div className="font-extrabold text-sm text-white tracking-tight leading-tight">
                 {BUSINESS.formattedPhone}
               </div>
-              <div className="text-[10px] text-gray-400 font-medium">Call for a Free Consultation</div>
+              <div className="text-[10px] text-gray-400 font-medium">Call or Text for a free consultation</div>
             </div>
           </a>
 
@@ -578,7 +578,7 @@ export default function Header() {
             href="#quote-form"
             className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg btn-invert-white font-bold uppercase tracking-wider text-xs shadow-lg transform hover:-translate-y-0.5"
           >
-            <span>FREE ESTIMATE</span>
+            <span>PROJECT CONSULTATION</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 
@@ -882,7 +882,7 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className="w-full py-3.5 rounded-lg btn-invert-white font-bold uppercase tracking-wider text-xs text-center flex items-center justify-center gap-2 shadow-xl"
             >
-              <span>REQUEST A FREE QUOTE</span>
+              <span>REQUEST A PROJECT CONSULTATION</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

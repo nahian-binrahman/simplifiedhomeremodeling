@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { CheckCircle2, Play, Pause, Volume2, VolumeX, Quote } from "lucide-react";
+import { BUSINESS } from "@/lib/business";
 
 interface VideoTestimonial {
   id: number;
@@ -338,65 +339,100 @@ export default function HomeTestimonials() {
             VERIFIED 5-STAR CLIENT REVIEWS ON:
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-5 w-full max-w-3xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-4xl">
             {/* Google */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center justify-center sm:justify-start gap-3.5 transition-all duration-200 group cursor-default shadow-lg">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm">
-                <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <a
+              href={BUSINESS.googleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#141414] hover:bg-[#1c1c1c] border border-white/10 hover:border-white/30 rounded-xl p-3 sm:p-4 flex items-center justify-start gap-3 transition-all duration-200 group shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-white flex items-center justify-center shrink-0 shadow-sm">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
                   <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
                   <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
                   <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
                 </svg>
               </div>
-              <div className="text-left">
-                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
-                  <span>Google</span>
-                  <span className="text-[10px] text-gray-400 font-mono">Reviews</span>
+              <div className="text-left min-w-0">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1">
+                  <span className="truncate">Google</span>
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   <div className="flex text-[#FBBC05] text-[10px] tracking-tighter">★★★★★</div>
-                  <span className="text-[11px] font-bold text-white font-mono">5.0 Rating</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-white font-mono">5.0</span>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Yelp */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center justify-center sm:justify-start gap-3.5 transition-all duration-200 group cursor-default shadow-lg">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#d32323] flex items-center justify-center shrink-0 shadow-sm text-white">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <a
+              href={BUSINESS.yelpUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#141414] hover:bg-[#1c1c1c] border border-white/10 hover:border-white/30 rounded-xl p-3 sm:p-4 flex items-center justify-start gap-3 transition-all duration-200 group shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#d32323] flex items-center justify-center shrink-0 shadow-sm text-white">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
                   <path d="M12.784 14.85l2.71 1.764c.732.476 1.554-.253 1.187-.972l-1.39-2.73-2.507 1.938zm-1.85-2.73L8.224 9.39c-.732-.476-.366-1.448.513-1.448h3.072l-.875 4.178zm.725 3.018l-.875 4.178c-.183.876.878 1.448 1.464.795l2.122-2.368-2.711-2.605zm2.857-4.178h3.072c.879 0 1.245.972.513 1.448l-2.71 1.764-.875-3.212zm-3.804-1.258L8.59 7.334c-.586-.653-.183-1.67.732-1.448l2.962.725-.572 2.091z" />
                 </svg>
               </div>
-              <div className="text-left">
-                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
-                  <span className="text-[#d32323] font-black">yelp</span>
-                  <span className="text-[10px] text-gray-400 font-mono">Verified</span>
+              <div className="text-left min-w-0">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1">
+                  <span className="text-[#d32323] font-black truncate">yelp</span>
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   <div className="flex text-[#d32323] text-[10px] tracking-tighter">★★★★★</div>
-                  <span className="text-[11px] font-bold text-white font-mono">5.0 Rating</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-white font-mono">5.0</span>
                 </div>
               </div>
-            </div>
+            </a>
 
             {/* Facebook */}
-            <div className="bg-[#141414] hover:bg-[#1a1a1a] border border-white/10 hover:border-white/25 rounded-xl p-3.5 sm:p-4 flex items-center justify-center sm:justify-start gap-3.5 transition-all duration-200 group cursor-default shadow-lg">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#1877F2] flex items-center justify-center shrink-0 shadow-sm text-white">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <a
+              href={BUSINESS.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#141414] hover:bg-[#1c1c1c] border border-white/10 hover:border-white/30 rounded-xl p-3 sm:p-4 flex items-center justify-start gap-3 transition-all duration-200 group shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#1877F2] flex items-center justify-center shrink-0 shadow-sm text-white">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                 </svg>
               </div>
-              <div className="text-left">
-                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
-                  <span>Facebook</span>
+              <div className="text-left min-w-0">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1">
+                  <span className="truncate">Facebook</span>
                 </div>
                 <div className="flex items-center gap-1 mt-0.5">
                   <div className="flex text-[#1877F2] text-[10px] tracking-tighter">★★★★★</div>
-                  <span className="text-[11px] font-bold text-white font-mono">100% Rec</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold text-white font-mono">100% Rec</span>
                 </div>
               </div>
-            </div>
+            </a>
+
+            {/* YouTube */}
+            <a
+              href={BUSINESS.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#141414] hover:bg-[#1c1c1c] border border-white/10 hover:border-white/30 rounded-xl p-3 sm:p-4 flex items-center justify-start gap-3 transition-all duration-200 group shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[#FF0000] flex items-center justify-center shrink-0 shadow-sm text-white">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </div>
+              <div className="text-left min-w-0">
+                <div className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-1">
+                  <span className="truncate">YouTube</span>
+                </div>
+                <div className="flex items-center gap-1 mt-0.5">
+                  <span className="text-[10px] sm:text-[11px] text-gray-400 font-mono">Watch Videos</span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
 

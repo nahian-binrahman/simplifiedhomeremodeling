@@ -13,12 +13,12 @@ const faqs: FAQItem[] = [
   {
     question: "Are you licensed and insured?",
     answer:
-      "Yes, absolutely. Simplified Home Remodeling is a fully licensed California General Building Contractor (CSLB #1084291) carrying comprehensive $2,000,000 general liability insurance and complete Workers' Compensation coverage for every craftsman on your property.",
+      "Yes, absolutely. Simplified Home Remodeling is a fully licensed California General Building Contractor (CSLB #1126697) carrying comprehensive $2,000,000 general liability insurance and complete Workers' Compensation coverage for every craftsman on your property.",
   },
   {
-    question: "Do you offer free estimates?",
+    question: "Do you offer project consultations?",
     answer:
-      "Yes. We offer 100% complimentary in-home design consultations and laser measurement audits across the Coachella Valley. After our initial visit, we provide a detailed, line-itemized fixed-price proposal with zero obligation.",
+      "Yes. We offer 100% complimentary in-home project consultations and laser measurement audits across the Coachella Valley. After our initial visit, we provide a detailed, line-itemized fixed-price proposal with zero obligation.",
   },
   {
     question: "What areas do you serve?",

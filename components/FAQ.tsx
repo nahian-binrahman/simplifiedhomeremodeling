@@ -33,7 +33,7 @@ const faqs: FAQItem[] = [
   {
     question: "Are you licensed, bonded, and insured in California?",
     answer:
-      "Yes, we are a fully licensed California General Building Contractor (CA Lic #1084291) carrying full general liability insurance ($2,000,000 policy) and complete Workers' Compensation coverage for all tradesmen and craftsmen on your property.",
+      "Yes, we are a fully licensed California General Building Contractor (CA Lic #1126697) carrying full general liability insurance ($2,000,000 policy) and complete Workers' Compensation coverage for all tradesmen and craftsmen on your property.",
   },
   {
     question: "What warranty coverage do you provide on completed remodels?",
