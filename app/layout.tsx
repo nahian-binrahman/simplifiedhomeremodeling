@@ -31,6 +31,8 @@ const inter = Inter({
   display: "swap",
 });
 
+import { ContentProvider } from "@/context/ContentContext";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -77,7 +79,7 @@ export default function RootLayout({
       className={`${oswald.variable} ${anton.variable} ${libreBaskerville.variable} ${inter.variable} scroll-smooth antialiased`}
     >
       <body className="bg-brand-black text-brand-gray-100 font-sans min-h-screen selection:bg-brand-gray-700 selection:text-white">
-        {children}
+        <ContentProvider>{children}</ContentProvider>
       </body>
     </html>
   );

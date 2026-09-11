@@ -125,8 +125,16 @@ export default function Footer() {
               <div>
                 Licensed General Contractor • Financing Available | {BUSINESS.cslbNumber}
               </div>
-              <div>
-                © {new Date().getFullYear()} Simplified Home Remodeling. All Rights Reserved.
+              <div className="flex items-center gap-4">
+                <a href="/blog" className="hover:text-amber-400 transition-colors">
+                  Blog
+                </a>
+                <span>•</span>
+                <a href="/admin" className="hover:text-amber-400 transition-colors">
+                  Client Admin
+                </a>
+                <span>•</span>
+                <span>© {new Date().getFullYear()} Simplified Home Remodeling. All Rights Reserved.</span>
               </div>
             </div>
 
