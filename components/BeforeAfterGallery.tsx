@@ -34,8 +34,11 @@ const comparisons: BeforeAfterItem[] = [
 
 function SplitCard({ item }: { item: BeforeAfterItem }) {
   const [sliderPos, setSliderPos] = useState(50);
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const handleMove = (clientX: number, rect: DOMRect) => {
+  const handleMove = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
     const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
     setSliderPos((x / rect.width) * 100);
   };
@@ -43,11 +46,13 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
   return (
     <div className="rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white relative card-hover-lift group">
       <div
+        ref={containerRef}
         className="relative aspect-[4/3] w-full select-none cursor-ew-resize overflow-hidden"
-        onMouseMove={(e) => handleMove(e.clientX, e.currentTarget.getBoundingClientRect())}
-        onTouchMove={(e) => handleMove(e.touches[0].clientX, e.currentTarget.getBoundingClientRect())}
+        style={{ touchAction: "pan-y" }}
+        onMouseMove={(e) => handleMove(e.clientX)}
+        onTouchMove={(e) => handleMove(e.touches[0].clientX)}
       >
-        {/* AFTER Image (Full Background) with Brightness Hover */}
+        {/* AFTER Image (Full Background) */}
         <div className="absolute inset-0">
           <Image
             src={item.afterImg}
@@ -60,21 +65,19 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
           </div>
         </div>
 
-        {/* BEFORE Image (Clipped Left) */}
+        {/* BEFORE Image (Clipped with clip-path so it never stretches/compresses on mobile) */}
         <div
-          className="absolute inset-y-0 left-0 overflow-hidden"
-          style={{ width: `${sliderPos}%` }}
+          className="absolute inset-0 overflow-hidden pointer-events-none"
+          style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
         >
-          <div className="relative h-full w-full" style={{ width: "100%" }}>
-            <Image
-              src={item.beforeImg}
-              alt={`${item.title} Before`}
-              fill
-              className="object-cover object-center brightness-90 sepia-[0.25] transition-all duration-300 group-hover:brightness-[1.02]"
-            />
-            <div className="absolute bottom-3 left-3 bg-black/85 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded">
-              BEFORE
-            </div>
+          <Image
+            src={item.beforeImg}
+            alt={`${item.title} Before`}
+            fill
+            className="object-cover object-center brightness-90 sepia-[0.25] transition-all duration-300 group-hover:brightness-[1.02]"
+          />
+          <div className="absolute bottom-3 left-3 bg-black/85 text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded">
+            BEFORE
           </div>
         </div>
 
@@ -83,7 +86,7 @@ function SplitCard({ item }: { item: BeforeAfterItem }) {
           className="absolute top-0 bottom-0 w-0.5 bg-white z-10 pointer-events-none"
           style={{ left: `${sliderPos}%` }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-7 sm:h-7 rounded-full bg-white text-gray-800 shadow-xl flex items-center justify-center border border-gray-300">
+          <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white text-gray-800 shadow-xl flex items-center justify-center border border-gray-300">
             <ArrowLeftRight className="w-3.5 h-3.5" />
           </div>
         </div>

@@ -192,7 +192,7 @@ export default function Header() {
             CENTER: Proudly Serving + Locations Dropdown OR Full Nav
            ========================================= */}
         {isLandingPage ? (
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 text-center">
+          <div className="hidden md:flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-3 text-center">
             <div className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-white tracking-wide">
               <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/90 shrink-0" />
               <span>Proudly Serving the Coachella Valley</span>
@@ -591,17 +591,15 @@ export default function Header() {
             <Phone className="w-4 h-4 fill-current" />
           </a>
 
-          {/* Mobile Hamburger Toggle (hidden on landing pages) */}
-          {!isLandingPage && (
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
-              aria-label="Toggle Navigation Menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          )}
+          {/* Mobile Hamburger Toggle (Always accessible on mobile) */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="xl:hidden w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
 
       </div>

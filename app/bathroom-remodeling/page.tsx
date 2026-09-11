@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
+import LocationSelector from "@/components/LocationSelector";
 import TransformationVideoSection from "@/components/TransformationVideoSection";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import ClientReviews from "@/components/ClientReviews";
@@ -72,6 +73,11 @@ export default function BathroomRemodelingPage() {
         description="Expert craftsmanship in complete bathroom remodeling, custom showers, tub conversions, vanities, and tile installations - designed for your home and built to last."
       />
       <TrustBar />
+      <LocationSelector
+        serviceBasePath="/bathroom-remodeling"
+        title="Explore Bathroom Remodeling Across Coachella Valley"
+        subtitle="Select your city to explore local bathroom transformations, permits, and custom shower or vanity options."
+      />
       <TransformationVideoSection
         videoSrc="/videos/bathroom-remodeling.mp4"
         label="SEE THE TRANSFORMATION"
