@@ -46,13 +46,15 @@ export default function FlooringPage() {
       <ScrollEffects />
       <Header />
       <Hero
-        bgImage="/images/flooring-hero.jpg"
+        bgImage="/images/porcelain-tile-hero.jpg"
         eyebrow="FLOORING INSTALLATION IN"
         heading="COACHELLA VALLEY"
+        title="FLOORING INSTALLATION"
         subtitle="Beautiful Floors. Expertly Installed."
         description="Transform your home with professionally installed luxury vinyl plank, waterproof laminate, and custom tile flooring. With over 20 years of remodeling experience, we bring quality craftsmanship and attention to detail to every project."
         primaryCta="GET A FREE FLOORING ESTIMATE"
         trustStatement="Licensed General Contractor • 20+ Years of Experience • Financing Available"
+        overlay="left"
       />
       <TrustBar />
       <SubCategorySelector serviceSlug="flooring" />
@@ -83,9 +85,16 @@ export default function FlooringPage() {
       <ClientReviews />
       <QuoteSection
         title="READY TO TRANSFORM YOUR FLOORS?"
-        subtitle="Let's Create Floors You'll Love."
-        description="Get your free consultation and project estimate today."
+        subtitle="Beautiful Floors Start Here."
+        description="Tell us about your flooring project and discover beautiful, professionally installed flooring designed for your home. Request your free, no-obligation estimate today."
         projectType="Flooring Installation"
+        phoneSubtext="Call or text us to discuss your flooring project."
+        trustItems={[
+          { icon: "calendar", label: "Free In-Home Consultation" },
+          { icon: "map-pin", label: "Proudly Serving the Coachella Valley" },
+          { icon: "award", label: "20+ Years of Remodeling Experience" },
+          { icon: "shield", label: "Licensed General Contractor" },
+        ]}
       />
       <Footer />
       <StickyBottomBar />

@@ -366,6 +366,7 @@ export const SUBCATEGORIES: Record<string, SubCategoryData> = {
     hideSpecializedBadge: true,
     badgeLabel: "THE SIMPLIFIED DIFFERENCE",
     heroCta: "GET A FREE LAMINATE FLOORING ESTIMATE",
+    featuresHeading: "PREMIUM LAMINATE FLOORING FEATURES",
     heroTrustStatement: "Licensed General Contractor • 20+ Years of Experience • Financing Available",
     keyFeatures: [
       {
@@ -389,7 +390,6 @@ export const SUBCATEGORIES: Record<string, SubCategoryData> = {
         icon: "ruler",
       },
     ],
-    featuresHeading: "PREMIUM LAMINATE FLOORING FEATURES",
     lvpFeatures: [
       "High-definition embossed hardwood textures",
       "AC4/AC5 abrasion-resistance ratings available",
