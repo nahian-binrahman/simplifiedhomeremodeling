@@ -88,17 +88,7 @@ export default function Home() {
         <AboutIntro />
 
         {/* Video Transformation Section with Scroll Autoplay */}
-        <TransformationVideoSection
-          label="SEE THE TRANSFORMATION"
-          title="See How We Remodel Coachella Valley Kitchens"
-          description="See the craftsmanship, process and attention to detail behind a Simplified Home Remodeling project."
-          features={[
-            "Custom Home & Kitchen Remodeling",
-            "Quality Materials & Precision Finishes",
-            "Professional Remodeling Specialist",
-          ]}
-          ctaText="REQUEST A PROJECT CONSULTATION"
-        />
+        <TransformationVideoSection />
 
         {/* 3. Remodeling Services Section */}
         <HomeServices />

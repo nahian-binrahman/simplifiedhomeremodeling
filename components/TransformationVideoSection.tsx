@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { CheckCircle2, Play, Pause, Volume2, VolumeX, Maximize, ArrowRight } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, ArrowRight, LayoutGrid, Gem, MessageSquare, MapPin } from "lucide-react";
 
 interface TransformationVideoSectionProps {
   label?: string;
@@ -13,28 +13,14 @@ interface TransformationVideoSectionProps {
 }
 
 export default function TransformationVideoSection({
-  label = "SEE THE TRANSFORMATION",
-  title = "See How We Remodel Coachella Valley Kitchens",
-  description = "See the craftsmanship, process and attention to detail behind a Simplified Home Remodeling project.",
-  features = [
-    "Custom Home & Kitchen Remodeling",
-    "Quality Materials & Precision Finishes",
-    "Professional Remodeling Specialist",
-  ],
-  ctaText = "REQUEST A PROJECT CONSULTATION",
+  label = "SEE OUR WORK",
+  title = "REAL PROJECTS.\nREAL TRANSFORMATIONS.",
+  description = "See how Simplified Home Remodeling transforms outdated spaces through thoughtful design, quality materials, and craftsmanship built to last.",
   videoSrc = "/videos/remodeling-video.mp4",
 }: TransformationVideoSectionProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true); // Default to muted for 100% reliable mobile autoplay
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const formatTime = (timeInSeconds: number) => {
-    const mins = Math.floor(timeInSeconds / 60);
-    const secs = Math.floor(timeInSeconds % 60);
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-  };
 
   const togglePlay = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -58,95 +44,34 @@ export default function TransformationVideoSection({
     video.muted = nextMuted;
     setIsMuted(nextMuted);
 
-    // If unmuting, make sure video keeps playing
     if (!nextMuted && video.paused) {
       video.play().catch(() => {});
     }
   };
 
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
-    }
-  };
-
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      setDuration(videoRef.current.duration);
-    }
-  };
-
-  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    if (videoRef.current && duration > 0) {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const clickPos = (e.clientX - rect.left) / rect.width;
-      videoRef.current.currentTime = clickPos * duration;
-    }
-  };
-
-  const handleFullscreen = (e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (videoRef.current && videoRef.current.requestFullscreen) {
-      videoRef.current.requestFullscreen();
-    }
-  };
-
-  // 100% Reliable Mobile Autoplay via Intersection Observer
+  // Autoplay on view
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Direct DOM attributes for mobile Safari & Chrome
     video.muted = isMuted;
-    video.playsInline = true;
-    video.setAttribute("playsinline", "");
-    video.setAttribute("webkit-playsinline", "true");
-    video.setAttribute("x5-playsinline", "true");
-
-    const attemptPlay = () => {
-      video.muted = isMuted;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(() => {
-            // If browser blocked sound-enabled play, enforce muted and play again
-            video.muted = true;
-            setIsMuted(true);
-            video
-              .play()
-              .then(() => setIsPlaying(true))
-              .catch(() => {});
-          });
-      }
-    };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
-            attemptPlay();
-          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.1) {
+          if (entry.isIntersecting) {
+            video.play().then(() => setIsPlaying(true)).catch(() => {});
+          } else {
             video.pause();
             setIsPlaying(false);
           }
         });
       },
-      {
-        threshold: [0.1, 0.2, 0.5],
-        rootMargin: "80px 0px 80px 0px",
-      }
+      { threshold: 0.25 }
     );
 
     observer.observe(video);
 
-    // Initial check
-    attemptPlay();
-
-    // Event listeners
     const onPlay = () => setIsPlaying(true);
     const onPause = () => setIsPlaying(false);
     const onEnded = () => setIsPlaying(false);
@@ -163,54 +88,89 @@ export default function TransformationVideoSection({
     };
   }, [isMuted]);
 
-  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
-
   return (
-    <section className="bg-white text-black py-14 sm:py-20 lg:py-24 border-b border-gray-200">
+    <section id="video" className="bg-[#FAF8F5] text-gray-900 py-16 sm:py-24 lg:py-28 border-y border-[#e7e2d8] overflow-hidden">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
-          {/* Left Column: Text & Features */}
-          <div className="lg:col-span-5 space-y-5 sm:space-y-6 reveal-init">
+          {/* =========================================
+              LEFT COLUMN (Desktop): Text, Features & Buttons
+              (On mobile, order is controlled cleanly)
+             ========================================= */}
+          <div className="lg:col-span-5 flex flex-col space-y-6 reveal-init">
             
-            <div className="text-xs font-bold tracking-[0.2em] text-gray-600 uppercase">
-              {label}
+            {/* 1. Small Label: SEE OUR WORK */}
+            <div className="order-1">
+              <div className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#a4865e] uppercase heading-condensed">
+                <span className="w-5 h-px bg-[#a4865e]" />
+                <span>{label}</span>
+              </div>
+
+              {/* 2. Main Headline */}
+              <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[46px] font-black text-gray-950 tracking-tight leading-[0.98] uppercase heading-condensed mt-3">
+                REAL PROJECTS. <br />
+                <span className="text-[#a4865e]">REAL TRANSFORMATIONS.</span>
+              </h2>
+
+              {/* 3. Description */}
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-normal mt-3">
+                {description}
+              </p>
             </div>
 
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] font-black text-gray-900 tracking-tight leading-[1.05] uppercase heading-condensed">
-              {title}
-            </h2>
+            {/* Mobile Video Position Spacer - handled by DOM placement below */}
 
-            <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-normal">
-              {description}
-            </p>
-
-            {/* Checklist */}
-            <div className="space-y-2.5 pt-1">
-              {features.map((feat, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-xs sm:text-base text-gray-800 font-medium group cursor-default">
-                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900 shrink-0 group-hover:scale-110 transition-transform duration-200" strokeWidth={2.2} />
-                  <span className="text-gentle-lift">{feat}</span>
+            {/* 4. Selling Points with Clean Circular Icons */}
+            <div className="order-3 lg:order-2 space-y-3 pt-2">
+              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-900 font-medium">
+                <div className="w-9 h-9 rounded-full bg-[#f0ece4] border border-[#dcd4c6] flex items-center justify-center text-[#8d6f46] shrink-0">
+                  <LayoutGrid className="w-4 h-4" />
                 </div>
-              ))}
+                <span>Kitchen &amp; Bathroom Remodeling</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-900 font-medium">
+                <div className="w-9 h-9 rounded-full bg-[#f0ece4] border border-[#dcd4c6] flex items-center justify-center text-[#8d6f46] shrink-0">
+                  <Gem className="w-4 h-4" />
+                </div>
+                <span>Quality Materials &amp; Detailed Finishes</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-sm sm:text-base text-gray-900 font-medium">
+                <div className="w-9 h-9 rounded-full bg-[#f0ece4] border border-[#dcd4c6] flex items-center justify-center text-[#8d6f46] shrink-0">
+                  <MessageSquare className="w-4 h-4" />
+                </div>
+                <span>Clear Communication From Start to Finish</span>
+              </div>
             </div>
 
-            {/* Action Button */}
-            <div className="pt-2">
+            {/* 5. Dual Action Buttons */}
+            <div className="order-4 lg:order-3 pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <a
+                href="#portfolio"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:py-4 rounded bg-black text-white hover:bg-gray-900 text-xs sm:text-sm font-bold uppercase tracking-wider shadow-lg transform hover:-translate-y-0.5 active:scale-[0.99] transition-all text-center"
+              >
+                <span>VIEW OUR PROJECTS</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
               <a
                 href="#quote-form"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 sm:py-4 rounded btn-invert-black text-xs sm:text-sm font-bold uppercase tracking-wider shadow-md transform hover:-translate-y-0.5 active:scale-[0.99]"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-4 rounded border-2 border-black/20 hover:border-black text-black bg-transparent hover:bg-black/5 text-xs sm:text-sm font-bold uppercase tracking-wider transform hover:-translate-y-0.5 active:scale-[0.99] transition-all text-center"
               >
-                <span>{ctaText}</span>
+                <span>GET YOUR FREE ESTIMATE</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 
           </div>
 
-          {/* Right Column: Real Video Player Container */}
-          <div className="lg:col-span-7 reveal-scale-init delay-150">
-            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl bg-black border border-gray-200 group card-hover-lift">
+          {/* =========================================
+              RIGHT COLUMN: Video Player Card with Before/After Split Overlay
+              (Shows between text and selling points on mobile)
+             ========================================= */}
+          <div className="lg:col-span-7 reveal-scale-init delay-150 order-2 lg:order-2">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black border border-black/10 group card-hover-lift">
               
               {/* Media Container */}
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-black flex items-center justify-center">
@@ -222,98 +182,64 @@ export default function TransformationVideoSection({
                   muted={isMuted}
                   loop
                   preload="auto"
-                  onTimeUpdate={handleTimeUpdate}
-                  onLoadedMetadata={handleLoadedMetadata}
                   onClick={togglePlay}
-                  className="w-full h-full object-cover object-center cursor-pointer transition-all duration-300 group-hover:brightness-[1.04]"
+                  className="w-full h-full object-cover object-center cursor-pointer transition-all duration-300 group-hover:brightness-[1.03]"
                 />
 
-                {/* Sound Toggle Floating Badge */}
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+                {/* Top Badges: BEFORE on left, AFTER on right */}
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
+                  <div className="px-3 py-1 rounded bg-black/85 backdrop-blur-md text-[10px] sm:text-xs font-black uppercase tracking-widest text-white border border-white/20 shadow-md heading-condensed">
+                    BEFORE
+                  </div>
+                </div>
+
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 flex items-center gap-2">
+                  <div className="px-3 py-1 rounded bg-black/85 backdrop-blur-md text-[10px] sm:text-xs font-black uppercase tracking-widest text-white border border-white/20 shadow-md heading-condensed">
+                    AFTER
+                  </div>
+
+                  {/* Sound Toggle Floating Button */}
                   <button
                     onClick={toggleMute}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-md border shadow-lg transition-all transform hover:scale-105 active:scale-95 ${
-                      isMuted
-                        ? "bg-black/80 hover:bg-black/90 border-white/35 text-white animate-pulse"
-                        : "bg-black/60 hover:bg-black/85 border-white/20 text-white"
-                    }`}
+                    className="p-1.5 sm:p-2 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 backdrop-blur-md shadow-md transition-transform active:scale-95"
                     aria-label={isMuted ? "Unmute sound" : "Mute sound"}
                   >
-                    {isMuted ? (
-                      <>
-                        <VolumeX className="w-3.5 h-3.5 text-white" />
-                        <span className="text-[10px] sm:text-[11px] font-bold tracking-wide">Tap for Sound</span>
-                      </>
-                    ) : (
-                      <>
-                        <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-[10px] sm:text-[11px] font-bold tracking-wide">Sound On</span>
-                      </>
-                    )}
+                    {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
                   </button>
                 </div>
-                
-                {/* Dark Overlay when Paused */}
+
+                {/* Center Play Button Overlay */}
                 {!isPlaying && (
-                  <div
+                  <button
                     onClick={togglePlay}
-                    className="absolute inset-0 bg-black/40 cursor-pointer flex items-center justify-center transition-colors backdrop-blur-[1px]"
+                    className="absolute inset-0 flex items-center justify-center z-10 bg-black/35 group-hover:bg-black/25 transition-colors cursor-pointer"
+                    aria-label="Play video"
                   >
-                    <button
-                      onClick={togglePlay}
-                      className="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-white text-black hover:bg-black hover:text-white border border-transparent hover:border-white shadow-2xl flex items-center justify-center transition-all duration-200 transform hover:scale-110 active:scale-95 z-20"
-                      aria-label="Play video"
-                    >
-                      <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-0.5" />
-                    </button>
-                  </div>
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-black flex items-center justify-center shadow-2xl border-4 border-white/40 transform group-hover:scale-110 transition-transform">
+                      <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current ml-1 text-black" />
+                    </div>
+                  </button>
                 )}
 
-                {/* Bottom Custom Video Control Bar */}
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-3 sm:p-4 text-white z-20 flex flex-col gap-1.5 opacity-90 group-hover:opacity-100 transition-opacity">
-                  {/* Timeline Bar */}
-                  <div
-                    className="w-full h-1.5 sm:h-2 bg-white/30 hover:h-2.5 rounded-full overflow-hidden cursor-pointer transition-all"
-                    onClick={handleSeek}
-                  >
-                    <div
-                      className="h-full bg-white transition-all rounded-full"
-                      style={{ width: `${progressPercent}%` }}
-                    />
+                {/* Bottom Left Label: Palm Desert Kitchen Transformation */}
+                <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-20">
+                  <div className="bg-black/85 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-lg flex items-center gap-2 shadow-xl">
+                    <MapPin className="w-3.5 h-3.5 text-[#cbb08a]" />
+                    <div className="text-left">
+                      <div className="text-[11px] sm:text-xs font-bold text-white uppercase tracking-wider heading-condensed">
+                        PALM DESERT
+                      </div>
+                      <div className="text-[9px] sm:text-[10px] text-gray-300 uppercase tracking-widest">
+                        Kitchen Transformation
+                      </div>
+                    </div>
                   </div>
+                </div>
 
-                  <div className="flex items-center justify-between text-xs pt-1">
-                    <div className="flex items-center gap-2.5 sm:gap-3">
-                      <button
-                        onClick={togglePlay}
-                        className="hover:text-gray-300 transition-colors p-1"
-                        aria-label={isPlaying ? "Pause" : "Play"}
-                      >
-                        {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
-                      </button>
-
-                      <button
-                        onClick={toggleMute}
-                        className="hover:text-gray-300 transition-colors p-1"
-                        aria-label={isMuted ? "Unmute" : "Mute"}
-                      >
-                        {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                      </button>
-
-                      <span className="text-[10px] sm:text-[11px] text-gray-300 font-mono">
-                        {formatTime(currentTime)} / {formatTime(duration)}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={handleFullscreen}
-                        className="hover:text-gray-300 transition-colors p-1"
-                        aria-label="Full screen"
-                      >
-                        <Maximize className="w-4 h-4" />
-                      </button>
-                    </div>
+                {/* Bottom Right Duration Badge */}
+                <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-20">
+                  <div className="bg-black/80 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded text-[11px] font-mono text-gray-200">
+                    1:35
                   </div>
                 </div>
 

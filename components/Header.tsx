@@ -569,7 +569,7 @@ export default function Header() {
               <div className="font-extrabold text-sm text-white tracking-tight leading-tight">
                 {BUSINESS.formattedPhone}
               </div>
-              <div className="text-[10px] text-gray-400 font-medium">Call or Text for a free consultation</div>
+              <div className="text-[10px] text-gray-400 font-medium">Call or Text for a Free Consultation</div>
             </div>
           </a>
 
@@ -578,7 +578,7 @@ export default function Header() {
             href="#quote-form"
             className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-lg btn-invert-white font-bold uppercase tracking-wider text-xs shadow-lg transform hover:-translate-y-0.5"
           >
-            <span>PROJECT CONSULTATION</span>
+            <span>FREE ESTIMATE</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
 

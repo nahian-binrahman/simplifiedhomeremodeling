@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Play, X, Shield, Star, Volume2, VolumeX } from "lucide-react";
+import { ArrowRight, Play, X, Shield, ShieldCheck, MapPin, Users, FileText, DollarSign, Hammer, Home } from "lucide-react";
 import { BUSINESS } from "@/lib/business";
 
 export default function HomeHero() {
@@ -15,19 +15,17 @@ export default function HomeHero() {
         {/* 1. Background Remodeling Image with Next.js Optimization */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=90"
-            alt="Luxury Home Remodeling in Coachella Valley"
+            src="/images/countertops-hero.jpg"
+            alt="Luxury Kitchen Remodeling with Waterfall Island in Coachella Valley"
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center brightness-[0.76] contrast-[1.04] scale-[1.02] transition-transform duration-1000"
+            className="object-cover object-center brightness-[0.88] contrast-[1.04] scale-[1.01]"
           />
 
-          {/* 2. Architectural Multi-Layer Gradients */}
-          {/* Base Dark Gradient to ensure text pop */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/65 to-black/75 sm:bg-gradient-to-r sm:from-black/90 sm:via-black/60 sm:to-black/25" />
-          {/* Bottom Vignette for seamless section transitions */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-black/30" />
+          {/* 2. Architectural Multi-Layer Gradients - Dark on left for readability while highlighting kitchen photo */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/30 sm:from-black/90 sm:via-black/65 sm:to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-black/40" />
 
           {/* 3. Subtle Architectural Blueprint Grid Pattern Overlay */}
           <div
@@ -46,91 +44,90 @@ export default function HomeHero() {
 
         {/* 4. Hero Content Container */}
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-12 xs:py-16 sm:py-24 lg:py-32 relative z-10 w-full">
-          <div className="max-w-3xl lg:max-w-4xl space-y-4 sm:space-y-7 animate-in fade-in slide-in-from-bottom-3 duration-700">
+          <div className="max-w-3xl lg:max-w-4xl space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-3 duration-700">
             
-            {/* Top Label & Trust Pill */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[11px] sm:text-xs text-gray-200 font-medium shadow-sm">
-                <span className="flex text-[#d32323] text-[10px] sm:text-xs">★★★★★</span>
-                <span className="text-white font-bold tracking-wider">5.0 TOP RATED</span>
-                <span className="text-white/20">•</span>
-                <span className="text-gray-300 font-mono text-[10px] sm:text-[11px]">COACHELLA VALLEY</span>
+            {/* Top Trust Bar (Replacing Google Rating) */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-300 font-medium pt-2">
+              <div className="inline-flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span className="text-white font-semibold">Licensed General Contractor</span>
               </div>
-
-              <div className="hidden sm:inline-flex items-center gap-1.5 text-xs text-gray-400 font-mono tracking-widest uppercase">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>BOOKING ESTIMATES FOR THIS MONTH</span>
+              <span className="hidden sm:inline text-white/20">•</span>
+              <div className="inline-flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span>Serving the Coachella Valley &amp; Surrounding Areas</span>
+              </div>
+              <span className="hidden sm:inline text-white/20">•</span>
+              <div className="inline-flex items-center gap-2">
+                <Users className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span>Local &amp; Trusted by Homeowners</span>
               </div>
             </div>
 
             {/* Small Label */}
-            <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.22em] text-gray-300 uppercase heading-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+            <div className="inline-block text-xs sm:text-sm font-bold tracking-[0.22em] text-gray-300 uppercase heading-condensed drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] pt-1">
               SIMPLIFIED HOME REMODELING
             </div>
 
-            {/* Main Headline (Condensed, Bold, Architectural) */}
+            {/* Main Headline (Condensed, Bold, Luxury Gold Gradient on Second Line) */}
             <h1 className="text-3xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[84px] font-black text-white tracking-tight uppercase leading-[0.92] heading-condensed drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
-              KITCHEN REMODELING <br />
-              <span className="text-white">IN COACHELLA VALLEY</span>
+              SIMPLIFY YOUR REMODEL. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#eed4b6] via-[#cbb08a] to-[#e4c9a6]">
+                LOVE YOUR KITCHEN.
+              </span>
             </h1>
 
-            {/* Subheadline with Serif Italic & Supporting Body */}
-            <div className="space-y-1.5 max-w-2xl">
-              <p className="text-base xs:text-lg sm:text-2xl md:text-[26px] text-gray-100 italic text-italic-accent leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                Coachella Valley Kitchen, Bathroom &amp; Complete Home Remodeling.
-              </p>
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal pt-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
-                Licensed remodeling specialists, guaranteed fixed-price contracts, and white-glove site cleanliness across Palm Desert, Palm Springs, Rancho Mirage, and La Quinta.
+            {/* Subheadline & Main Description */}
+            <div className="space-y-2 max-w-2xl pt-1">
+              <p className="text-sm xs:text-base sm:text-lg text-gray-200 leading-relaxed font-normal drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+                Kitchen &amp; bathroom remodeling, custom cabinetry, countertops, flooring, and complete home transformations throughout the Coachella Valley.
               </p>
             </div>
 
             {/* Call to Action Buttons */}
             <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               
-              {/* Primary CTA: Request a Project Consultation */}
+              {/* Primary CTA: Get Your Free Estimate */}
               <a
                 href="#quote-form"
                 className="w-full sm:w-auto px-8 py-4 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm text-center shadow-2xl transform hover:-translate-y-0.5 active:scale-[0.99] flex items-center justify-center gap-2.5 group"
               >
-                <span>REQUEST A PROJECT CONSULTATION</span>
+                <span>GET YOUR FREE ESTIMATE</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 
-              {/* Secondary CTA: Watch Our Story */}
+              {/* Secondary CTA: View Our Projects (Links directly to project gallery & video) */}
               <button
                 type="button"
                 onClick={() => setIsVideoModalOpen(true)}
                 className="w-full sm:w-auto px-7 py-4 rounded btn-outline-fill font-bold uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-3 backdrop-blur-md transform hover:-translate-y-0.5 active:scale-[0.99] group cursor-pointer"
               >
-                <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors shadow-sm">
+                <div className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center group-hover:bg-[#cbb08a] group-hover:text-black transition-colors shadow-sm">
                   <Play className="w-3 h-3 fill-current ml-0.5" />
                 </div>
-                <span>WATCH OUR STORY</span>
+                <span>VIEW OUR PROJECTS</span>
+                <ArrowRight className="w-4 h-4 ml-0.5 group-hover:translate-x-1 transition-transform" />
               </button>
 
             </div>
 
-            {/* Immediately under the hero CTA */}
-            <div className="pt-2 flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-200 tracking-wide">
-              <Shield className="w-4 h-4 text-white shrink-0" />
-              <span>Licensed General Contractor • Financing Available</span>
-            </div>
-
-            {/* Bottom Meta & Coordinates Bar */}
-            <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-gray-400">
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 font-medium">
-                <div className="flex items-center gap-1.5 text-gray-200">
-                  <Shield className="w-4 h-4 text-white" />
-                  <span>Licensed • Insured • Bonded</span>
-                </div>
-                <span className="hidden sm:inline text-white/20">•</span>
-                <div>100% Fixed-Price Guarantee</div>
-                <span className="hidden sm:inline text-white/20">•</span>
-                <div>10-Year Workmanship Warranty</div>
+            {/* Bottom Trust Points (4 Clean Items with Icons, Coordinates removed) */}
+            <div className="pt-6 sm:pt-8 border-t border-white/10 grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs sm:text-sm text-gray-300">
+              <div className="flex items-center gap-2.5">
+                <FileText className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span className="font-medium text-white">Licensed • Bonded &amp; Insured</span>
               </div>
-
-              <div className="hidden lg:block font-mono text-[11px] text-gray-500 tracking-wider">
-                33.7206° N, 116.3775° W
+              <div className="flex items-center gap-2.5">
+                <DollarSign className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span className="font-medium text-white">Transparent Pricing</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Hammer className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span className="font-medium text-white">Quality Craftsmanship</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Home className="w-4 h-4 text-[#cbb08a] shrink-0" />
+                <span className="font-medium text-white">Clean Jobsites &amp; Clear Communication</span>
               </div>
             </div>
 
@@ -160,7 +157,7 @@ export default function HomeHero() {
             {/* Modal Header */}
             <div className="p-4 sm:p-5 flex items-center justify-between border-b border-white/10 bg-[#111111]">
               <div className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#cbb08a] animate-pulse" />
                 <span className="font-bold text-white uppercase text-xs sm:text-sm tracking-wider heading-condensed">
                   SIMPLIFIED HOME REMODELING — OUR CRAFTSMANSHIP STORY
                 </span>
