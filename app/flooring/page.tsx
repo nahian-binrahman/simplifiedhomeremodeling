@@ -49,8 +49,10 @@ export default function FlooringPage() {
         bgImage="/images/flooring-hero.jpg"
         eyebrow="FLOORING INSTALLATION IN"
         heading="COACHELLA VALLEY"
-        subtitle="Transform Your Floors."
-        description="Premium hardwood, luxury vinyl plank (LVP), and custom tile flooring installed with flawless precision."
+        subtitle="Beautiful Floors. Expertly Installed."
+        description="Transform your home with professionally installed luxury vinyl plank, waterproof laminate, and custom tile flooring. With over 20 years of remodeling experience, we bring quality craftsmanship and attention to detail to every project."
+        primaryCta="GET A FREE FLOORING ESTIMATE"
+        trustStatement="Licensed General Contractor • 20+ Years of Experience • Financing Available"
       />
       <TrustBar />
       <SubCategorySelector serviceSlug="flooring" />
@@ -61,15 +63,15 @@ export default function FlooringPage() {
       />
       <TransformationVideoSection
         videoSrc="/videos/floor-transformation.mp4"
-        label="SEE THE TRANSFORMATION"
+        label="THE DIFFERENCE IS IN THE DETAILS"
         title="Floors Designed for Real Life."
-        description="See how seamless hardwood transitions, waterproof luxury vinyl plank, and designer tile layouts elevate the flow and aesthetic of your entire home."
+        description="Beautiful flooring is the foundation of every great space. From luxury vinyl plank and engineered hardwood to large-format porcelain tile, we deliver precision installation, lasting durability, and a seamless finish throughout your home."
         features={[
-          "European White Oak & Engineered Hardwood",
-          "Waterproof LVP & Large Format Tile Installation",
-          "Professional Remodeling Specialist",
+          "Luxury Vinyl Plank & Waterproof Flooring",
+          "Large-Format Porcelain & Ceramic Tile",
+          "Expert Installation & Subfloor Preparation",
         ]}
-        ctaText="REQUEST A PROJECT CONSULTATION"
+        ctaText="GET A FREE FLOORING ESTIMATE"
       />
       <BeforeAfterGallery
         eyebrow="SEE THE DIFFERENCE"

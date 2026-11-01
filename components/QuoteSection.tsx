@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Phone, CalendarCheck, Lock, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { Phone, CalendarCheck, Lock, ArrowRight, CheckCircle2, AlertCircle, MapPin, Award, ShieldCheck } from "lucide-react";
 import { BUSINESS } from "@/lib/business";
 import { submitLead, LeadSubmission } from "@/lib/supabase";
 
@@ -13,6 +13,18 @@ interface QuoteSectionProps {
   projectType?: string;
   cardTitle?: string;
   submitText?: string;
+  phoneSubtext?: string;
+  trustItems?: Array<{ icon: string; label: string }>;
+}
+
+function getTrustIcon(icon: string) {
+  switch (icon) {
+    case "calendar": return <CalendarCheck className="w-4 h-4" />;
+    case "map-pin": return <MapPin className="w-4 h-4" />;
+    case "award": return <Award className="w-4 h-4" />;
+    case "shield": return <ShieldCheck className="w-4 h-4" />;
+    default: return <CheckCircle2 className="w-4 h-4" />;
+  }
 }
 
 export default function QuoteSection({
@@ -22,6 +34,8 @@ export default function QuoteSection({
   projectType = "Whole Home Remodeling",
   cardTitle,
   submitText,
+  phoneSubtext,
+  trustItems,
 }: QuoteSectionProps) {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -121,21 +135,36 @@ export default function QuoteSection({
                   <div className="font-bold text-sm sm:text-base text-white link-underline-slide text-gentle-lift">
                     {BUSINESS.formattedPhone}
                   </div>
-                  <div className="text-xs text-gray-400 group-hover:text-white transition-colors">Call or Text for a free consultation</div>
+                  <div className="text-xs text-gray-400 group-hover:text-white transition-colors">
+                    {phoneSubtext || "Call or Text for a free consultation"}
+                  </div>
                 </div>
               </a>
 
-              <div className="flex items-center gap-3 text-gray-200 group cursor-default">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black transition-colors duration-200 shrink-0">
-                  <CalendarCheck className="w-4 h-4" />
+              {trustItems && trustItems.length > 0 ? (
+                <div className="space-y-3 pt-1">
+                  {trustItems.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 text-gray-200 group cursor-default">
+                      <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 shrink-0">
+                        {getTrustIcon(item.icon)}
+                      </div>
+                      <div className="font-medium text-sm text-white">{item.label}</div>
+                    </div>
+                  ))}
                 </div>
-                <div>
-                  <div className="font-bold text-sm sm:text-base text-white">
-                    Free In-Home Consultation
+              ) : (
+                <div className="flex items-center gap-3 text-gray-200 group cursor-default">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white border border-white/15 group-hover:bg-white group-hover:text-black transition-colors duration-200 shrink-0">
+                    <CalendarCheck className="w-4 h-4" />
                   </div>
-                  <div className="text-xs text-gray-400">Serving Coachella Valley</div>
+                  <div>
+                    <div className="font-bold text-sm sm:text-base text-white">
+                      Free In-Home Consultation
+                    </div>
+                    <div className="text-xs text-gray-400">Serving Coachella Valley</div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
           </div>

@@ -1,6 +1,12 @@
 export interface KeyFeatureItem {
   title?: string;
   text: string;
+  icon?: string;
+}
+
+export interface QuoteTrustItem {
+  icon: string;
+  label: string;
 }
 
 export interface SubCategoryData {
@@ -15,7 +21,12 @@ export interface SubCategoryData {
   description: string;
   keyFeatures: (string | KeyFeatureItem)[];
   standardsHeading?: string;
+  standardsDescription?: string;
   hideSpecializedBadge?: boolean;
+  badgeLabel?: string;
+  lvpFeatures?: string[];
+  heroCta?: string;
+  heroTrustStatement?: string;
   videoSection?: {
     label?: string;
     title: string;
@@ -27,6 +38,8 @@ export interface SubCategoryData {
     title: string;
     subtitle: string;
     description: string;
+    phoneSubtext?: string;
+    trustItems?: QuoteTrustItem[];
   };
   metaTitleTemplate: string;
   metaDescTemplate: string;
@@ -247,17 +260,72 @@ export const SUBCATEGORIES: Record<string, SubCategoryData> = {
     title: "Luxury Vinyl Plank (LVP)",
     shortTitle: "LVP Flooring",
     numberPrefix: "5.1",
-    tagline: "100% Waterproof, Scratch-Resistant Desert Luxury Flooring",
-    heroEyebrow: "LVP FLOORING IN",
-    description: "The ultimate flooring solution for Coachella Valley living. 100% waterproof, resistant to desert sand abrasion, pet-friendly, with authentic embossed wood grain textures.",
+    tagline: "Beautiful Wood-Look Floors. Built for Everyday Living.",
+    heroEyebrow: "LUXURY VINYL PLANK FLOORING IN",
+    description: "Upgrade your home with beautiful, durable luxury vinyl plank flooring. Enjoy the natural look of hardwood with easy maintenance, water-resistant options, and professional installation designed for desert living.",
+    standardsHeading: "PREMIUM MATERIALS. EXPERT INSTALLATION.",
+    standardsDescription: "Beautiful flooring starts with quality materials and precision installation. From selecting the right luxury vinyl plank to preparing your subfloor and finishing every detail, our team delivers flooring designed for lasting beauty and everyday living.",
+    hideSpecializedBadge: true,
+    badgeLabel: "THE SIMPLIFIED DIFFERENCE",
+    heroCta: "GET A FREE FLOORING ESTIMATE",
+    heroTrustStatement: "Licensed General Contractor • 20+ Years of Experience • Financing Available",
     keyFeatures: [
-      "100% Waterproof Rigid Core (SPC/WPC)",
-      "20mil+ Commercial Grade Scratch-Resistant Wear Layer",
-      "Acoustic Sound-Dampening Attached Underlayment"
+      {
+        title: "DURABLE, WATER-RESISTANT FLOORING",
+        text: "Quality luxury vinyl plank options designed for everyday spills, active households, and easy maintenance.",
+        icon: "shield",
+      },
+      {
+        title: "PROFESSIONAL SUBFLOOR PREPARATION",
+        text: "Surface evaluation, necessary leveling, and proper preparation to create a suitable foundation before flooring installation.",
+        icon: "layers",
+      },
+      {
+        title: "PRECISION INSTALLATION",
+        text: "Professional plank layouts, proper expansion gaps, clean transitions, and attention to every installation detail.",
+        icon: "ruler",
+      },
+      {
+        title: "BEAUTIFUL FINISHING DETAILS",
+        text: "Professional baseboard installation, seamless transitions, and detailed finishing for a clean, polished appearance.",
+        icon: "sparkles",
+      },
     ],
-    metaTitleTemplate: "Luxury Vinyl Plank (LVP) Flooring in {location}, CA | Waterproof Floors",
-    metaDescTemplate: "Top-grade Luxury Vinyl Plank (LVP) flooring in {location}, CA. Waterproof, scratch-resistant, wide plank wood look. Free in-home estimates.",
-    heroImage: "/images/kitchen-hero.jpg"
+    lvpFeatures: [
+      "Waterproof rigid-core SPC/WPC flooring options",
+      "20-mil wear-layer options available",
+      "Scratch-resistant surface options",
+      "Attached acoustic underlayment options",
+      "Realistic embossed wood-grain textures",
+      "Low-maintenance flooring surfaces",
+    ],
+    videoSection: {
+      label: "SEE THE SIMPLIFIED DIFFERENCE",
+      title: "BEAUTIFUL FLOORS. EXPERT CRAFTSMANSHIP.",
+      description: "Discover how Simplified Home Remodeling transforms homes throughout the Coachella Valley with professionally installed luxury vinyl plank flooring. From proper subfloor preparation to precise installation and finishing details, we deliver beautiful, durable floors designed for everyday living.",
+      features: [
+        "Premium Luxury Vinyl Plank Flooring",
+        "Professional Subfloor Preparation & Leveling",
+        "Precision Installation & Finishing Details",
+        "20+ Years of Remodeling Experience",
+      ],
+      ctaText: "GET A FREE FLOORING ESTIMATE",
+    },
+    quoteSection: {
+      title: "READY TO TRANSFORM YOUR FLOORS?",
+      subtitle: "Beautiful Floors Start Here.",
+      description: "Upgrade your home with beautiful, professionally installed luxury vinyl plank flooring. Request your free, no-obligation estimate today.",
+      phoneSubtext: "Call or text us to discuss your flooring project.",
+      trustItems: [
+        { icon: "calendar", label: "Free In-Home Consultation" },
+        { icon: "map-pin", label: "Proudly Serving the Coachella Valley" },
+        { icon: "award", label: "20+ Years of Remodeling Experience" },
+        { icon: "shield", label: "Licensed General Contractor" },
+      ],
+    },
+    metaTitleTemplate: "Luxury Vinyl Plank Flooring Coachella Valley | Simplified Home Remodeling",
+    metaDescTemplate: "Upgrade your home with professional luxury vinyl plank flooring installation in Palm Desert, La Quinta, Palm Springs, Rancho Mirage, and Indio. Request a free estimate.",
+    heroImage: "/images/flooring-hero.jpg",
   },
   "laminate-flooring": {
     serviceSlug: "flooring",
@@ -266,17 +334,72 @@ export const SUBCATEGORIES: Record<string, SubCategoryData> = {
     title: "Laminate Flooring",
     shortTitle: "Laminate Flooring",
     numberPrefix: "5.2",
-    tagline: "Realistic Hardwood Visuals & Superior Dent Resistance",
-    heroEyebrow: "LAMINATE FLOORING IN",
-    description: "Modern water-resistant laminate featuring realistic high-definition wood grain visuals, durable AC4/AC5 wear ratings, and seamless click-lock installation.",
+    tagline: "The Beauty of Hardwood. Built for Everyday Living.",
+    heroEyebrow: "WATERPROOF LAMINATE FLOORING IN",
+    description: "Upgrade your home with beautiful, durable waterproof laminate flooring. Enjoy realistic wood-look finishes, excellent wear resistance, and professional installation designed for active households and desert living.",
+    standardsHeading: "BEAUTIFUL LAMINATE. EXPERT INSTALLATION.",
+    standardsDescription: "Beautiful laminate flooring combines the natural appearance of hardwood with modern durability. At Simplified Home Remodeling, we focus on quality materials, proper subfloor preparation, precise installation, and professional finishing details to create floors designed for everyday living.",
+    hideSpecializedBadge: true,
+    badgeLabel: "THE SIMPLIFIED DIFFERENCE",
+    heroCta: "GET A FREE LAMINATE FLOORING ESTIMATE",
+    heroTrustStatement: "Licensed General Contractor • 20+ Years of Experience • Financing Available",
     keyFeatures: [
-      "High-Definition Embossed Hardwood Visuals",
-      "Superior Impact & Dent Resistance (AC4/AC5 Rated)",
-      "Enhanced Water-Resistant Core Technology"
+      {
+        title: "REALISTIC HARDWOOD BEAUTY",
+        text: "High-definition wood textures and natural finishes deliver the timeless appearance of hardwood.",
+        icon: "sparkles",
+      },
+      {
+        title: "DURABILITY & WATER PROTECTION",
+        text: "Explore laminate flooring options with enhanced water resistance and durable surfaces designed for active households.",
+        icon: "shield",
+      },
+      {
+        title: "PROFESSIONAL SUBFLOOR PREPARATION",
+        text: "Careful surface evaluation and necessary leveling help create a suitable foundation for flooring installation.",
+        icon: "layers",
+      },
+      {
+        title: "PRECISION INSTALLATION & FINISHING",
+        text: "Detailed plank layouts, proper expansion gaps, clean transitions, and professional baseboard finishing.",
+        icon: "ruler",
+      },
     ],
-    metaTitleTemplate: "Laminate Flooring Installation in {location}, CA | Durable Wood Look",
-    metaDescTemplate: "Expert laminate flooring installation in {location}, CA. High-density wood visual floors built for active homes. Book a consultation.",
-    heroImage: "/images/kitchen-hero.jpg"
+    lvpFeatures: [
+      "High-definition embossed hardwood textures",
+      "AC4/AC5 abrasion-resistance ratings available",
+      "Water-resistant and waterproof product options",
+      "Durable protective wear layers",
+      "Advanced click-lock installation systems",
+      "Various natural wood-look finishes available",
+    ],
+    videoSection: {
+      label: "SEE THE SIMPLIFIED DIFFERENCE",
+      title: "BEAUTIFUL FLOORS. EXPERT CRAFTSMANSHIP.",
+      description: "Discover how Simplified Home Remodeling transforms homes throughout the Coachella Valley with beautifully installed waterproof laminate flooring. From careful subfloor preparation to precision plank installation and finishing details, we focus on craftsmanship that makes every room look its best.",
+      features: [
+        "Premium Waterproof Laminate Flooring",
+        "Professional Subfloor Preparation & Leveling",
+        "Precision Installation & Finishing Details",
+        "20+ Years of Remodeling Experience",
+      ],
+      ctaText: "GET A FREE LAMINATE FLOORING ESTIMATE",
+    },
+    quoteSection: {
+      title: "READY TO TRANSFORM YOUR FLOORS?",
+      subtitle: "Beautiful Floors Start Here.",
+      description: "Discover beautiful, durable waterproof laminate flooring professionally installed for your home. Request your free, no-obligation estimate today.",
+      phoneSubtext: "Call or text us to discuss your flooring project.",
+      trustItems: [
+        { icon: "calendar", label: "Free In-Home Consultation" },
+        { icon: "map-pin", label: "Proudly Serving the Coachella Valley" },
+        { icon: "award", label: "20+ Years of Remodeling Experience" },
+        { icon: "shield", label: "Licensed General Contractor" },
+      ],
+    },
+    metaTitleTemplate: "Waterproof Laminate Flooring Coachella Valley | Simplified Home Remodeling",
+    metaDescTemplate: "Beautiful waterproof laminate flooring installation in Palm Desert, La Quinta, Palm Springs, Rancho Mirage, and Indio. Professional installation. Request a free estimate.",
+    heroImage: "/images/flooring-hero.jpg",
   },
   "porcelain-tile": {
     serviceSlug: "flooring",

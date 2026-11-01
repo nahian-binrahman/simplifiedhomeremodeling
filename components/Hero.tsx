@@ -11,6 +11,8 @@ interface HeroProps {
   heading?: string;
   subtitle?: string;
   description?: string;
+  primaryCta?: string;
+  trustStatement?: string;
 }
 
 export default function Hero({
@@ -19,6 +21,8 @@ export default function Hero({
   heading = "KITCHEN REMODELING IN COACHELLA VALLEY",
   subtitle = "Transform Your Kitchen.",
   description = "Expert craftsmanship, premium materials, and transparent pricing built around your home by licensed local contractors.",
+  primaryCta = "REQUEST A PROJECT CONSULTATION",
+  trustStatement = "Licensed General Contractor • Financing Available",
 }: HeroProps) {
   // Determine service name from eyebrow or heading
   let detectedService = "KITCHEN REMODELING";
@@ -29,7 +33,7 @@ export default function Hero({
   } else if (eyebrow.toUpperCase().includes("CABINET") || heading.toUpperCase().includes("CABINET")) {
     detectedService = "CUSTOM CABINETRY";
   } else if (eyebrow.toUpperCase().includes("FLOOR") || heading.toUpperCase().includes("FLOOR")) {
-    detectedService = "LUXURY FLOORING";
+    detectedService = "FLOORING INSTALLATION";
   } else if (heading.toUpperCase().includes("REMODELING")) {
     detectedService = heading.split(/IN /i)[0].trim();
   }
@@ -61,11 +65,11 @@ export default function Hero({
           alt={`${mainTop} ${mainBottom}`}
           fill
           priority
-          className="object-cover object-center brightness-[0.85] sm:brightness-[0.75] contrast-[1.04]"
+          className="object-cover object-center brightness-[0.90] sm:brightness-[0.82] contrast-[1.04]"
         />
         {/* Balanced Gradients - keeps the photo clearly visible while keeping text legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25" />
       </div>
 
       {/* Hero Content Container */}
@@ -106,7 +110,7 @@ export default function Hero({
               href="#quote-form"
               className="w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded btn-invert-white font-bold uppercase tracking-wider text-xs sm:text-sm text-center shadow-lg transform hover:-translate-y-0.5 active:scale-[0.99]"
             >
-              REQUEST A PROJECT CONSULTATION
+              {primaryCta}
             </a>
 
             {/* Call Now Action */}
@@ -119,10 +123,10 @@ export default function Hero({
             </a>
           </div>
 
-          {/* Immediately under the hero CTA */}
+          {/* Trust & Credibility - Immediately under the hero CTA */}
           <div className="pt-1 flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-200 tracking-wide">
             <ShieldCheck className="w-4 h-4 text-white shrink-0" />
-            <span>Licensed General Contractor • Financing Available</span>
+            <span>{trustStatement}</span>
           </div>
 
         </div>
