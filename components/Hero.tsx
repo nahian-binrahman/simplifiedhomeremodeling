@@ -13,6 +13,10 @@ interface HeroProps {
   description?: string;
   primaryCta?: string;
   trustStatement?: string;
+  /** Overrides the auto-detected large headline (e.g. "PORCELAIN TILE FLOORING") */
+  title?: string;
+  /** "left" = subtle left-side gradient that keeps more of the photo visible */
+  overlay?: "default" | "left";
 }
 
 export default function Hero({
@@ -23,6 +27,8 @@ export default function Hero({
   description = "Expert craftsmanship, premium materials, and transparent pricing built around your home by licensed local contractors.",
   primaryCta = "REQUEST A PROJECT CONSULTATION",
   trustStatement = "Licensed General Contractor • Financing Available",
+  title,
+  overlay = "default",
 }: HeroProps) {
   // Determine service name from eyebrow or heading
   let detectedService = "KITCHEN REMODELING";
@@ -38,7 +44,7 @@ export default function Hero({
     detectedService = heading.split(/IN /i)[0].trim();
   }
 
-  let mainTop = detectedService;
+  let mainTop = title || detectedService;
   let mainBottom = "IN COACHELLA VALLEY";
 
   if (heading.toUpperCase().includes("IN ")) {
@@ -65,12 +71,22 @@ export default function Hero({
           alt={`${mainTop} ${mainBottom}`}
           fill
           priority
-          className="object-cover object-center brightness-[0.90] sm:brightness-[0.82] contrast-[1.04]"
+          className={`object-cover object-center contrast-[1.04] ${overlay === "left" ? "brightness-[0.95]" : "brightness-[0.90] sm:brightness-[0.82]"}`}
         />
-        {/* Balanced Gradients - keeps the photo clearly visible while keeping text legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/15" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25" />
-      </div>
+        {overlay === "left" ? (
+          <>
+            {/* Subtle left-side gradient - keeps white text readable while the flooring stays clearly visible */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent sm:from-black/75 sm:via-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/20" />
+            <div className="absolute inset-0 bg-black/25 sm:hidden" />
+          </>
+        ) : (
+          <>
+            {/* Balanced Gradients - keeps the photo clearly visible while keeping text legible */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/15" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/25" />
+          </>
+        )}      </div>
 
       {/* Hero Content Container */}
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20 lg:py-24 relative z-10 w-full">

@@ -25,8 +25,32 @@ export interface SubCategoryData {
   hideSpecializedBadge?: boolean;
   badgeLabel?: string;
   lvpFeatures?: string[];
+  /** Optional overrides for the product features section (defaults to LVP wording) */
+  featuresLabel?: string;
+  featuresHeading?: string;
+  featuresDescription?: string;
+  /** Optional H3 highlight blocks shown above the product features checklist */
+  featureHighlights?: { title: string; text: string }[];
+  /** Optional installation process / expertise section */
+  installationSection?: {
+    label: string;
+    title: string;
+    description: string;
+    expertiseHeading?: string;
+    expertise: string[];
+    stepsHeading: string;
+    steps: { title: string; text: string }[];
+    note?: string;
+  };
+  /** Overrides the large hero headline (e.g. "PORCELAIN TILE FLOORING") */
+  heroTitle?: string;
+  /** "left" = subtle left-side gradient that keeps more of the photo visible */
+  heroOverlay?: "default" | "left";
   heroCta?: string;
   heroTrustStatement?: string;
+  /** Exact SEO title/description for the main subcategory page (city pages keep the templates) */
+  pageMetaTitle?: string;
+  pageMetaDescription?: string;
   videoSection?: {
     label?: string;
     title: string;
@@ -365,6 +389,7 @@ export const SUBCATEGORIES: Record<string, SubCategoryData> = {
         icon: "ruler",
       },
     ],
+    featuresHeading: "PREMIUM LAMINATE FLOORING FEATURES",
     lvpFeatures: [
       "High-definition embossed hardwood textures",
       "AC4/AC5 abrasion-resistance ratings available",
@@ -408,17 +433,113 @@ export const SUBCATEGORIES: Record<string, SubCategoryData> = {
     title: "Porcelain Tile",
     shortTitle: "Porcelain Tile",
     numberPrefix: "5.3",
-    tagline: "Large-Format Cool Desert Flooring & Indoor-Outdoor Continuity",
-    heroEyebrow: "PORCELAIN TILE IN",
-    description: "Cool, ultra-durable large format porcelain tile (24x48, 30x60). Naturally stays cool in desert heat, impervious to water, and seamlessly connects interior living to outdoor patios.",
+    tagline: "Timeless Elegance. Precision Installation.",
+    heroEyebrow: "PORCELAIN TILE FLOORING IN",
+    heroTitle: "PORCELAIN TILE FLOORING",
+    heroOverlay: "left",
+    description: "Transform your home with beautiful, durable porcelain tile flooring. From large-format tile to modern stone-look finishes, our team delivers expert floor preparation, precise installation, and seamless finishing details designed to complement desert living.",
+    standardsHeading: "LARGE-FORMAT TILE. PRECISION CRAFTSMANSHIP.",
+    standardsDescription: "Beautiful porcelain tile flooring requires more than premium materials. From professional surface preparation to precise large-format tile installation, our team focuses on proper layouts, clean grout lines, and detailed finishing to create elegant floors designed to last.",
+    hideSpecializedBadge: true,
+    badgeLabel: "THE SIMPLIFIED DIFFERENCE",
+    heroCta: "GET A FREE TILE FLOORING ESTIMATE",
+    heroTrustStatement: "Licensed General Contractor • 20+ Years of Experience • Financing Available",
     keyFeatures: [
-      "Large-Format Rectified Porcelain (Minimal Grout Lines)",
-      "Extreme Thermal & UV Resistance (Stays Cool in Summer)",
-      "Indoor-Outdoor Seamless Flooring Transitions"
+      {
+        title: "LARGE-FORMAT PORCELAIN TILE",
+        text: "Expert installation of 24×48 and other large-format porcelain tile for a clean, modern appearance with fewer grout lines.",
+        icon: "grid",
+      },
+      {
+        title: "PROFESSIONAL SURFACE PREPARATION",
+        text: "Concrete slab evaluation, necessary floor flattening, and careful preparation to support proper tile installation.",
+        icon: "hammer",
+      },
+      {
+        title: "PRECISION TILE LAYOUT & INSTALLATION",
+        text: "Careful tile placement, consistent grout joints, and proper lippage control for beautiful finished results.",
+        icon: "ruler",
+      },
+      {
+        title: "PROFESSIONAL GROUTING & FINISHING",
+        text: "Detailed grout finishing, clean transitions, and professional baseboard installation for a polished appearance.",
+        icon: "paintbrush",
+      },
     ],
-    metaTitleTemplate: "Porcelain Tile Flooring in {location}, CA | Large Format Tile",
-    metaDescTemplate: "Large format porcelain tile flooring in {location}, CA. Cool desert surfaces, rectified edges & seamless indoor-outdoor layouts. Free quote.",
-    heroImage: "/images/bathroom-hero.jpg"
+    featuresLabel: "LUXURY STONE-LOOK PORCELAIN FLOORING",
+    featuresHeading: "PREMIUM PORCELAIN TILE FEATURES",
+    featuresDescription: "Porcelain tile is dense, durable, and low in water absorption, making it an excellent choice for desert homes. Product features vary by tile line, and our team will help you select the right size, finish, and rating for each space.",
+    featureHighlights: [
+      {
+        title: "Luxury Stone-Look Porcelain Flooring",
+        text: "Limestone-look, travertine-look, and marble-look porcelain capture the beauty of natural stone with the consistency and easy care of porcelain, so there is no routine sealing of the tile surface.",
+      },
+      {
+        title: "Beautiful Porcelain Flooring for Desert Homes",
+        text: "Warm ivory, beige, and soft stone tones complement desert-modern architecture, open-concept living spaces, and bright natural light throughout the Coachella Valley.",
+      },
+    ],
+    lvpFeatures: [
+      "Large-format options, including 24×48 and 30×60",
+      "Rectified porcelain for clean, modern grout joints",
+      "Durable, low-maintenance surfaces",
+      "Excellent water resistance and low water absorption",
+      "Limestone-look, travertine-look & marble-look finishes",
+      "Indoor-outdoor possibilities with exterior-rated, slip-resistant tile",
+    ],
+    installationSection: {
+      label: "PROFESSIONAL TILE FLOOR PREPARATION",
+      title: "EXPERT PORCELAIN TILE INSTALLATION IN COACHELLA VALLEY",
+      description: "Large-format porcelain tile is less forgiving than smaller tile. It needs a flat, properly prepared slab, an accurate layout, and careful setting to avoid uneven edges and cracked tiles. That is what separates Simplified Home Remodeling from a typical flooring installer.",
+      expertiseHeading: "Why Homeowners Choose Simplified",
+      expertise: [
+        "Over 20 years of remodeling experience",
+        "Licensed general contractor expertise",
+        "Lippage control & tile leveling systems",
+        "Clean transitions & baseboard installation",
+      ],
+      stepsHeading: "Our Porcelain Tile Installation Process",
+      steps: [
+        { title: "Flooring Removal", text: "Professional demolition and removal of existing flooring, with job-site protection throughout." },
+        { title: "Slab Inspection & Preparation", text: "Concrete slab inspection, crack evaluation, and surface preparation before any tile is set." },
+        { title: "Flattening & Leveling", text: "Floor flattening and leveling where needed to meet the flatness that large-format tile requires." },
+        { title: "Layout Planning", text: "Planned tile layouts that balance cuts, align with rooms and doorways, and center key sightlines." },
+        { title: "Large-Format Tile Setting", text: "Proper mortar coverage and careful setting of 24×48 and other large-format porcelain tile." },
+        { title: "Spacing & Lippage Control", text: "Consistent tile spacing and leveling systems for flat, even surfaces from tile to tile." },
+        { title: "Grouting & Finishing", text: "Professional grouting, cleanup, and detailed finishing for crisp, uniform grout lines." },
+        { title: "Baseboards & Transitions", text: "Baseboard installation and clean transitions to adjoining flooring, thresholds, and doorways." },
+      ],
+      note: "For indoor-outdoor applications, we only recommend porcelain tile specifically rated for exterior use with appropriate slip resistance.",
+    },
+    videoSection: {
+      label: "SEE THE SIMPLIFIED DIFFERENCE",
+      title: "LARGE-FORMAT PORCELAIN TILE INSTALLATION",
+      description: "See the preparation and precision behind every Simplified Home Remodeling tile floor. From slab preparation and layout planning to lippage control and final grouting, we install porcelain tile flooring that looks refined and performs for years.",
+      features: [
+        "Large-Format & Stone-Look Porcelain Tile",
+        "Concrete Slab Preparation & Floor Flattening",
+        "Precision Layouts, Lippage Control & Grouting",
+        "20+ Years of Remodeling Experience",
+      ],
+      ctaText: "GET A FREE TILE FLOORING ESTIMATE",
+    },
+    quoteSection: {
+      title: "READY FOR NEW PORCELAIN TILE FLOORS?",
+      subtitle: "Timeless Floors. Expertly Installed.",
+      description: "Bring the elegance of large-format porcelain tile into your home with professional preparation and precision installation. Request your free, no-obligation tile flooring estimate today.",
+      phoneSubtext: "Call or text us to discuss your tile flooring project.",
+      trustItems: [
+        { icon: "calendar", label: "Free In-Home Consultation" },
+        { icon: "map-pin", label: "Proudly Serving the Coachella Valley" },
+        { icon: "award", label: "20+ Years of Remodeling Experience" },
+        { icon: "shield", label: "Licensed General Contractor" },
+      ],
+    },
+    pageMetaTitle: "Porcelain Tile Flooring Installation Coachella Valley | Simplified Home Remodeling",
+    pageMetaDescription: "Luxury porcelain tile flooring installation in Palm Desert, La Quinta, Palm Springs, Rancho Mirage, and Indio. Large-format tile, professional craftsmanship, and free estimates.",
+    metaTitleTemplate: "Porcelain Tile Flooring Installation in {location}, CA | Simplified Home Remodeling",
+    metaDescTemplate: "Luxury porcelain tile flooring installation in {location}, CA. Large-format and stone-look tile, professional slab preparation, precision craftsmanship, and free estimates.",
+    heroImage: "/images/porcelain-tile-hero.jpg"
   },
   "natural-stone-tile": {
     serviceSlug: "flooring",

@@ -17,7 +17,7 @@ import StickyBottomBar from "@/components/StickyBottomBar";
 import { SUBCATEGORIES } from "@/lib/subcategories";
 import type { KeyFeatureItem } from "@/lib/subcategories";
 import { BUSINESS } from "@/lib/business";
-import { CheckCircle2, ShieldCheck, Sparkles, Layers, Ruler, Shield, MapPin, CalendarCheck, Award } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Sparkles, Layers, Ruler, Shield, MapPin, CalendarCheck, Award, LayoutGrid, Hammer, Paintbrush, Info } from "lucide-react";
 
 interface PageProps {
   params: {
@@ -37,12 +37,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const sub = SUBCATEGORIES[params.subCategory];
   if (!sub || sub.serviceSlug !== params.service) return {};
 
-  const title = sub.metaTitleTemplate.includes("{location}")
-    ? `${sub.title} in Coachella Valley | Simplified Home Remodeling`
-    : sub.metaTitleTemplate;
-  const description = sub.metaDescTemplate.includes("{location}")
-    ? `${sub.tagline}. ${sub.description}`
-    : sub.metaDescTemplate;
+  const title = sub.pageMetaTitle
+    ? sub.pageMetaTitle
+    : sub.metaTitleTemplate.includes("{location}")
+      ? `${sub.title} in Coachella Valley | Simplified Home Remodeling`
+      : sub.metaTitleTemplate;
+  const description = sub.pageMetaDescription
+    ? sub.pageMetaDescription
+    : sub.metaDescTemplate.includes("{location}")
+      ? `${sub.tagline}. ${sub.description}`
+      : sub.metaDescTemplate;
 
   return {
     title,
@@ -67,6 +71,9 @@ function getCardIcon(icon?: string) {
     case "layers": return <Layers className="w-5 h-5" />;
     case "ruler": return <Ruler className="w-5 h-5" />;
     case "sparkles": return <Sparkles className="w-5 h-5" />;
+    case "grid": return <LayoutGrid className="w-5 h-5" />;
+    case "hammer": return <Hammer className="w-5 h-5" />;
+    case "paintbrush": return <Paintbrush className="w-5 h-5" />;
     default: return <CheckCircle2 className="w-5 h-5" />;
   }
 }
@@ -119,6 +126,8 @@ export default function SubCategoryPage({ params }: PageProps) {
         description={sub.description}
         primaryCta={sub.heroCta}
         trustStatement={sub.heroTrustStatement}
+        title={sub.heroTitle}
+        overlay={sub.heroOverlay}
       />
 
       <TrustBar />
@@ -178,15 +187,27 @@ export default function SubCategoryPage({ params }: PageProps) {
           <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
               <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">
-                AVAILABLE OPTIONS
+                {sub.featuresLabel || "AVAILABLE OPTIONS"}
               </div>
               <h2 className="heading-condensed text-2xl sm:text-3xl text-white font-bold tracking-tight uppercase">
-                PREMIUM LVP FLOORING FEATURES
+                {sub.featuresHeading || "PREMIUM LVP FLOORING FEATURES"}
               </h2>
               <p className="text-gray-400 text-sm mt-2 max-w-2xl">
-                Features and specifications vary depending on the product selected. Our team will help you choose the right flooring for your home and lifestyle.
+                {sub.featuresDescription || "Features and specifications vary depending on the product selected. Our team will help you choose the right flooring for your home and lifestyle."}
               </p>
             </div>
+            {sub.featureHighlights && sub.featureHighlights.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {sub.featureHighlights.map((hl, i) => (
+                  <div key={i} className="bg-[#1a1a1a] border border-white/10 rounded-xl p-6">
+                    <h3 className="heading-condensed text-lg sm:text-xl text-white font-bold uppercase tracking-tight mb-2">
+                      {hl.title}
+                    </h3>
+                    <p className="text-sm text-gray-400 leading-relaxed">{hl.text}</p>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {sub.lvpFeatures.map((feat, i) => (
                 <div key={i} className="flex items-center gap-3 bg-[#1a1a1a] border border-white/8 rounded-lg px-4 py-3.5 hover:border-white/20 transition-colors">
@@ -194,6 +215,65 @@ export default function SubCategoryPage({ params }: PageProps) {
                   <span className="text-sm text-gray-300">{feat}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Installation Process & Expertise Section (only shown when installationSection exists) */}
+      {sub.installationSection && (
+        <section className="py-14 bg-[#141414] border-b border-white/10">
+          <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              <div className="lg:col-span-4">
+                <div className="text-xs font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">
+                  {sub.installationSection.label}
+                </div>
+                <h2 className="heading-condensed text-2xl sm:text-3xl text-white font-bold tracking-tight uppercase">
+                  {sub.installationSection.title}
+                </h2>
+                <p className="text-gray-300 text-sm sm:text-base mt-3 leading-relaxed">
+                  {sub.installationSection.description}
+                </p>
+                {sub.installationSection.expertiseHeading && (
+                  <h3 className="text-sm font-bold text-white uppercase tracking-wider mt-7 mb-3">
+                    {sub.installationSection.expertiseHeading}
+                  </h3>
+                )}
+                <ul className="space-y-2.5">
+                  {sub.installationSection.expertise.map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm text-gray-300">
+                      <ShieldCheck className="w-4 h-4 text-white/70 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="lg:col-span-8">
+                <h3 className="heading-condensed text-xl sm:text-2xl text-white font-bold uppercase tracking-tight mb-5">
+                  {sub.installationSection.stepsHeading}
+                </h3>
+                <ol className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {sub.installationSection.steps.map((step, i) => (
+                    <li key={i} className="flex gap-4 bg-[#1c1c1c] border border-white/10 rounded-xl p-5 hover:border-white/25 transition-colors">
+                      <span className="heading-condensed text-2xl font-black text-white/30 leading-none w-8 shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-1.5">{step.title}</h4>
+                        <p className="text-sm text-gray-400 leading-relaxed">{step.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                {sub.installationSection.note && (
+                  <p className="mt-5 flex items-start gap-2.5 text-xs sm:text-sm text-gray-400 leading-relaxed">
+                    <Info className="w-4 h-4 text-white/60 shrink-0 mt-0.5" />
+                    <span>{sub.installationSection.note}</span>
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </section>

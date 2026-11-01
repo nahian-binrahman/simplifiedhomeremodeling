@@ -110,6 +110,8 @@ export default function SubCategoryLocationPage({ params }: PageProps) {
         heading={loc.heroHeading}
         subtitle={`${sub.title} Crafted for ${loc.name} Living.`}
         description={`Specialized ${sub.title.toLowerCase()} installation across ${loc.name}, CA. ${sub.description}`}
+        title={sub.heroTitle}
+        overlay={sub.heroOverlay}
       />
 
       <TrustBar />
